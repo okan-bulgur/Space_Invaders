@@ -13,8 +13,11 @@ public class GameScreen extends Screen implements IMenuBar {
 	private static int height = 600;
 	private static int width = 800;
 	
-	private User user = Game.user;
-	private Player player;
+	private GamePanel gamePanel;
+	
+	public GameScreen(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
 	
 	@Override
 	public void createScreen() {
@@ -27,8 +30,6 @@ public class GameScreen extends Screen implements IMenuBar {
 		
 		createMenuBar();
 		
-		player = new Player(user);
-		GamePanel gamePanel = new GamePanel(player);
 		screen.add(gamePanel);
 		gamePanel.startGameThread();
 		screen.pack();

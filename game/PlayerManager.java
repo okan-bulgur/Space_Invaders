@@ -4,15 +4,14 @@ import users.User;
 
 public class PlayerManager {
 	
-	private User user = null;
 	private Player player = null;
 	
-	private void changeUser(User user) {
-		this.user = user;
+	public void createPlayer(User user) {
+		player = new Player(user);
 	}
 	
-	private void createPlayer() {
-		player = new Player(user);
+	public Player getPlayer() {
+		return player;
 	}
 	
 	private void drawPlayer() {

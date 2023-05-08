@@ -43,11 +43,11 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			
 			public void actionPerformed(ActionEvent e) {
 				try {					
-					if(Game.user == null) {
+					if(Game.userManager.getActiveUser() == null) {
 						throw new NotLogInException("No user is logged in.");
 					}
 					screen.dispose();
-					setScreen(new GameScreen());
+					setScreen(Game.gameManager.getGameScreen());
 					
 				} catch (NotLogInException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage() , "", JOptionPane.ERROR_MESSAGE);

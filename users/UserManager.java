@@ -2,9 +2,29 @@ package users;
 
 import java.util.HashMap;
 
-public class UsersInfo extends UsersManager{
-
-	private static HashMap <String, User> users = new HashMap <String, User> ();
+public class UserManager {
+	
+	protected static HashMap <String, User> users = new HashMap <String, User> ();
+	private User user = null;
+	
+	public UserManager() {
+	}
+	
+	public User createUser(String username, String password, int highScore) {
+		return new User(username, password, highScore);
+	}
+	
+	public void changeUser(User user) {
+		this.user = user;
+	}
+	
+	public User getActiveUser() {
+		return user;
+	}
+	
+	public User getUser (String username) {
+		return users.get(username);
+	}
 	
 	public boolean isValid(String username) {
 		return users.containsKey(username);
@@ -14,7 +34,7 @@ public class UsersInfo extends UsersManager{
 		if(isValid(username)) {
 			throw new UserInfoException("This username is used");
 		}
-		User newUser = new User(username, password, 0);
+		User newUser = createUser(username, password, 0);
 		users.put(username, newUser);
 	}
 	
@@ -27,9 +47,5 @@ public class UsersInfo extends UsersManager{
 			throw new UserInfoException("Password is incorrect");
 		}
 		return true;
-	}
-	
-	public User getUser (String username) {
-		return users.get(username);
 	}
 }

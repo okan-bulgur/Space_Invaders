@@ -3,19 +3,20 @@ package game;
 import screens.MenuScreen;
 import screens.ScreenManager;
 import users.User;
-import users.UsersInfo;
+import users.UserManager;
 
 public class Game {
 	
-	public static UsersInfo usersInfo;
-	public static ScreenManager screenManager;
+	public static UserManager userManager;
 	public static PlayerManager playerManager;
-	public static User user = null;
+	public static GameManager gameManager;
+	public static ScreenManager screenManager;
 	
 	public Game() {
-		usersInfo = new UsersInfo();
-		screenManager = new ScreenManager();
+		userManager = new UserManager();
 		playerManager = new PlayerManager();
+		gameManager = new GameManager();
+		screenManager = new ScreenManager();
 	}
     
 	public static void main(String[] args) {

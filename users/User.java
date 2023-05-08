@@ -1,6 +1,6 @@
 package users;
 
-public class User extends UsersManager{
+public class User extends UserManager{
 	
 	private String username;
 	private String password;
