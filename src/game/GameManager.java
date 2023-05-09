@@ -6,9 +6,14 @@ import users.User;
 
 public class GameManager implements Runnable{
 	
+	private KeyHandler keyHandler;
+	
 	private PlayerManager playerManager;
+	private Bulletmanager bulletmanager;
+	
 	private GamePanel gamePanel;
 	private GameScreen gameScreen;
+	
 	private User user;
 	private Player player;
 	
@@ -16,7 +21,8 @@ public class GameManager implements Runnable{
 	private Thread gameThread;
 	
 	public GameManager() {
-		playerManager = new PlayerManager();
+		setKeyHandler(new KeyHandler());
+		playerManager = new PlayerManager(keyHandler);
 	}
 	
 	public void createGameScreen() {
@@ -27,12 +33,13 @@ public class GameManager implements Runnable{
 		user = Game.userManager.getActiveUser();
 		playerManager.createPlayer(user);
 		player = playerManager.getPlayer();
-		gamePanel = new GamePanel(playerManager);
+		bulletmanager = new Bulletmanager(keyHandler, player);
+		gamePanel = new GamePanel(playerManager, bulletmanager);
 		
 		createGameScreen();
 		Game.screenManager.setScreen(gameScreen);
 		Game.screenManager.showScreen();
-		gamePanel.addKeyListener(playerManager.getKeyHandler());
+		gamePanel.addKeyListener(getKeyHandler());
 		gamePanel.setFocusable(true);
 		startGameThread();
 	}
@@ -49,6 +56,7 @@ public class GameManager implements Runnable{
 		while(gameThread != null) {
 			
 			playerManager.update();
+			bulletmanager.update();
 			
 			gamePanel.repaint();
 			
@@ -69,5 +77,13 @@ public class GameManager implements Runnable{
 				e.printStackTrace();
 			}
 		}	
+	}
+	
+	public KeyHandler getKeyHandler() {
+		return keyHandler;
+	}
+
+	public void setKeyHandler(KeyHandler keyHandler) {
+		this.keyHandler = keyHandler;
 	}
 }

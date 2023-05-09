@@ -13,13 +13,18 @@ public class PlayerManager {
 	private Player player = null;
 	private KeyHandler keyHandler;
 	private BufferedImage playerImg;
+	private BufferedImage playerBackFireImg;
+	private BufferedImage playerBackFire2Img;
 	
-	public PlayerManager() {
-		setKeyHandler(new KeyHandler());
+	private static int spriteCounter = 0;
+	private static int spriteNum = 0;
+	
+	public PlayerManager(KeyHandler keyHandler) {
+		this.keyHandler = keyHandler;
 	}
 	
 	public void createPlayer(User user) {
-		player = new Player(user);
+		player = new Player(null, user);
 	}
 	
 	public Player getPlayer() {
@@ -29,6 +34,8 @@ public class PlayerManager {
 	public void getPlayerImage() {
 		try {
 			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));
+			playerBackFireImg = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire.png"));
+			playerBackFire2Img = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire_2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,29 +44,39 @@ public class PlayerManager {
 	public void drawPlayer(Graphics2D g2, int tileSize) {
 		getPlayerImage();
 		g2.drawImage(playerImg, player.getPosX(), player.getPosY(), tileSize, tileSize, null);
+		if(spriteNum == 0) {
+			g2.drawImage(playerBackFireImg, player.getPosX()+13, player.getPosY()+39, tileSize/2, tileSize/2, null);			
+		}
+		else if(spriteNum == 1) {
+			g2.drawImage(playerBackFire2Img, player.getPosX()+13, player.getPosY()+39, tileSize/2, tileSize/2, null);	
+		}
 	}
 	
 	public void update() {
 		
-		if(getKeyHandler().isUpPress()) {
+		if(keyHandler.isUpPress()) {
 			player.setPosY(player.getPosY() - player.getSpeed());
 		}
-		if(getKeyHandler().isDownpress()) {
+		if(keyHandler.isDownpress()) {
 			player.setPosY(player.getPosY() + player.getSpeed());
 		}
-		if(getKeyHandler().isRightPress()) {
+		if(keyHandler.isRightPress()) {
 			player.setPosX(player.getPosX() + player.getSpeed());
 		}
-		if(getKeyHandler().isLeftpress()) {
+		if(keyHandler.isLeftpress()) {
 			player.setPosX(player.getPosX() - player.getSpeed());
+		}
+		
+		spriteCounter++;
+		if(spriteCounter > 10) {
+			if(spriteNum == 1) {
+				spriteNum = 0;
+			}
+			else {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
 		}
 	}
 	
-	public KeyHandler getKeyHandler() {
-		return keyHandler;
-	}
-
-	public void setKeyHandler(KeyHandler keyHandler) {
-		this.keyHandler = keyHandler;
-	}
 }

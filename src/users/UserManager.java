@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class UserManager {
 	
 	protected static HashMap <String, User> users = new HashMap <String, User> ();
-	private User user = null;
+	//private User user = null;
+	private static User user = new User("okidoki", "1515", 0);
 	
 	public UserManager() {
 	}

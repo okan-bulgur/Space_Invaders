@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import game.Bulletmanager;
 import game.Player;
 import game.PlayerManager;
 
@@ -22,12 +23,14 @@ public class GamePanel extends JPanel {
 	private final int screenHeight = tileSize * maxScreenRow;
 	
 	private PlayerManager playerManager;
+	private Bulletmanager bulletmanager;
 	
-	public GamePanel(PlayerManager playerManager) {
+	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager) {
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.playerManager = playerManager;
+		this.bulletmanager = bulletmanager;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -35,8 +38,17 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		playerManager.drawPlayer(g2, tileSize);
+		bulletmanager.drawBullet(g2, tileSize);
 		
 		g2.dispose();
+	}
+	
+	public int getScreenWidth() {
+		return screeWidth;
+	}
+	
+	public int getScreenHeight() {
+		return screenHeight;
 	}
  
 }

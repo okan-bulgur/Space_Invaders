@@ -12,10 +12,12 @@ public class Player extends PlayerManager{
 	private int posY = 100;
 	private int speed = 4;
 	private int damage = 10;
+	private int bulletSpeed = 5;
 	private Color color = Color.white;
 	private User user;
 	
-	public Player(User user) {
+	public Player(KeyHandler keyHandler, User user) {
+		super(keyHandler);
 		this.user = user;
 	}
 
@@ -65,6 +67,14 @@ public class Player extends PlayerManager{
 
 	public void setDamage(int damage) {
 		this.damage = damage;
+	}
+	
+	public int getBulletSpeed() {
+		return bulletSpeed;
+	}
+	
+	public void setBulletSpeed(int bulletSpeed) {
+		this.bulletSpeed = bulletSpeed;
 	}
 
 	public Color getColor() {
