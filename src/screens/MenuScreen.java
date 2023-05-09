@@ -19,9 +19,6 @@ public class MenuScreen extends Screen implements IMenuBar {
 		screen.setLayout(new BorderLayout());
 		
 		createMenuBar();
-		
-		JLabel label = new JLabel("MENU SCREEN");
-		screen.add(label, BorderLayout.CENTER);
 				
 		screen.setLocationRelativeTo(null);
 		screen.setVisible(true);		

@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +47,11 @@ public class UserFormScreen extends Screen {
 		JButton logInBtn = new JButton("Sign in");
 		JButton signUpBtn = new JButton("Sign Up");
 		
+		logInBtn.setBackground(Color.black);
+		logInBtn.setForeground(Color.white);
+		signUpBtn.setBackground(Color.black);
+		signUpBtn.setForeground(Color.white);
+		
 		logInBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -83,7 +89,12 @@ public class UserFormScreen extends Screen {
 			
 		});
 		
-		JPanel panel = new JPanel(new GridLayout(3,1));
+		GridLayout gridLayout = new GridLayout(3,1);
+		gridLayout.setVgap(10);
+		gridLayout.setHgap(10);
+		
+		
+		JPanel panel = new JPanel(gridLayout);
 		
 		panel.add(userNameLabel);
 		panel.add(usernameTextField);
