@@ -1,6 +1,10 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import users.User;
 
@@ -8,6 +12,7 @@ public class PlayerManager {
 	
 	private Player player = null;
 	private KeyHandler keyHandler;
+	private BufferedImage playerImg;
 	
 	public PlayerManager() {
 		setKeyHandler(new KeyHandler());
@@ -21,9 +26,17 @@ public class PlayerManager {
 		return player;
 	}
 	
+	public void getPlayerImage() {
+		try {
+			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void drawPlayer(Graphics2D g2, int tileSize) {
-		g2.setColor(player.getColor());
-		g2.fillRect(player.getPosX(), player.getPosY(), tileSize, tileSize);
+		getPlayerImage();
+		g2.drawImage(playerImg, player.getPosX(), player.getPosY(), tileSize, tileSize, null);
 	}
 	
 	public void update() {
