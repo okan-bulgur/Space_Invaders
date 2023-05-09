@@ -35,7 +35,9 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			public void actionPerformed(ActionEvent e) {
 				screen.dispose();
 				setScreen(new MenuScreen());
+				showScreen();
 				setScreen(new UserFormScreen());
+				showScreen();
 			}
 		});
 		
@@ -47,12 +49,13 @@ public abstract class Screen extends ScreenManager implements IScreen{
 						throw new NotLogInException("No user is logged in.");
 					}
 					screen.dispose();
-					setScreen(Game.gameManager.getGameScreen());
+					Game.gameManager.startGame();
 					
 				} catch (NotLogInException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage() , "", JOptionPane.ERROR_MESSAGE);
 					screen.dispose();
 					setScreen(new MenuScreen());
+					showScreen();
 				}
 			}
 		});
@@ -62,6 +65,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			public void actionPerformed(ActionEvent e) {
 				screen.dispose();
 				setScreen(new HighScoresScreen());
+				showScreen();
 			}
 		});
 		

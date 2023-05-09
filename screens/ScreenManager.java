@@ -6,12 +6,9 @@ public class ScreenManager {
 	
 	public void setScreen(Screen screen) {
 		this.screen = screen;
-		showScreen();
 	}
 	
-	private void showScreen() {
+	public void showScreen() {
 		screen.createScreen();
 	}
-	
-	
 }

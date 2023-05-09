@@ -31,7 +31,6 @@ public class GameScreen extends Screen implements IMenuBar {
 		createMenuBar();
 		
 		screen.add(gamePanel);
-		gamePanel.startGameThread();
 		screen.pack();
 				
 		screen.setLocationRelativeTo(null);

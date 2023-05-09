@@ -1,14 +1,18 @@
 package game;
 
+import java.awt.Color;
+
 import users.User;
 
-public class Player {
+public class Player extends PlayerManager{
 	
 	private int health = 100;
 	private int score = 0;
 	private int posX = 100;
 	private int posY = 100;
 	private int speed = 4;
+	private int damage = 10;
+	private Color color = Color.white;
 	private User user;
 	
 	public Player(User user) {
@@ -53,5 +57,21 @@ public class Player {
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }
