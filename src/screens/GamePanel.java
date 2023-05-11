@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import game.AliensManager;
 import game.Bulletmanager;
 import game.Player;
 import game.PlayerManager;
@@ -24,13 +25,15 @@ public class GamePanel extends JPanel {
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
+	private AliensManager aliensManager;
 	
-	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager) {
+	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.playerManager = playerManager;
 		this.bulletmanager = bulletmanager;
+		this.aliensManager = aliensManager;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -39,6 +42,7 @@ public class GamePanel extends JPanel {
 		
 		playerManager.drawPlayer(g2, tileSize);
 		bulletmanager.drawBullet(g2, tileSize);
+		aliensManager.drawAlien(g2, tileSize);
 		
 		g2.dispose();
 	}

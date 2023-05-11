@@ -1,6 +1,9 @@
 package game;
 
-import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import users.User;
 
@@ -13,12 +16,15 @@ public class Player extends PlayerManager{
 	private int speed = 4;
 	private int damage = 10;
 	private int bulletSpeed = 5;
-	private Color color = Color.white;
+	private BufferedImage playerImg;
+	private BufferedImage playerBackFireImg;
+	private BufferedImage playerBackFire2Img;
 	private User user;
 	
 	public Player(KeyHandler keyHandler, User user) {
 		super(keyHandler);
 		this.user = user;
+		setPlayerImage();
 	}
 
 	public int getHealth() {
@@ -76,12 +82,27 @@ public class Player extends PlayerManager{
 	public void setBulletSpeed(int bulletSpeed) {
 		this.bulletSpeed = bulletSpeed;
 	}
-
-	public Color getColor() {
-		return color;
+	
+	public void setPlayerImage() {
+		try {
+			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));
+			playerBackFireImg = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire.png"));
+			playerBackFire2Img = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire_2.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public BufferedImage getPlayerImg() {
+		return playerImg;
 	}
+
+	public BufferedImage getPlayerBackFireImg() {
+		return playerBackFireImg;
+	}
+
+	public BufferedImage getPlayerBackFire2Img() {
+		return playerBackFire2Img;
+	}
+	
 }

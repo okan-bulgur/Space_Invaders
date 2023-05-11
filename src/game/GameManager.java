@@ -10,12 +10,14 @@ public class GameManager implements Runnable{
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
+	private AliensManager aliensManager;
 	
 	private GamePanel gamePanel;
 	private GameScreen gameScreen;
 	
 	private User user;
 	private Player player;
+	private Aliens alien;
 	
 	private final int FPS = 60;
 	private Thread gameThread;
@@ -23,6 +25,7 @@ public class GameManager implements Runnable{
 	public GameManager() {
 		setKeyHandler(new KeyHandler());
 		playerManager = new PlayerManager(keyHandler);
+		aliensManager = new AliensManager();		
 	}
 	
 	public void createGameScreen() {
@@ -34,8 +37,11 @@ public class GameManager implements Runnable{
 		playerManager.createPlayer(user);
 		player = playerManager.getPlayer();
 		bulletmanager = new Bulletmanager(keyHandler, player);
-		gamePanel = new GamePanel(playerManager, bulletmanager);
+		gamePanel = new GamePanel(playerManager, bulletmanager, aliensManager);
 		
+		aliensManager.createAlien("alien1");
+		alien = aliensManager.getAliens();
+				
 		createGameScreen();
 		Game.screenManager.setScreen(gameScreen);
 		Game.screenManager.showScreen();
@@ -57,6 +63,7 @@ public class GameManager implements Runnable{
 			
 			playerManager.update();
 			bulletmanager.update();
+			aliensManager.update(gamePanel.getWidth());
 			
 			gamePanel.repaint();
 			
