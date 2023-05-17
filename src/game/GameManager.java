@@ -1,5 +1,8 @@
 package game;
 
+import java.awt.Checkbox;
+import java.util.ListIterator;
+
 import screens.GamePanel;
 import screens.GameScreen;
 import users.User;
@@ -16,8 +19,8 @@ public class GameManager implements Runnable{
 	
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
+	private  Bulletmanager bulletmanager;
 	private PlayerManager playerManager;
-	private Bulletmanager bulletmanager;
 	private AliensManager aliensManager;
 	
 	private GamePanel gamePanel;
@@ -25,14 +28,14 @@ public class GameManager implements Runnable{
 	
 	private User user;
 	private Player player;
-	private Alien alien;
 	
 	private final int FPS = 60;
 	private Thread gameThread;
 	
 	public GameManager() {
-		playerManager = new PlayerManager();
-		aliensManager = new AliensManager();		
+		bulletmanager = new Bulletmanager();
+		playerManager = new PlayerManager(bulletmanager);
+		aliensManager = new AliensManager(bulletmanager);		
 	}
 	
 	public void createGameScreen() {
@@ -44,10 +47,10 @@ public class GameManager implements Runnable{
 		playerManager.setUser(user);
 		playerManager.createPlayer();
 		player = playerManager.getPlayer();
-		bulletmanager = new Bulletmanager(player);
 		gamePanel =  new GamePanel(tileSize, maxScreenCol, maxScreenRow, playerManager, bulletmanager, aliensManager);
 		
 		aliensManager.createAlien("alien1");
+		aliensManager.createAlien("alien2");
 				
 		createGameScreen();
 		Game.screenManager.setScreen(gameScreen);
@@ -74,6 +77,7 @@ public class GameManager implements Runnable{
 			
 			gamePanel.repaint();
 			
+			collisionDetector();			
 			
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
@@ -92,4 +96,28 @@ public class GameManager implements Runnable{
 			}
 		}	
 	}
+	
+	public void collisionDetector() {
+		ListIterator<Alien> itr1 = aliensManager.getAliens().listIterator();
+		while (itr1.hasNext()) {
+			Alien alien = itr1.next();
+			ListIterator<Bullet> itr2 = bulletmanager.getBullets().listIterator();
+			
+			if(aliensManager.isCollision(alien.collisionArea, player.collisionArea)) {
+				playerManager.takeDamage(1);
+			}
+			
+			while (itr2.hasNext()) {
+				Bullet bullet = itr2.next();
+				if(aliensManager.isCollision(alien.collisionArea, bullet.collisionArea)) {
+					aliensManager.takeDamage(alien, bullet.getDamage());
+					playerManager.addScore();
+					//System.out.println("health: "+alien.getHealth());
+				}
+			}
+			
+		}
+		
+	}
+	
 }

@@ -1,18 +1,24 @@
 package game;
 
+import java.awt.Rectangle;
+
 public class Bullet extends Bulletmanager {
 
-	private int damage = 10;
-	private int speed = 5;
+	private Character character;
+	private int damage;
+	private int speed;
 	private int posX;
 	private int posY;
+	private int sizeWidth = GameManager.tileSize / 3;
+	private int sizeHeight = GameManager.tileSize / 3;
+	protected Rectangle collisionArea;
 
-	public Bullet(Player player) {
-		super(player);
-		setDamage(player.getDamage());
-		setSpeed(player.getBulletSpeed());
-		setPosX(player.getPosX());
-		setPosY(player.getPosY());
+	public Bullet(Character character) {
+		this.character = character;
+		setDamage(character.getDamage());
+		setSpeed(character.getBulletSpeed());
+		setPosX(character.getPosX());
+		setPosY(character.getPosY());
 	}
 	
 	public int getDamage() {
@@ -46,5 +52,22 @@ public class Bullet extends Bulletmanager {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+	
+	public int getSizeWidth() {
+		return sizeWidth;
+	}
+	
+	public int getSizeHeight() {
+		return sizeHeight;
+	}
+	
+	public void setCollisionArea() {
+		collisionArea = new Rectangle();
+		collisionArea.x = posX;
+		collisionArea.y = posY;
+		collisionArea.width = sizeWidth;
+		collisionArea.height = sizeHeight;
+	}
+
 
 }

@@ -1,19 +1,30 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ListIterator;
 
-public class AliensManager extends CharacterManager{
+public class AliensManager implements ICollision{
 
 	private ArrayList<Alien> aliens = new ArrayList<>();
 	
+	private Bulletmanager bulletmanager;	
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
+	
+	public AliensManager(Bulletmanager bulletmanager) {
+		this.bulletmanager = bulletmanager;
+	}
 	
 	public void createAlien(String type) {
 		Alien newAlien = new Alien(type);
 		aliens.add(newAlien);
+	}
+	
+	public ArrayList<Alien> getAliens(){
+		return aliens;
 	}
 	
 	public void drawCharacter(Graphics2D g2) {
@@ -22,15 +33,14 @@ public class AliensManager extends CharacterManager{
 			Alien alien = itr.next();
 			
 			if(spriteNum == 0) {
-				g2.drawImage(alien.getAliensImg1() , alien.getPosX(), alien.getPosY(), GameManager.tileSize, GameManager.tileSize, null);			
+				g2.drawImage(alien.getAliensImg1() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);			
 			}
 			else if(spriteNum == 1) {
-				g2.drawImage(alien.getAliensImg2() , alien.getPosX(), alien.getPosY(), GameManager.tileSize, GameManager.tileSize, null);	
+				g2.drawImage(alien.getAliensImg2() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);	
 			}
 		}
 	}
 	
-	@Override
 	public void update() {
 
 		if (aliens.size() == 0) {
@@ -47,6 +57,8 @@ public class AliensManager extends CharacterManager{
 			
 			alien.setPosX(alien.getPosX() + alien.getSpeed());
 			
+			alien.setCollisionArea();
+			
 			spriteCounter++;
 			if(spriteCounter > 10) {
 				if(spriteNum == 1) {
@@ -60,12 +72,31 @@ public class AliensManager extends CharacterManager{
 		}
 	}
 	
-	public void takeDamage(Alien alien) {
-		alien.setHealth(alien.getHealth() - 1);
+	public void takeDamage(Alien alien, int damage) {
+		alien.setHealth(alien.getHealth() - damage);
 		if(isDead(alien)) {
+			aliens.remove(aliens.indexOf(alien));
 			alien = null;
+			//System.out.println("size: " + aliens.size());
+			//System.out.println("index: " + aliens.indexOf(alien));
+			//removeAlien(alien);
 			System.gc();
 		}
+	}
+	
+	private void removeAlien(Alien alien) {
+		ListIterator<Alien> itr = aliens.listIterator();
+		int i = 0;
+		while(itr.hasNext()) {
+			Alien alien1 = itr.next();
+			System.out.println("alien1: " + alien1);
+			System.out.println("alien: " + alien);
+			if(alien == alien1) {
+				aliens.remove(i);
+			}
+			i++;
+		}
+		
 	}
 	
 	public boolean isDead(Alien alien) {
@@ -73,9 +104,18 @@ public class AliensManager extends CharacterManager{
 	}
 
 	@Override
+	public boolean isCollision(Rectangle area1, Rectangle area2) {
+		if(area1.intersects(area2))
+		{
+		    return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public void collisionDetector() {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }

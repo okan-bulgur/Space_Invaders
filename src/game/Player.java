@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -8,16 +7,9 @@ import javax.imageio.ImageIO;
 
 import users.User;
 
-public class Player extends PlayerManager{
+public class Player extends Character {
 	
-	private int health = 100;
-	private int score = 0;
-	private int posX = 100;
-	private int posY = 100;
-	private int speed = 4;
-	private int damage = 10;
-	private int bulletSpeed = 5;
-	protected Rectangle collisionArea;
+	private int score;
 	private BufferedImage playerImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
@@ -25,15 +17,17 @@ public class Player extends PlayerManager{
 	
 	public Player(User user) {
 		this.user = user;
+		setHealth(5);
+		setScore(0);
+		setPosX(100);
+		setPosY(100);
+		setSpeed(4);
+		setDamage(1);
+		setBulletSpeed(5);
+		setSizeWidth(GameManager.tileSize);
+		setSizeHeight(GameManager.tileSize);
+		setCollisionArea();
 		setPlayerImage();
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void setHealth(int health) {
-		this.health = health;
 	}
 
 	public int getScore() {
@@ -42,46 +36,6 @@ public class Player extends PlayerManager{
 
 	public void setScore(int score) {
 		this.score = score;
-	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-	
-	public int getBulletSpeed() {
-		return bulletSpeed;
-	}
-	
-	public void setBulletSpeed(int bulletSpeed) {
-		this.bulletSpeed = bulletSpeed;
 	}
 	
 	public void setPlayerImage() {
@@ -106,12 +60,4 @@ public class Player extends PlayerManager{
 		return playerBackFire2Img;
 	}
 	
-	/*
-	public void setCollisionArea() {
-		collisionArea.x = posX;
-		collisionArea.y = posY;
-		collisionArea.width = GameManager.tileSize;
-		collisionArea.height = GameManager.tileSize;
-	}	
-	*/
 }

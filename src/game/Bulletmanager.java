@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,21 +9,22 @@ import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
-public class Bulletmanager extends CharacterManager{
+public class Bulletmanager implements ICollision {
 	
 	private Bullet bullet;
-	private ArrayList<Bullet> bullets;
+	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 	private BufferedImage bulletImg;
 	
-	private Player player;
-	
-	public Bulletmanager(Player player) {
-		bullets = new ArrayList<Bullet>();
-		this.player = player;
+	public Bulletmanager() {
 	}
 
-	public Bullet createBullet() {
-		return new Bullet(player);
+	public ArrayList<Bullet> getBullets(){
+		return bullets;
+	}
+	
+	public void createBullet(Character character) {
+		Bullet newBullet = new Bullet(character);
+		bullets.add(newBullet);
 	}
 	
 	public void getBulletImage() {
@@ -33,25 +35,18 @@ public class Bulletmanager extends CharacterManager{
 		}
 	}
 	
-	@Override
 	public void drawCharacter(Graphics2D g2) {
 		getBulletImage();
 		Iterator<Bullet> itr = bullets.listIterator();
 		while (itr.hasNext()) {
 			bullet = itr.next();
 			if(bullet != null) {
-				g2.drawImage(bulletImg, bullet.getPosX() + GameManager.tileSize/3, bullet.getPosY(), GameManager.tileSize/3, GameManager.tileSize/3, null);					
+				g2.drawImage(bulletImg, bullet.getPosX() + bullet.getSizeWidth(), bullet.getPosY(), bullet.getSizeWidth(), bullet.getSizeHeight(), null);					
 			}		
 		}
 	}
 	
-	@Override
 	public void update() {
-
-		if(GameManager.keyHandler.isSpacepress()) {
-			Bullet newBullet = createBullet();	
-			bullets.add(newBullet);
-		}
 		
 		if(bullets.size() > 0) {
 			Iterator<Bullet> itr = bullets.listIterator();
@@ -59,6 +54,7 @@ public class Bulletmanager extends CharacterManager{
 				bullet = itr.next();
 				if(bullet != null) {
 					bullet.setPosY(bullet.getPosY() - bullet.getSpeed());		
+					bullet.setCollisionArea();
 					if(bullet.getPosY() <= 0) {
 						itr.remove();
 						bullet = null;
@@ -69,10 +65,20 @@ public class Bulletmanager extends CharacterManager{
 			}
 		}
 	}
+	
+	@Override
+	public boolean isCollision(Rectangle area1, Rectangle area2) {
+		if(area1.intersects(area2))
+		{
+		    return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void collisionDetector() {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
