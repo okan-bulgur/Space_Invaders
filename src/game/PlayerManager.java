@@ -4,50 +4,58 @@ import java.awt.Graphics2D;
 
 import users.User;
 
-public class PlayerManager {
+public class PlayerManager extends CharacterManager{
 	
+	private User user = null;
 	private Player player = null;
-	private KeyHandler keyHandler;
-	
+
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	
-	public PlayerManager(KeyHandler keyHandler) {
-		this.keyHandler = keyHandler;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
-	public void createPlayer(User user) {
-		player = new Player(null, user);
+	public User getUser() {
+		return user;
+	}
+	
+	public void createPlayer () {
+		player = new Player(user);
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public void drawPlayer(Graphics2D g2, int tileSize) {
-		g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), tileSize, tileSize, null);
+	@Override
+	public void drawCharacter(Graphics2D g2) {
+		g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), GameManager.tileSize, GameManager.tileSize, null);
 		if(spriteNum == 0) {
-			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX()+13, player.getPosY()+39, tileSize/2, tileSize/2, null);			
+			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX()+13, player.getPosY()+39, GameManager.tileSize/2, GameManager.tileSize/2, null);			
 		}
 		else if(spriteNum == 1) {
-			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX()+13, player.getPosY()+39, tileSize/2, tileSize/2, null);	
+			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX()+13, player.getPosY()+39, GameManager.tileSize/2, GameManager.tileSize/2, null);	
 		}
 	}
 	
+	@Override
 	public void update() {
 		
-		if(keyHandler.isUpPress()) {
+		if(GameManager.keyHandler.isUpPress()) {
 			player.setPosY(player.getPosY() - player.getSpeed());
 		}
-		if(keyHandler.isDownpress()) {
+		if(GameManager.keyHandler.isDownpress()) {
 			player.setPosY(player.getPosY() + player.getSpeed());
 		}
-		if(keyHandler.isRightPress()) {
+		if(GameManager.keyHandler.isRightPress()) {
 			player.setPosX(player.getPosX() + player.getSpeed());
 		}
-		if(keyHandler.isLeftpress()) {
+		if(GameManager.keyHandler.isLeftpress()) {
 			player.setPosX(player.getPosX() - player.getSpeed());
 		}
+		
+		//player.setCollisionArea();
 		
 		spriteCounter++;
 		if(spriteCounter > 10) {
@@ -61,4 +69,22 @@ public class PlayerManager {
 		}
 	}
 	
+	public void takeDamage() {
+		player.setHealth(player.getHealth() - 1);
+		if(isDead()) {
+			player = null;
+			System.gc();
+		}
+	}
+	
+	public boolean isDead() {
+		return player.getHealth() == 0;
+	}
+
+	@Override
+	public void collisionDetector() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

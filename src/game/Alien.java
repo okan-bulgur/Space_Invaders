@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Aliens extends AliensManager {
+public class Alien extends AliensManager {
 
 	private String type;
 	private int health;
@@ -17,7 +17,7 @@ public class Aliens extends AliensManager {
 	private BufferedImage aliensImg1;
 	private BufferedImage aliensImg2;
 	
-	public Aliens(String type) {
+	public Alien(String type) {
 		setAlienByType(type);
 	}
 	
@@ -98,7 +98,7 @@ public class Aliens extends AliensManager {
 		switch (type) {
 			case "alien1":
 				setAliensImg("/img/alien1.png", "/img/alien2.png");
-				setHealth(100);
+				setHealth(5);
 				setPosX(50);
 				setPosY(50);
 				setDamage(10);
@@ -108,5 +108,6 @@ public class Aliens extends AliensManager {
 		default:
 			break;
 		}
+		setType(type);
 	}
 }

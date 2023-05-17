@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -16,13 +17,13 @@ public class Player extends PlayerManager{
 	private int speed = 4;
 	private int damage = 10;
 	private int bulletSpeed = 5;
+	protected Rectangle collisionArea;
 	private BufferedImage playerImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
 	private User user;
 	
-	public Player(KeyHandler keyHandler, User user) {
-		super(keyHandler);
+	public Player(User user) {
 		this.user = user;
 		setPlayerImage();
 	}
@@ -105,4 +106,12 @@ public class Player extends PlayerManager{
 		return playerBackFire2Img;
 	}
 	
+	/*
+	public void setCollisionArea() {
+		collisionArea.x = posX;
+		collisionArea.y = posY;
+		collisionArea.width = GameManager.tileSize;
+		collisionArea.height = GameManager.tileSize;
+	}	
+	*/
 }

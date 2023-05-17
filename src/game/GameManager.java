@@ -6,7 +6,15 @@ import users.User;
 
 public class GameManager implements Runnable{
 	
-	private KeyHandler keyHandler;
+	private static final int originalTileSize = 16;
+	private static final int scale = 3;
+	protected static final int tileSize = originalTileSize * scale;
+	protected static final int maxScreenCol = 16;
+	protected static final int maxScreenRow = 12;
+	protected static final int screeWidth = tileSize * maxScreenCol;
+	protected static final int screenHeight = tileSize * maxScreenRow;
+	
+	protected static KeyHandler keyHandler = new KeyHandler();;
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
@@ -17,14 +25,13 @@ public class GameManager implements Runnable{
 	
 	private User user;
 	private Player player;
-	private Aliens alien;
+	private Alien alien;
 	
 	private final int FPS = 60;
 	private Thread gameThread;
 	
 	public GameManager() {
-		setKeyHandler(new KeyHandler());
-		playerManager = new PlayerManager(keyHandler);
+		playerManager = new PlayerManager();
 		aliensManager = new AliensManager();		
 	}
 	
@@ -34,18 +41,18 @@ public class GameManager implements Runnable{
 	
 	public void startGame() {
 		user = Game.userManager.getActiveUser();
-		playerManager.createPlayer(user);
+		playerManager.setUser(user);
+		playerManager.createPlayer();
 		player = playerManager.getPlayer();
-		bulletmanager = new Bulletmanager(keyHandler, player);
-		gamePanel = new GamePanel(playerManager, bulletmanager, aliensManager);
+		bulletmanager = new Bulletmanager(player);
+		gamePanel =  new GamePanel(tileSize, maxScreenCol, maxScreenRow, playerManager, bulletmanager, aliensManager);
 		
 		aliensManager.createAlien("alien1");
-		alien = aliensManager.getAliens();
 				
 		createGameScreen();
 		Game.screenManager.setScreen(gameScreen);
 		Game.screenManager.showScreen();
-		gamePanel.addKeyListener(getKeyHandler());
+		gamePanel.addKeyListener(keyHandler);
 		gamePanel.setFocusable(true);
 		startGameThread();
 	}
@@ -63,7 +70,7 @@ public class GameManager implements Runnable{
 			
 			playerManager.update();
 			bulletmanager.update();
-			aliensManager.update(gamePanel.getWidth());
+			aliensManager.update();
 			
 			gamePanel.repaint();
 			
@@ -84,13 +91,5 @@ public class GameManager implements Runnable{
 				e.printStackTrace();
 			}
 		}	
-	}
-	
-	public KeyHandler getKeyHandler() {
-		return keyHandler;
-	}
-
-	public void setKeyHandler(KeyHandler keyHandler) {
-		this.keyHandler = keyHandler;
 	}
 }

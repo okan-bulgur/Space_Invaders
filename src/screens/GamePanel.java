@@ -9,28 +9,31 @@ import javax.swing.JPanel;
 
 import game.AliensManager;
 import game.Bulletmanager;
-import game.Player;
 import game.PlayerManager;
 
 public class GamePanel extends JPanel {
-	
-	private final int originalTileSize = 16;
-	private final int scale = 3;
-	
-	private final int tileSize = originalTileSize * scale;
-	private final int maxScreenCol = 16;
-	private final int maxScreenRow = 12;
-	private final int screeWidth = tileSize * maxScreenCol;
-	private final int screenHeight = tileSize * maxScreenRow;
+
+	private final int tileSize;
+	private final int maxScreenCol;
+	private final int maxScreenRow;
+	private final int screeWidth;
+	private final int screenHeight;
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
 	private AliensManager aliensManager;
 	
-	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
+	public GamePanel(int tileSize, int maxScreenCol, int maxScreenRow, PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
+		this.tileSize = tileSize;
+		this.maxScreenCol = maxScreenCol;
+		this.maxScreenRow = maxScreenRow;
+		this.screeWidth = tileSize * maxScreenCol;
+		this.screenHeight = tileSize * maxScreenRow;
+		
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
+		
 		this.playerManager = playerManager;
 		this.bulletmanager = bulletmanager;
 		this.aliensManager = aliensManager;
@@ -40,19 +43,10 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
-		playerManager.drawPlayer(g2, tileSize);
-		bulletmanager.drawBullet(g2, tileSize);
-		aliensManager.drawAlien(g2, tileSize);
+		playerManager.drawCharacter(g2);
+		bulletmanager.drawCharacter(g2);
+		aliensManager.drawCharacter(g2);
 		
 		g2.dispose();
 	}
-	
-	public int getScreenWidth() {
-		return screeWidth;
-	}
-	
-	public int getScreenHeight() {
-		return screenHeight;
-	}
- 
 }

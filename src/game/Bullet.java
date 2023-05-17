@@ -7,8 +7,8 @@ public class Bullet extends Bulletmanager {
 	private int posX;
 	private int posY;
 
-	public Bullet(KeyHandler keyHandler, Player player) {
-		super(keyHandler, player);
+	public Bullet(Player player) {
+		super(player);
 		setDamage(player.getDamage());
 		setSpeed(player.getBulletSpeed());
 		setPosX(player.getPosX());

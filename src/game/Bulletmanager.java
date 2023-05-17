@@ -8,23 +8,21 @@ import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
-public class Bulletmanager {
+public class Bulletmanager extends CharacterManager{
 	
 	private Bullet bullet;
 	private ArrayList<Bullet> bullets;
 	private BufferedImage bulletImg;
 	
-	private KeyHandler keyHandler;
 	private Player player;
 	
-	public Bulletmanager(KeyHandler keyHandler, Player player) {
+	public Bulletmanager(Player player) {
 		bullets = new ArrayList<Bullet>();
-		this.keyHandler = keyHandler;
 		this.player = player;
 	}
 
 	public Bullet createBullet() {
-		return new Bullet(null, player);
+		return new Bullet(player);
 	}
 	
 	public void getBulletImage() {
@@ -35,20 +33,22 @@ public class Bulletmanager {
 		}
 	}
 	
-	public void drawBullet(Graphics2D g2, int tileSize) {
+	@Override
+	public void drawCharacter(Graphics2D g2) {
 		getBulletImage();
 		Iterator<Bullet> itr = bullets.listIterator();
 		while (itr.hasNext()) {
 			bullet = itr.next();
 			if(bullet != null) {
-				g2.drawImage(bulletImg, bullet.getPosX() + tileSize/3, bullet.getPosY(), tileSize/3, tileSize/3, null);					
+				g2.drawImage(bulletImg, bullet.getPosX() + GameManager.tileSize/3, bullet.getPosY(), GameManager.tileSize/3, GameManager.tileSize/3, null);					
 			}		
 		}
 	}
 	
+	@Override
 	public void update() {
 
-		if(keyHandler.isSpacepress()) {
+		if(GameManager.keyHandler.isSpacepress()) {
 			Bullet newBullet = createBullet();	
 			bullets.add(newBullet);
 		}
@@ -61,7 +61,6 @@ public class Bulletmanager {
 					bullet.setPosY(bullet.getPosY() - bullet.getSpeed());		
 					if(bullet.getPosY() <= 0) {
 						itr.remove();
-						System.out.println("b1: " + bullet + " size: " + bullets.size());
 						bullet = null;
 						System.gc();
 					}
@@ -70,7 +69,10 @@ public class Bulletmanager {
 			}
 		}
 	}
-	
-	
-	
+
+	@Override
+	public void collisionDetector() {
+		// TODO Auto-generated method stub
+		
+	}
 }
