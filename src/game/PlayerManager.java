@@ -92,8 +92,7 @@ public class PlayerManager implements ICollision{
 	public void takeDamage(int damage) {
 		player.setHealth(player.getHealth() - damage);
 		if(isDead()) {
-			player = null;
-			System.gc();
+			GameManager.gameThread.gameStop();
 		}
 		
 		new Thread(new Runnable()

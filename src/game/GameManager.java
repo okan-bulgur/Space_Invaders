@@ -6,29 +6,27 @@ import screens.GamePanel;
 import screens.GameScreen;
 import users.User;
 
-public class GameManager implements Runnable{
+public class GameManager{
 	
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
-	private  Bulletmanager bulletmanager;
-	private PlayerManager playerManager;
-	private AliensManager aliensManager;
+	protected  Bulletmanager bulletmanager;
+	protected PlayerManager playerManager;
+	protected AliensManager aliensManager;
 	
-	private GamePanel gamePanel;
+	protected GamePanel gamePanel;
 	private GameScreen gameScreen;
 	
 	private User user;
 	private Player player;
 	
-	private final int FPS = 60;
-	private Thread gameThread;
-	private boolean exit = false;
+	public static GameThread gameThread;
 	
 	public GameManager() {
 		bulletmanager = new Bulletmanager();
 		playerManager = new PlayerManager(bulletmanager);
-		aliensManager = new AliensManager(bulletmanager);		
-		gameThread = new Thread(this);
+		aliensManager = new AliensManager(bulletmanager);	
+		gameThread = new GameThread(this);
 	}
 	
 	public void createGameScreen() {
@@ -50,47 +48,7 @@ public class GameManager implements Runnable{
 		Game.screenManager.showScreen();
 		gamePanel.addKeyListener(keyHandler);
 		gamePanel.setFocusable(true);
-		startGameThread();
-	}
-	
-	public void startGameThread() {
-		gameThread.start(); 
-	}
-	
-	public void stopGameThread() {
-		gameThread.stop();
-	}
-
-	public void run() {
-		double drawInterval = 1000000000/FPS;
-		double nextDrawTime = System.nanoTime() + drawInterval; 
-		
-		while(gameThread != null) {
-			
-			playerManager.update();
-			bulletmanager.update();
-			aliensManager.update();
-			
-			gamePanel.repaint();
-			
-			collisionDetector();			
-			
-			try {
-				double remainingTime = nextDrawTime - System.nanoTime();
-				remainingTime /= 1000000;
-				
-				if(remainingTime < 0) {
-					remainingTime = 0;
-				}
-				
-				Thread.sleep((long) remainingTime);
-				
-				nextDrawTime += drawInterval;
-				
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}	
+		gameThread.start();
 	}
 	
 	public void collisionDetector() {
