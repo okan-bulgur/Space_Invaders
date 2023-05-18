@@ -19,7 +19,7 @@ public class Player extends Character {
 	
 	public Player(User user) {
 		this.user = user;
-		setHealth(1);
+		setHealth(5);
 		setScore(0);
 		setPosX(100);
 		setPosY(100);

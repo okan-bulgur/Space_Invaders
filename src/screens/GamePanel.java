@@ -1,14 +1,18 @@
 package screens;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.AliensManager;
 import game.Bulletmanager;
+import game.PlayerInfoBar;
 import game.PlayerManager;
 
 public class GamePanel extends JPanel {
@@ -23,16 +27,19 @@ public class GamePanel extends JPanel {
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
-	private AliensManager aliensManager;
+	private AliensManager aliensManager;	
+	private PlayerInfoBar playerInfoBar;
 	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
+		this.setLayout(new BorderLayout());
 		
 		this.playerManager = playerManager;
 		this.bulletmanager = bulletmanager;
 		this.aliensManager = aliensManager;
+		this.playerInfoBar = new PlayerInfoBar(playerManager.getPlayer());
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -42,6 +49,7 @@ public class GamePanel extends JPanel {
 		playerManager.drawCharacter(g2);
 		bulletmanager.drawCharacter(g2);
 		aliensManager.drawCharacter(g2);
+		playerInfoBar.draw(g2);
 		
 		g2.dispose();
 	}

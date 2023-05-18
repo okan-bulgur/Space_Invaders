@@ -1,12 +1,7 @@
 package screens;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-
-import game.Game;
-import game.Player;
-import users.User;
 
 public class GameScreen extends Screen implements IMenuBar {
 	
