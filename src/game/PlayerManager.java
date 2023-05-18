@@ -2,6 +2,10 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import users.User;
 
@@ -10,6 +14,7 @@ public class PlayerManager implements ICollision{
 	private User user = null;
 	private Player player = null;
 	private Bulletmanager bulletmanager;
+	private boolean canCollision = true;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	
@@ -34,7 +39,12 @@ public class PlayerManager implements ICollision{
 	}
 	
 	public void drawCharacter(Graphics2D g2) {
-		g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);
+		if(canCollision) {
+			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
+		}
+		else {
+			g2.drawImage(player.getPlayerGhostImage() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
+		}
 		if(spriteNum == 0) {
 			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX()+13, player.getPosY()+39, player.getSizeWidth()/2, player.getSizeHeight()/2, null);			
 		}
@@ -77,7 +87,6 @@ public class PlayerManager implements ICollision{
 	
 	public void addScore() {
 		player.setScore(player.getScore()+10);
-		//System.out.println("Score: " + player.getScore());
 	}
 	
 	public void takeDamage(int damage) {
@@ -86,6 +95,24 @@ public class PlayerManager implements ICollision{
 			player = null;
 			System.gc();
 		}
+		
+		new Thread(new Runnable()
+		{
+		    @Override
+		    public void run()
+		    {
+		    	canCollision = false;
+		        
+		        try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+		     
+		        canCollision = true;
+		    }
+		}).start();
+		
 	}
 	
 	public boolean isDead() {
@@ -94,7 +121,7 @@ public class PlayerManager implements ICollision{
 
 	@Override
 	public boolean isCollision(Rectangle area1, Rectangle area2) {
-		if(area1.intersects(area2))
+		if(area1.intersects(area2) && canCollision)
 		{
 		    return true;
 		}

@@ -72,31 +72,12 @@ public class AliensManager implements ICollision{
 		}
 	}
 	
-	public void takeDamage(Alien alien, int damage) {
+	public void takeDamage(Alien alien, int damage, ListIterator<Alien> alienItr) {
 		alien.setHealth(alien.getHealth() - damage);
 		if(isDead(alien)) {
-			aliens.remove(aliens.indexOf(alien));
+			alienItr.remove();
 			alien = null;
-			//System.out.println("size: " + aliens.size());
-			//System.out.println("index: " + aliens.indexOf(alien));
-			//removeAlien(alien);
-			System.gc();
 		}
-	}
-	
-	private void removeAlien(Alien alien) {
-		ListIterator<Alien> itr = aliens.listIterator();
-		int i = 0;
-		while(itr.hasNext()) {
-			Alien alien1 = itr.next();
-			System.out.println("alien1: " + alien1);
-			System.out.println("alien: " + alien);
-			if(alien == alien1) {
-				aliens.remove(i);
-			}
-			i++;
-		}
-		
 	}
 	
 	public boolean isDead(Alien alien) {

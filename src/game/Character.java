@@ -1,6 +1,10 @@
 package game;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Character  {
 	
@@ -12,6 +16,7 @@ public abstract class Character  {
 	protected int bulletSpeed;
 	protected int sizeWidth;
 	protected int sizeHeight;
+	protected BufferedImage bulletImg;
 	protected Rectangle collisionArea;
 	
 	public int getHealth() {
@@ -76,6 +81,18 @@ public abstract class Character  {
 
 	public int getSizeHeight() {
 		return sizeHeight;
+	}
+	
+	public BufferedImage getBulletImg() {
+		return bulletImg;
+	}
+
+	public void setBulletImg(String bulletImg) {
+		try {
+			this.bulletImg = ImageIO.read(getClass().getResource(bulletImg));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setCollisionArea() {

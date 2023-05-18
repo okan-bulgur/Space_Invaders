@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 public class Bullet extends Bulletmanager {
 
@@ -9,8 +10,9 @@ public class Bullet extends Bulletmanager {
 	private int speed;
 	private int posX;
 	private int posY;
-	private int sizeWidth = GameManager.tileSize / 3;
-	private int sizeHeight = GameManager.tileSize / 3;
+	private int sizeWidth = GameManager.tileSize;
+	private int sizeHeight = GameManager.tileSize;
+	protected BufferedImage bulletImg;
 	protected Rectangle collisionArea;
 
 	public Bullet(Character character) {
@@ -19,6 +21,7 @@ public class Bullet extends Bulletmanager {
 		setSpeed(character.getBulletSpeed());
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
+		setBulletImg(character.getBulletImg());
 	}
 	
 	public int getDamage() {
@@ -61,6 +64,14 @@ public class Bullet extends Bulletmanager {
 		return sizeHeight;
 	}
 	
+	public BufferedImage getBulletImg() {
+		return bulletImg;
+	}
+
+	public void setBulletImg(BufferedImage bufferedImage) {
+		this.bulletImg = bufferedImage;
+	}
+
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
 		collisionArea.x = posX;

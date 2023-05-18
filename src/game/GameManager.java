@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Checkbox;
 import java.util.ListIterator;
 
 import screens.GamePanel;
@@ -31,11 +30,13 @@ public class GameManager implements Runnable{
 	
 	private final int FPS = 60;
 	private Thread gameThread;
+	private boolean exit = false;
 	
 	public GameManager() {
 		bulletmanager = new Bulletmanager();
 		playerManager = new PlayerManager(bulletmanager);
 		aliensManager = new AliensManager(bulletmanager);		
+		gameThread = new Thread(this);
 	}
 	
 	public void createGameScreen() {
@@ -61,8 +62,11 @@ public class GameManager implements Runnable{
 	}
 	
 	public void startGameThread() {
-		gameThread = new Thread(this);
 		gameThread.start(); 
+	}
+	
+	public void stopGameThread() {
+		gameThread.stop();
 	}
 
 	public void run() {
@@ -98,26 +102,23 @@ public class GameManager implements Runnable{
 	}
 	
 	public void collisionDetector() {
-		ListIterator<Alien> itr1 = aliensManager.getAliens().listIterator();
-		while (itr1.hasNext()) {
-			Alien alien = itr1.next();
-			ListIterator<Bullet> itr2 = bulletmanager.getBullets().listIterator();
+		ListIterator<Alien> alienItr = aliensManager.getAliens().listIterator();
+		while (alienItr.hasNext()) {
+			Alien alien = alienItr.next();
 			
-			if(aliensManager.isCollision(alien.collisionArea, player.collisionArea)) {
+			if(playerManager.isCollision(alien.collisionArea, player.collisionArea)) {
 				playerManager.takeDamage(1);
 			}
 			
-			while (itr2.hasNext()) {
-				Bullet bullet = itr2.next();
+			ListIterator<Bullet> bulletItr = bulletmanager.getBullets().listIterator();
+			while (bulletItr.hasNext()) {
+				Bullet bullet = bulletItr.next();
 				if(aliensManager.isCollision(alien.collisionArea, bullet.collisionArea)) {
-					aliensManager.takeDamage(alien, bullet.getDamage());
+					aliensManager.takeDamage(alien, bullet.getDamage(), alienItr);	
+					bulletItr.remove();
 					playerManager.addScore();
-					//System.out.println("health: "+alien.getHealth());
 				}
 			}
-			
 		}
-		
 	}
-	
 }

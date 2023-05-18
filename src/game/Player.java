@@ -11,6 +11,7 @@ public class Player extends Character {
 	
 	private int score;
 	private BufferedImage playerImg;
+	private BufferedImage playerGhostImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
 	private User user;
@@ -28,6 +29,7 @@ public class Player extends Character {
 		setSizeHeight(GameManager.tileSize);
 		setCollisionArea();
 		setPlayerImage();
+		setBulletImg("/img/player_bullet_1.png");
 	}
 
 	public int getScore() {
@@ -41,6 +43,7 @@ public class Player extends Character {
 	public void setPlayerImage() {
 		try {
 			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));
+			playerGhostImg = ImageIO.read(getClass().getResource("/img/new_alien_1.png"));
 			playerBackFireImg = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire.png"));
 			playerBackFire2Img = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire_2.png"));
 		} catch (IOException e) {
@@ -50,6 +53,10 @@ public class Player extends Character {
 
 	public BufferedImage getPlayerImg() {
 		return playerImg;
+	}
+	
+	public BufferedImage getPlayerGhostImage() {
+		return playerGhostImg;
 	}
 
 	public BufferedImage getPlayerBackFireImg() {

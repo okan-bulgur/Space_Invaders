@@ -45,9 +45,10 @@ public class Alien extends Character {
 		switch (type) {
 			case "alien1":
 				setAliensImg("/img/alien1.png", "/img/alien2.png");
+				setBulletImg("/img/alien_bullet_1.png");
 				setHealth(5);
 				setPosX(50);
-				setPosY(50);
+				setPosY(0);
 				setDamage(1);
 				setSpeed(4);
 				setBulletSpeed(5);			
@@ -56,6 +57,7 @@ public class Alien extends Character {
 				break;
 			case "alien2":
 				setAliensImg("/img/alien1.png", "/img/alien2.png");
+				setBulletImg("/img/alien_bullet_2.png");
 				setHealth(5);
 				setPosX(50);
 				setPosY(200);

@@ -2,18 +2,13 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import javax.imageio.ImageIO;
 
 public class Bulletmanager implements ICollision {
 	
 	private Bullet bullet;
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-	private BufferedImage bulletImg;
 	
 	public Bulletmanager() {
 	}
@@ -27,21 +22,12 @@ public class Bulletmanager implements ICollision {
 		bullets.add(newBullet);
 	}
 	
-	public void getBulletImage() {
-		try {
-			bulletImg = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire_2.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void drawCharacter(Graphics2D g2) {
-		getBulletImage();
 		Iterator<Bullet> itr = bullets.listIterator();
 		while (itr.hasNext()) {
 			bullet = itr.next();
 			if(bullet != null) {
-				g2.drawImage(bulletImg, bullet.getPosX() + bullet.getSizeWidth(), bullet.getPosY(), bullet.getSizeWidth(), bullet.getSizeHeight(), null);					
+				g2.drawImage(bullet.getBulletImg(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);					
 			}		
 		}
 	}
@@ -60,8 +46,7 @@ public class Bulletmanager implements ICollision {
 						bullet = null;
 						System.gc();
 					}
-				}
-					
+				}		
 			}
 		}
 	}
@@ -80,5 +65,4 @@ public class Bulletmanager implements ICollision {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
