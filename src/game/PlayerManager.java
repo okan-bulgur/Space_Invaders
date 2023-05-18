@@ -7,14 +7,16 @@ import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
+import screens.GamePanel;
 import users.User;
 
-public class PlayerManager implements ICollision{
+public class PlayerManager{
 	
 	private User user = null;
 	private Player player = null;
 	private Bulletmanager bulletmanager;
 	private boolean canCollision = true;
+	private int hitScore = 10;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	
@@ -39,17 +41,17 @@ public class PlayerManager implements ICollision{
 	}
 	
 	public void drawCharacter(Graphics2D g2) {
-		if(canCollision) {
-			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
-		}
-		else {
+		if(!canCollision && spriteNum == 0) {
 			g2.drawImage(player.getPlayerGhostImage() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
 		}
+		else {
+			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
+		}
 		if(spriteNum == 0) {
-			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX()+13, player.getPosY()+39, player.getSizeWidth()/2, player.getSizeHeight()/2, null);			
+			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize - 10, player.getSizeWidth()/3, player.getSizeHeight()/3, null);			
 		}
 		else if(spriteNum == 1) {
-			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX()+13, player.getPosY()+39, player.getSizeWidth()/2, player.getSizeHeight()/2, null);	
+			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize - 10, player.getSizeWidth()/3, player.getSizeHeight()/3, null);	
 		}
 	}
 	
@@ -67,7 +69,7 @@ public class PlayerManager implements ICollision{
 		if(GameManager.keyHandler.isLeftpress()) {
 			player.setPosX(player.getPosX() - player.getSpeed());
 		}
-		if(GameManager.keyHandler.isSpacepress()) {
+		if(GameManager.keyHandler.isSpacepress() && canCollision) {
 			bulletmanager.createBullet(player);	
 		}
 		
@@ -86,7 +88,7 @@ public class PlayerManager implements ICollision{
 	}
 	
 	public void addScore() {
-		player.setScore(player.getScore()+10);
+		player.setScore(player.getScore() + hitScore);
 	}
 	
 	public void takeDamage(int damage) {
@@ -118,7 +120,6 @@ public class PlayerManager implements ICollision{
 		return player.getHealth() == 0;
 	}
 
-	@Override
 	public boolean isCollision(Rectangle area1, Rectangle area2) {
 		if(area1.intersects(area2) && canCollision)
 		{
@@ -127,10 +128,5 @@ public class PlayerManager implements ICollision{
 		return false;
 	}
 
-	@Override
-	public void collisionDetector() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.AliensManager;
@@ -18,10 +16,10 @@ import game.PlayerManager;
 public class GamePanel extends JPanel {
 
 	private static final int originalTileSize = 16;
-	private static final int scale = 3;
+	private static final int scale = 5;
 	public static final int tileSize = originalTileSize * scale;
-	private static final int maxScreenCol = 16;
-	private static final int maxScreenRow = 12;
+	private static final int maxScreenCol = 24;
+	private static final int maxScreenRow = 16;
 	public static final int screeWidth = tileSize * maxScreenCol;
 	public static final int screenHeight = tileSize * maxScreenRow;
 	

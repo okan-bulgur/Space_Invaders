@@ -46,11 +46,11 @@ public class Alien extends Character {
 	private void setAlienByType(String type) {
 		switch (type) {
 			case "alien1":
-				setAliensImg("/img/alien1.png", "/img/alien2.png");
+				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
 				setBulletImg("/img/alien_bullet_1.png");
 				setHealth(5);
 				setPosX(50);
-				setPosY(0);
+				setPosY(50);
 				setDamage(1);
 				setSpeed(4);
 				setBulletSpeed(5);			
@@ -58,7 +58,7 @@ public class Alien extends Character {
 				setSizeHeight(GamePanel.tileSize);
 				break;
 			case "alien2":
-				setAliensImg("/img/alien1.png", "/img/alien2.png");
+				setAliensImg("/img/alien_2_1.png", "/img/alien_2_2.png");
 				setBulletImg("/img/alien_bullet_2.png");
 				setHealth(5);
 				setPosX(50);

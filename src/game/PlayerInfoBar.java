@@ -27,18 +27,18 @@ public class PlayerInfoBar extends Rectangle {
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.setColor(Color.WHITE);
+		g2.setColor(Color.RED);
 		g2.setFont(new Font("Consolas", Font.PLAIN, 30));
 		
 		// level part
-		g2.drawString("LEVEL ", 50, 40);
+		g2.drawString("LEVEL ", GamePanel.tileSize, 40);
 		
 		// health part
-		g2.drawImage(hearthImg, 250, 5, GamePanel.tileSize, GamePanel.tileSize, null);
-		g2.drawString("x" + String.valueOf(player.getHealth()), 300, 40);
+		g2.drawImage(hearthImg, GamePanel.tileSize * 5, 5, GamePanel.tileSize, GamePanel.tileSize, null);
+		g2.drawString("x" + String.valueOf(player.getHealth()), GamePanel.tileSize * 6 + 20 , 40);
 		
 		// score part
-		g2.drawString(String.valueOf(player.getScore()), 500, 40);
+		g2.drawString(String.valueOf(player.getScore()), GamePanel.tileSize * 12, 40);
 
 	}
 }

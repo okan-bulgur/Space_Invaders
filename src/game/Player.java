@@ -44,7 +44,7 @@ public class Player extends Character {
 	public void setPlayerImage() {
 		try {
 			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));
-			playerGhostImg = ImageIO.read(getClass().getResource("/img/new_alien_1.png"));
+			playerGhostImg = ImageIO.read(getClass().getResource("/img/alien_1_1.png"));
 			playerBackFireImg = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire.png"));
 			playerBackFire2Img = ImageIO.read(getClass().getResourceAsStream("/img/ship_back_fire_2.png"));
 		} catch (IOException e) {

@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Bulletmanager implements ICollision {
+public class Bulletmanager {
 	
 	private Bullet bullet;
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
@@ -51,18 +51,11 @@ public class Bulletmanager implements ICollision {
 		}
 	}
 	
-	@Override
 	public boolean isCollision(Rectangle area1, Rectangle area2) {
 		if(area1.intersects(area2))
 		{
 		    return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void collisionDetector() {
-		// TODO Auto-generated method stub
-		
 	}
 }

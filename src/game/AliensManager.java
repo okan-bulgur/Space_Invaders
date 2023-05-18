@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 import screens.GamePanel;
 
-public class AliensManager implements ICollision{
+public class AliensManager {
 
 	private ArrayList<Alien> aliens = new ArrayList<>();
 	
@@ -61,16 +61,16 @@ public class AliensManager implements ICollision{
 			
 			alien.setCollisionArea();
 			
-			spriteCounter++;
-			if(spriteCounter > 10) {
-				if(spriteNum == 1) {
-					spriteNum = 0;
-				}
-				else {
-					spriteNum = 1;
-				}
-				spriteCounter = 0;
+		}
+		spriteCounter++;
+		if(spriteCounter > 10) {
+			if(spriteNum == 1) {
+				spriteNum = 0;
 			}
+			else {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
 		}
 	}
 	
@@ -86,19 +86,12 @@ public class AliensManager implements ICollision{
 		return alien.getHealth() == 0;
 	}
 
-	@Override
 	public boolean isCollision(Rectangle area1, Rectangle area2) {
 		if(area1.intersects(area2))
 		{
 		    return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public void collisionDetector() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
