@@ -3,6 +3,8 @@ package game;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import screens.GamePanel;
+
 public class Bullet extends Bulletmanager {
 
 	private Character character;
@@ -10,8 +12,8 @@ public class Bullet extends Bulletmanager {
 	private int speed;
 	private int posX;
 	private int posY;
-	private int sizeWidth = GameManager.tileSize;
-	private int sizeHeight = GameManager.tileSize;
+	private int sizeWidth = GamePanel.tileSize;
+	private int sizeHeight = GamePanel.tileSize;
 	protected BufferedImage bulletImg;
 	protected Rectangle collisionArea;
 

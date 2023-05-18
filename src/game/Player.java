@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import screens.GamePanel;
 import users.User;
 
 public class Player extends Character {
@@ -25,8 +26,8 @@ public class Player extends Character {
 		setSpeed(4);
 		setDamage(1);
 		setBulletSpeed(5);
-		setSizeWidth(GameManager.tileSize);
-		setSizeHeight(GameManager.tileSize);
+		setSizeWidth(GamePanel.tileSize);
+		setSizeHeight(GamePanel.tileSize);
 		setCollisionArea();
 		setPlayerImage();
 		setBulletImg("/img/player_bullet_1.png");

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import screens.GamePanel;
+
 public class AliensManager implements ICollision{
 
 	private ArrayList<Alien> aliens = new ArrayList<>();
@@ -51,7 +53,7 @@ public class AliensManager implements ICollision{
 		while (itr.hasNext()) {
 			Alien alien = itr.next();
 			
-			if(alien.getPosX() + alien.getSpeed() >= GameManager.screeWidth || alien.getPosX() + alien.getSpeed() <= 0) {	
+			if(alien.getPosX() + alien.getSpeed() >= GamePanel.screeWidth || alien.getPosX() + alien.getSpeed() <= 0) {	
 				alien.setSpeed(alien.getSpeed() * -1);
 			}
 			

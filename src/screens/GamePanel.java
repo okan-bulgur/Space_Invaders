@@ -13,23 +13,19 @@ import game.PlayerManager;
 
 public class GamePanel extends JPanel {
 
-	private final int tileSize;
-	private final int maxScreenCol;
-	private final int maxScreenRow;
-	private final int screeWidth;
-	private final int screenHeight;
+	private static final int originalTileSize = 16;
+	private static final int scale = 3;
+	public static final int tileSize = originalTileSize * scale;
+	private static final int maxScreenCol = 16;
+	private static final int maxScreenRow = 12;
+	public static final int screeWidth = tileSize * maxScreenCol;
+	public static final int screenHeight = tileSize * maxScreenRow;
 	
 	private PlayerManager playerManager;
 	private Bulletmanager bulletmanager;
 	private AliensManager aliensManager;
 	
-	public GamePanel(int tileSize, int maxScreenCol, int maxScreenRow, PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
-		this.tileSize = tileSize;
-		this.maxScreenCol = maxScreenCol;
-		this.maxScreenRow = maxScreenRow;
-		this.screeWidth = tileSize * maxScreenCol;
-		this.screenHeight = tileSize * maxScreenRow;
-		
+	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);

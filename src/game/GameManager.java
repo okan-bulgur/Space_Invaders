@@ -8,14 +8,6 @@ import users.User;
 
 public class GameManager implements Runnable{
 	
-	private static final int originalTileSize = 16;
-	private static final int scale = 3;
-	protected static final int tileSize = originalTileSize * scale;
-	protected static final int maxScreenCol = 16;
-	protected static final int maxScreenRow = 12;
-	protected static final int screeWidth = tileSize * maxScreenCol;
-	protected static final int screenHeight = tileSize * maxScreenRow;
-	
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
 	private  Bulletmanager bulletmanager;
@@ -48,7 +40,7 @@ public class GameManager implements Runnable{
 		playerManager.setUser(user);
 		playerManager.createPlayer();
 		player = playerManager.getPlayer();
-		gamePanel =  new GamePanel(tileSize, maxScreenCol, maxScreenRow, playerManager, bulletmanager, aliensManager);
+		gamePanel =  new GamePanel(playerManager, bulletmanager, aliensManager);
 		
 		aliensManager.createAlien("alien1");
 		aliensManager.createAlien("alien2");

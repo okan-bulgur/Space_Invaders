@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import screens.GamePanel;
+
 public class Alien extends Character {
 
 	private String type;
@@ -52,8 +54,8 @@ public class Alien extends Character {
 				setDamage(1);
 				setSpeed(4);
 				setBulletSpeed(5);			
-				setSizeWidth(GameManager.tileSize);
-				setSizeHeight(GameManager.tileSize);
+				setSizeWidth(GamePanel.tileSize);
+				setSizeHeight(GamePanel.tileSize);
 				break;
 			case "alien2":
 				setAliensImg("/img/alien1.png", "/img/alien2.png");
@@ -64,8 +66,8 @@ public class Alien extends Character {
 				setDamage(1);
 				setSpeed(2);
 				setBulletSpeed(5);			
-				setSizeWidth(GameManager.tileSize);
-				setSizeHeight(GameManager.tileSize);
+				setSizeWidth(GamePanel.tileSize);
+				setSizeHeight(GamePanel.tileSize);
 				break;
 		default:
 			break;
