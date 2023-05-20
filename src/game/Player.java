@@ -11,6 +11,7 @@ import users.User;
 public class Player extends Character {
 	
 	private int score;
+	private int ghostModeTime;
 	private BufferedImage playerImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
@@ -30,6 +31,7 @@ public class Player extends Character {
 		setCollisionArea();
 		setPlayerImage();
 		setBulletImg("/img/player_bullet_1.png");
+		setGhostModeTime(1500);
 	}
 
 	public int getScore() {
@@ -40,6 +42,14 @@ public class Player extends Character {
 		this.score = score;
 	}
 	
+	public int getGhostModeTime() {
+		return ghostModeTime;
+	}
+
+	public void setGhostModeTime(int ghostModeTime) {
+		this.ghostModeTime = ghostModeTime;
+	}
+
 	public void setPlayerImage() {
 		try {
 			playerImg = ImageIO.read(getClass().getResourceAsStream("/img/ship.png"));

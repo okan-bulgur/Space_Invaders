@@ -63,7 +63,14 @@ public class GameManager{
 			ListIterator<Bullet> bulletItr = bulletmanager.getBullets().listIterator();
 			while (bulletItr.hasNext()) {
 				Bullet bullet = bulletItr.next();
-				if(aliensManager.isCollision(alien.collisionArea, bullet.collisionArea)) {
+				
+				if(bullet.getCharacter() instanceof Alien) {
+					if(playerManager.isCollision(bullet.collisionArea, player.collisionArea)) {
+						playerManager.takeDamage(bullet.getDamage());
+						bulletItr.remove();
+					}
+				}
+				else if(bulletmanager.isCollision(bullet.collisionArea, alien.collisionArea)) {
 					aliensManager.takeDamage(alien, bullet.getDamage(), alienItr);	
 					bulletItr.remove();
 					playerManager.addScore();

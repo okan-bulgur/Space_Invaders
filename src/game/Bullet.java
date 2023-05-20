@@ -18,12 +18,21 @@ public class Bullet extends Bulletmanager {
 	protected Rectangle collisionArea;
 
 	public Bullet(Character character) {
-		this.character = character;
+		setCharacter(character);
 		setDamage(character.getDamage());
 		setSpeed(character.getBulletSpeed());
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
 		setBulletImg(character.getBulletImg());
+		setCollisionArea();
+	}
+	
+	public Character getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(Character character) {
+		this.character = character;
 	}
 	
 	public int getDamage() {

@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import screens.GamePanel;
+
 public class Bulletmanager {
 	
 	private Bullet bullet;
@@ -41,10 +43,9 @@ public class Bulletmanager {
 				if(bullet != null) {
 					bullet.setPosY(bullet.getPosY() - bullet.getSpeed());		
 					bullet.setCollisionArea();
-					if(bullet.getPosY() <= 0) {
+					if(bullet.getPosY() <= 0 || bullet.getPosY() >= GamePanel.screenHeight) {
 						itr.remove();
 						bullet = null;
-						System.gc();
 					}
 				}		
 			}

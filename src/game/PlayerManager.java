@@ -105,7 +105,7 @@ public class PlayerManager{
 		    	canCollision = false;
 		        
 		        try {
-					Thread.sleep(1000);
+					Thread.sleep(player.getGhostModeTime());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

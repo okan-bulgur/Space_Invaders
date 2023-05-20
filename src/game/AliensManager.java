@@ -13,6 +13,7 @@ public class AliensManager {
 	private ArrayList<Alien> aliens = new ArrayList<>();
 	
 	private Bulletmanager bulletmanager;	
+	private static int bulletDelayCounter = 0;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	
@@ -44,6 +45,8 @@ public class AliensManager {
 	}
 	
 	public void update() {
+		bulletDelayCounter++;
+		spriteCounter++;
 
 		if (aliens.size() == 0) {
 			return;			
@@ -61,8 +64,12 @@ public class AliensManager {
 			
 			alien.setCollisionArea();
 			
+			if(bulletDelayCounter % alien.getBulletCreateDelay() == 0) {
+				bulletmanager.createBullet(alien);
+			}
+			
 		}
-		spriteCounter++;
+		
 		if(spriteCounter > 10) {
 			if(spriteNum == 1) {
 				spriteNum = 0;
