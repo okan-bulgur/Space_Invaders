@@ -1,11 +1,8 @@
 package game;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.util.concurrent.TimeUnit;
-
-import javax.imageio.ImageIO;
 
 import screens.GamePanel;
 import users.User;
@@ -42,7 +39,10 @@ public class PlayerManager{
 	
 	public void drawCharacter(Graphics2D g2) {
 		if(!canCollision && spriteNum == 0) {
-			g2.drawImage(player.getPlayerGhostImage() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
+			AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+			g2.setComposite(composite);
+			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);	
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER)); 
 		}
 		else {
 			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			

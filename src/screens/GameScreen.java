@@ -17,7 +17,7 @@ public class GameScreen extends Screen implements IMenuBar {
 	@Override
 	public void createScreen() {
 		screen = new JFrame();
-		screen.setTitle("Sapce Invaders");
+		screen.setTitle("Space Invaders");
 		screen.setSize(width, height);
 		screen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
