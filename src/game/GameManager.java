@@ -82,10 +82,12 @@ public class GameManager{
 	public void gameStatusChecker() {
 		if(player.getHealth() == 0) {
 			GamePanel.setGameOver(true);
+			playerManager.changeHighScore(player.getUser(), player.getScore());
 			GameManager.gameThread.gameStop();
 		}
 		else if (aliensManager.getAliens().size() == 0) {
 			GamePanel.setFinish(true);
+			playerManager.changeHighScore(player.getUser(), player.getScore());
 			GameManager.gameThread.gameStop();
 		}
 	}

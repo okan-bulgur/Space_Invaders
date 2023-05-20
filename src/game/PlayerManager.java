@@ -97,10 +97,6 @@ public class PlayerManager{
 	
 	public void takeDamage(int damage) {
 		player.setHealth(player.getHealth() - damage);
-		if(isDead()) {
-			changeHighScore(player.getUser(), player.getScore());
-		}
-		
 		new Thread(new Runnable()
 		{
 		    @Override

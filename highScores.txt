@@ -1,1 +1,2 @@
-a 0
+berke 110
+okan 50
