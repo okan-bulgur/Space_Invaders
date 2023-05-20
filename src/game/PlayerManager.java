@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import screens.GamePanel;
+import screens.GameStopScreen;
 import users.User;
 
 public class PlayerManager{
@@ -56,7 +57,23 @@ public class PlayerManager{
 	}
 	
 	public void update() {
+				
+		playerControl();
+		player.setCollisionArea();
 		
+		spriteCounter++;
+		if(spriteCounter > 10) {
+			if(spriteNum == 1) {
+				spriteNum = 0;
+			}
+			else {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
+		}
+	}
+	
+	public void playerControl() {
 		if(GameManager.keyHandler.isUpPress()) {
 			player.setPosY(player.getPosY() - player.getSpeed());
 		}
@@ -72,19 +89,6 @@ public class PlayerManager{
 		if(GameManager.keyHandler.isSpacepress() && canCollision) {
 			bulletmanager.createBullet(player);	
 		}
-		
-		player.setCollisionArea();
-		
-		spriteCounter++;
-		if(spriteCounter > 10) {
-			if(spriteNum == 1) {
-				spriteNum = 0;
-			}
-			else {
-				spriteNum = 1;
-			}
-			spriteCounter = 0;
-		}
 	}
 	
 	public void addScore() {
@@ -94,7 +98,9 @@ public class PlayerManager{
 	public void takeDamage(int damage) {
 		player.setHealth(player.getHealth() - damage);
 		if(isDead()) {
+			GamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
+			changeHighScore(player.getUser(), player.getScore());
 		}
 		
 		new Thread(new Runnable()
@@ -128,7 +134,9 @@ public class PlayerManager{
 		return false;
 	}
 
-	public void changeHighScore() {
-		
+	public void changeHighScore(User user, int score) {
+		if(user.getHighScore() < score) {
+			Game.fileManager.addHighScore(user.getUsername(), score);
+		}
 	}
 }

@@ -10,15 +10,15 @@ import users.User;
 
 public class Player extends Character {
 	
+	private User user;
 	private int score;
 	private int ghostModeTime;
 	private BufferedImage playerImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
-	private User user;
-	
+
 	public Player(User user) {
-		this.user = user;
+		setUser(user);
 		setHealth(5);
 		setScore(0);
 		setPosX(100);
@@ -32,6 +32,14 @@ public class Player extends Character {
 		setPlayerImage();
 		setBulletImg("/img/player_bullet_1.png");
 		setGhostModeTime(1500);
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getScore() {

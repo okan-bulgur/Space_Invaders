@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class FileManager {
@@ -108,20 +110,16 @@ public class FileManager {
 	public void loadExistingUser() {
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
 			String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] words = line.split("\\s+");
                 int highScore = takeScoreExistUser(words[0]);
                 userManager.addUser(words[0], words[1], highScore);
             }
-            br.close();
-        } catch (IOException e) {
+            reader.close();
+        } catch (IOException  | NumberFormatException | UserInfoException e) {
             e.printStackTrace();
-        } catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (UserInfoException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -135,5 +133,22 @@ public class FileManager {
 	            e.printStackTrace();
 	        }
 	} 
+	
+	public ArrayList<String> takeTop5() {
+		ArrayList<String> highScores = new ArrayList<String>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("highScores.txt"));
+			String line;
+			int count = 5;
+			while ((line = reader.readLine()) != null && count != 0) {
+                highScores.add(line);
+                count--;
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return highScores;
+	}
 }
 

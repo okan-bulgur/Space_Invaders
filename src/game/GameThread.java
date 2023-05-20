@@ -15,6 +15,7 @@ public class GameThread extends Thread{
 		double drawInterval = 1000000000/FPS;
 		double nextDrawTime = System.nanoTime() + drawInterval; 
 		
+		
 		while(!isStop) {
 			
 			gameManager.playerManager.update();

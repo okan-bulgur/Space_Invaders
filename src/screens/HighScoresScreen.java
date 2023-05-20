@@ -1,30 +1,25 @@
 package screens;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class HighScoresScreen extends Screen implements IMenuBar{
 	
-	private static int height = 600;
-	private static int width = 800;
+	private static int height = GamePanel.screenHeight;
+	private static int width = GamePanel.screeWidth;
 
 	@Override
 	public void createScreen() {
 		screen = new JFrame();
-		screen.setTitle("Sapce Invaders");
+		screen.setTitle("High Scores");
 		screen.setSize(width, height);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		screen.setLayout(new BorderLayout());
 		
+		JPanel scorePanel = new HighScoreDisplay();
+		screen.add(scorePanel);
 		createMenuBar();
-		
-		JLabel label = new JLabel("HIGH SCORE");
-		screen.add(label, BorderLayout.CENTER);
-				
-		screen.setLocationRelativeTo(null);
-		screen.setVisible(true);	
-	}
 
+		
+		screen.setVisible(true);
+	}
 }

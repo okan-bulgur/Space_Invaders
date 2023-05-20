@@ -27,6 +27,11 @@ public class GamePanel extends JPanel {
 	private Bulletmanager bulletmanager;
 	private AliensManager aliensManager;	
 	private PlayerInfoBar playerInfoBar;
+	private GameStopScreen gameStopScreen;
+	
+	private static boolean gameOver = false;
+	private static boolean finish = false;
+	private static boolean pause = false;
 	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
 		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
@@ -38,6 +43,7 @@ public class GamePanel extends JPanel {
 		this.bulletmanager = bulletmanager;
 		this.aliensManager = aliensManager;
 		this.playerInfoBar = new PlayerInfoBar(playerManager.getPlayer());
+		this.gameStopScreen = new GameStopScreen();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -49,7 +55,31 @@ public class GamePanel extends JPanel {
 		aliensManager.drawCharacter(g2);
 		playerInfoBar.draw(g2);
 		
+		if(gameOver) {
+			gameStopScreen.gameOverScreen(g2);
+		}
+		else if(finish) {
+			gameStopScreen.finishScreen(g2);
+		}
+		else if(pause) {
+			gameStopScreen.pauseScreen(g2);
+		}
+		
+		
 		g2.dispose();
+	}
+
+
+	public static void setGameOver(boolean check) {
+		gameOver = check;
+	}
+
+	public static void setFinish(boolean check) {
+		finish = check;
+	}
+
+	public static void setPause(boolean check) {
+		pause = check;
 	}
 	
 }
