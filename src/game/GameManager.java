@@ -10,7 +10,7 @@ public class GameManager{
 	
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
-	protected  Bulletmanager bulletmanager;
+	protected Bulletmanager bulletmanager;
 	protected PlayerManager playerManager;
 	protected AliensManager aliensManager;
 	
@@ -76,6 +76,17 @@ public class GameManager{
 					playerManager.addScore();
 				}
 			}
+		}
+	}
+	
+	public void gameStatusChecker() {
+		if(player.getHealth() == 0) {
+			GamePanel.setGameOver(true);
+			GameManager.gameThread.gameStop();
+		}
+		else if (aliensManager.getAliens().size() == 0) {
+			GamePanel.setFinish(true);
+			GameManager.gameThread.gameStop();
 		}
 	}
 }

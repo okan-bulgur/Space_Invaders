@@ -98,8 +98,6 @@ public class PlayerManager{
 	public void takeDamage(int damage) {
 		player.setHealth(player.getHealth() - damage);
 		if(isDead()) {
-			GamePanel.setGameOver(true);
-			GameManager.gameThread.gameStop();
 			changeHighScore(player.getUser(), player.getScore());
 		}
 		

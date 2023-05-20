@@ -100,5 +100,4 @@ public class AliensManager {
 		}
 		return false;
 	}
-
 }

@@ -26,6 +26,8 @@ public class GameThread extends Thread{
 			
 			gameManager.collisionDetector();
 			
+			gameManager.gameStatusChecker();
+			
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
 				remainingTime /= 1000000;
