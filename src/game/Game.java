@@ -2,16 +2,19 @@ package game;
 
 import screens.MenuScreen;
 import screens.ScreenManager;
+import users.FileManager;
 import users.UserManager;
 
 public class Game {
 	
 	public static UserManager userManager;
+	public static FileManager fileManager;
 	public static GameManager gameManager;
 	public static ScreenManager screenManager;
 	
 	public Game() {
 		userManager = new UserManager();
+		fileManager = new FileManager(userManager);
 		gameManager = new GameManager();
 		screenManager = new ScreenManager();
 	}
@@ -20,6 +23,7 @@ public class Game {
 		
 		Game game = new Game();
 		
+		fileManager.loadExistingUser();
 		screenManager.setScreen(new MenuScreen());
 		screenManager.showScreen();
     }

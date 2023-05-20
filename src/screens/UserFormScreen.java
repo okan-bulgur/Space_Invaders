@@ -80,7 +80,8 @@ public class UserFormScreen extends Screen {
 						throw new UserInfoException("Username or password can't be a empty");
 					}
 					
-					Game.userManager.addUser(username, password);
+					Game.userManager.addUser(username, password, 0);
+					Game.fileManager.addUserToFile(username, password);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage());  

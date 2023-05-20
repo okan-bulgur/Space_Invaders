@@ -2,11 +2,12 @@ package users;
 
 import java.util.HashMap;
 
+import game.Game;
+
 public class UserManager {
 	
 	protected static HashMap <String, User> users = new HashMap <String, User> ();
-	//private User user = null;
-	private static User user = new User("okidoki", "1515", 0);
+	private User user = null;
 	
 	public UserManager() {
 	}
@@ -23,7 +24,7 @@ public class UserManager {
 		return user;
 	}
 	
-	public User getUser (String username) {
+	public User getUser(String username) {
 		return users.get(username);
 	}
 	
@@ -31,11 +32,12 @@ public class UserManager {
 		return users.containsKey(username);
 	}
 	
-	public void addUser(String username, String password) throws UserInfoException {
+	public void addUser(String username, String password, int highScore) throws UserInfoException {
 		if(isValid(username)) {
 			throw new UserInfoException("This username is used");
 		}
-		User newUser = createUser(username, password, 0);
+		User newUser = createUser(username, password, highScore);
+		Game.fileManager.addHighScore(username, 0);
 		users.put(username, newUser);
 	}
 	

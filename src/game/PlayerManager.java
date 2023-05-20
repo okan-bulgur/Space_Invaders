@@ -128,5 +128,7 @@ public class PlayerManager{
 		return false;
 	}
 
-
+	public void changeHighScore() {
+		
+	}
 }
