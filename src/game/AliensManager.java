@@ -56,11 +56,22 @@ public class AliensManager {
 		while (itr.hasNext()) {
 			Alien alien = itr.next();
 			
-			if(alien.getPosX() + alien.getSpeed() >= GamePanel.screenWidth || alien.getPosX() + alien.getSpeed() <= 0) {	
-				alien.setSpeed(alien.getSpeed() * -1);
+			if(alien.getPosX() + alien.getSpeedX() <= alien.getStartX() || alien.getPosX() + alien.getSpeedX() + alien.getSizeWidth() * 2 >= alien.getEndX()) {	
+				alien.setSpeedX(alien.getSpeedX() * -1);
 			}
 			
-			alien.setPosX(alien.getPosX() + alien.getSpeed());
+			if(alien.getPosY() + alien.getSpeedY() <= alien.getStartY() || alien.getPosY() + alien.getSpeedY() + alien.getSizeHeight() * 2 >= alien.getEndY()) {	
+				alien.setSpeedY(alien.getSpeedY() * -1);
+			}
+			
+			if(alien.getPosY() > GamePanel.screenHeight) {
+				itr.remove();
+				alien = null;
+				continue;
+			}
+			
+			alien.setPosX(alien.getPosX() + alien.getSpeedX());
+			alien.setPosY(alien.getPosY() + alien.getSpeedY());
 			
 			alien.setCollisionArea();
 			

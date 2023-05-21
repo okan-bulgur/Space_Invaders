@@ -11,6 +11,8 @@ public class Alien extends Character {
 
 	private String type;
 	private int bulletCreateDelay;
+	private int speedX;
+	private int speedY;
 	private BufferedImage aliensImg1;
 	private BufferedImage aliensImg2;
 	
@@ -33,6 +35,22 @@ public class Alien extends Character {
 	public void setBulletCreateDelay(int bulletCreateDelay) {
 		this.bulletCreateDelay = bulletCreateDelay;
 	}
+	
+	public int getSpeedX() {
+		return speedX;
+	}
+
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+
+	public int getSpeedY() {
+		return speedY;
+	}
+
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
+	}
 
 	public BufferedImage getAliensImg1() {
 		return aliensImg1;
@@ -51,16 +69,22 @@ public class Alien extends Character {
 		}
 	}
 	
+
 	private void setAlienByType(String type) {
 		switch (type) {
 			case "alien1":
 				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
 				setBulletImg("/img/alien_bullet_2.png");
 				setHealth(5);
-				setPosX(50);
-				setPosY(50);
+				setStartX(0);
+				setEndX(GamePanel.screenWidth/2);
+				setStartY(0);
+				setEndY(GamePanel.screenHeight * 2);
+				setPosX(getStartX());
+				setPosY(getStartY());
 				setDamage(1);
-				setSpeed(4);
+				setSpeedX(4);
+				setSpeedY(1);
 				setBulletCreateDelay(300);
 				setBulletSpeed(-5);			
 				setSizeWidth(GamePanel.tileSize);
@@ -72,14 +96,19 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_2_1.png", "/img/alien_2_2.png");
 				setBulletImg("/img/alien_bullet_1.png");
 				setHealth(5);
-				setPosX(50);
-				setPosY(200);
-				setDamage(1);
-				setSpeed(2);
-				setBulletCreateDelay(200);
-				setBulletSpeed(-5);			
+				setStartX(GamePanel.screenWidth/2);
+				setEndX(GamePanel.screenWidth);
+				setStartY(GamePanel.tileSize * 5);
+				setEndY(GamePanel.tileSize * 10);
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
+				setPosX(getStartX());
+				setPosY(getStartY());
+				setDamage(1);
+				setSpeedX(4);
+				setSpeedY(2);
+				setBulletCreateDelay(200);
+				setBulletSpeed(-5);		
 				setCollisionArea();
 				break;
 		default:

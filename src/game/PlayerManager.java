@@ -77,10 +77,10 @@ public class PlayerManager{
 		if(GameManager.keyHandler.isUpPress() && (player.getPosY() - player.getSpeed()) > 0 ) {
 			player.setPosY(player.getPosY() - player.getSpeed());
 		}
-		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeed() + GamePanel.tileSize) < GamePanel.screenHeight ) {
+		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeed() + player.getSizeHeight() * 1.2 < GamePanel.screenHeight) ) {
 			player.setPosY(player.getPosY() + player.getSpeed());
 		}
-		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeed() + GamePanel.tileSize) < GamePanel.screenWidth ) {
+		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeed() + player.getSizeWidth() * 2 < GamePanel.screenWidth) ) {
 			player.setPosX(player.getPosX() + player.getSpeed());
 		}
 		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeed()) > 0 ) {
