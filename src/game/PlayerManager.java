@@ -74,16 +74,16 @@ public class PlayerManager{
 	}
 	
 	public void playerControl() {
-		if(GameManager.keyHandler.isUpPress()) {
+		if(GameManager.keyHandler.isUpPress() && (player.getPosY() - player.getSpeed()) > 0 ) {
 			player.setPosY(player.getPosY() - player.getSpeed());
 		}
-		if(GameManager.keyHandler.isDownpress()) {
+		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeed() + GamePanel.tileSize) < GamePanel.screenHeight ) {
 			player.setPosY(player.getPosY() + player.getSpeed());
 		}
-		if(GameManager.keyHandler.isRightPress()) {
+		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeed() + GamePanel.tileSize) < GamePanel.screenWidth ) {
 			player.setPosX(player.getPosX() + player.getSpeed());
 		}
-		if(GameManager.keyHandler.isLeftpress()) {
+		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeed()) > 0 ) {
 			player.setPosX(player.getPosX() - player.getSpeed());
 		}
 		if(GameManager.keyHandler.isSpacepress() && canCollision) {

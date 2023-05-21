@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class HighScoresScreen extends Screen implements IMenuBar{
 	
 	private static int height = GamePanel.screenHeight;
-	private static int width = GamePanel.screeWidth;
+	private static int width = GamePanel.screenWidth;
 
 	@Override
 	public void createScreen() {

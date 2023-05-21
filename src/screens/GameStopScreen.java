@@ -10,7 +10,7 @@ public class GameStopScreen {
 	
 	public void gameOverScreen(Graphics2D g2) {
 		g2.setColor(new Color(0,0,0,150));
-		g2.fillRect(0, 0, GamePanel.screeWidth, GamePanel.screenHeight);
+		g2.fillRect(0, 0, GamePanel.screenWidth, GamePanel.screenHeight);
 		
 		
 		String text = "GAME OVER";
@@ -35,7 +35,7 @@ public class GameStopScreen {
 	
 	public void finishScreen(Graphics2D g2) {
 		g2.setColor(new Color(0,0,0,150));
-		g2.fillRect(0, 0, GamePanel.screeWidth, GamePanel.screenHeight);
+		g2.fillRect(0, 0, GamePanel.screenWidth, GamePanel.screenHeight);
 		
 		
 		String text = "WON";
@@ -56,7 +56,7 @@ public class GameStopScreen {
 	
 	public void pauseScreen(Graphics2D g2) {
 		g2.setColor(new Color(0,0,0,150));
-		g2.fillRect(0, 0, GamePanel.screeWidth, GamePanel.screenHeight);
+		g2.fillRect(0, 0, GamePanel.screenWidth, GamePanel.screenHeight);
 		
 		
 		String text = "PAUSE";

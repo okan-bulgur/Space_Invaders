@@ -20,7 +20,7 @@ public class GamePanel extends JPanel {
 	public static final int tileSize = originalTileSize * scale;
 	private static final int maxScreenCol = 24;
 	private static final int maxScreenRow = 16;
-	public static final int screeWidth = tileSize * maxScreenCol;
+	public static final int screenWidth = tileSize * maxScreenCol;
 	public static final int screenHeight = tileSize * maxScreenRow;
 	
 	private PlayerManager playerManager;
@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
 	private static boolean pause = false;
 	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
-		this.setPreferredSize(new Dimension(screeWidth, screenHeight));
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.setLayout(new BorderLayout());

@@ -56,7 +56,7 @@ public class AliensManager {
 		while (itr.hasNext()) {
 			Alien alien = itr.next();
 			
-			if(alien.getPosX() + alien.getSpeed() >= GamePanel.screeWidth || alien.getPosX() + alien.getSpeed() <= 0) {	
+			if(alien.getPosX() + alien.getSpeed() >= GamePanel.screenWidth || alien.getPosX() + alien.getSpeed() <= 0) {	
 				alien.setSpeed(alien.getSpeed() * -1);
 			}
 			
