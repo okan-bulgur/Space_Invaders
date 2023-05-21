@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
 	private static final int originalTileSize = 16;
 	private static final int scale = 5;
 	public static final int tileSize = originalTileSize * scale;
-	private static final int maxScreenCol = 25;
+	private static final int maxScreenCol = 24;
 	private static final int maxScreenRow = 13;
 	public static final int screenWidth = tileSize * maxScreenCol;
 	public static final int screenHeight = tileSize * maxScreenRow;
@@ -29,9 +29,9 @@ public class GamePanel extends JPanel {
 	private PlayerInfoBar playerInfoBar;
 	private GameStopScreen gameStopScreen;
 	
-	private static boolean gameOver = false;
-	private static boolean finish = false;
-	private static boolean pause = false;
+	private boolean gameOver = false;
+	private boolean finish = false;
+	private boolean pause = false;
 	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -70,15 +70,15 @@ public class GamePanel extends JPanel {
 	}
 
 
-	public static void setGameOver(boolean check) {
+	public void setGameOver(boolean check) {
 		gameOver = check;
 	}
 
-	public static void setFinish(boolean check) {
+	public void setFinish(boolean check) {
 		finish = check;
 	}
 
-	public static void setPause(boolean check) {
+	public void setPause(boolean check) {
 		pause = check;
 	}
 	

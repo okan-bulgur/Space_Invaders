@@ -1,5 +1,2 @@
-okan 23
-berke 15
-okidoki 23
-erat 27
 a a
+b b

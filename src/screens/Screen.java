@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import game.Game;
+import game.GameManager;
 
 public abstract class Screen extends ScreenManager implements IScreen{
 	
@@ -31,7 +32,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		JMenuItem about = new JMenuItem("About");
 		
 		register.addActionListener(new ActionListener() {
-			
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				screen.dispose();
 				setScreen(new MenuScreen());
@@ -42,26 +43,27 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		});
 		
 		playGame.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				try {					
-					if(Game.userManager.getActiveUser() == null) {
-						throw new NotLogInException("No user is logged in.");
-					}
-					screen.dispose();
-					Game.gameManager.startGame();
-					
-				} catch (NotLogInException e1) {
-					JOptionPane.showMessageDialog(screen, e1.getMessage() , "", JOptionPane.ERROR_MESSAGE);
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				if(GameManager.gameThread != null) {
+					GameManager.gameThread.gameStop();
+				}
+				
+				if(Game.userManager.getActiveUser() == null) {
 					screen.dispose();
 					setScreen(new MenuScreen());
 					showScreen();
+					setScreen(new UserFormScreen());
+					showScreen();
+					return;
 				}
+				screen.dispose();
+				Game.gameManager.startGame();
 			}
 		});
 		
 		highScore.addActionListener(new ActionListener() {
-			
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				screen.dispose();
 				setScreen(new HighScoresScreen());
@@ -70,8 +72,17 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		});
 		
 		quit.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		});
+		
+		about.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(screen, "Okan Bulgur 20200702017");
 			}
 		});
 		

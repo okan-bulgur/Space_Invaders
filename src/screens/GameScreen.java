@@ -22,6 +22,7 @@ public class GameScreen extends Screen implements IMenuBar {
 		screen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		screen.setLayout(new BorderLayout());
+		screen.setResizable(false);
 		
 		createMenuBar();
 		

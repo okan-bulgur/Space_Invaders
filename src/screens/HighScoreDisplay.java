@@ -14,11 +14,11 @@ import game.Game;
 public class HighScoreDisplay extends JPanel{
 	
 	public HighScoreDisplay() {
+		this.setBackground(Color.BLACK);
 		ArrayList<String> users = Game.fileManager.takeTop5();
 		int count = 1;
 		
 		GridLayout layout = new GridLayout(10,1);
-		layout.setVgap(5);
 		this.setLayout(layout);
 		
 		JLabel header = new JLabel("HIGH SCORE");
@@ -31,7 +31,7 @@ public class HighScoreDisplay extends JPanel{
 			JLabel label = new JLabel((count++) + " ) " + user);
 			
 			label.setFont(new Font("Bebas Neue", Font.PLAIN, 50));
-			label.setForeground(Color.BLACK);
+			label.setForeground(Color.WHITE);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setVerticalAlignment(SwingConstants.CENTER);
 			this.add(label);

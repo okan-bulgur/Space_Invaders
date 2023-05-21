@@ -44,7 +44,7 @@ public class UserFormScreen extends Screen {
 		passwordLabel.setText("Password");
 		final JTextField passwordTextField = new JTextField(10);
 		
-		JButton logInBtn = new JButton("Sign in");
+		JButton logInBtn = new JButton("Log in");
 		JButton signUpBtn = new JButton("Sign Up");
 		
 		logInBtn.setBackground(Color.black);
@@ -81,7 +81,6 @@ public class UserFormScreen extends Screen {
 					}
 					
 					Game.userManager.addUser(username, password, 0);
-					Game.fileManager.addUserToFile(username, password);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage());  

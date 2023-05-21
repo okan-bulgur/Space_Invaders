@@ -23,9 +23,7 @@ public class GameThread extends Thread{
 			gameManager.aliensManager.update();
 			
 			gameManager.gamePanel.repaint();
-			
 			gameManager.collisionDetector();
-			
 			gameManager.gameStatusChecker();
 			
 			try {
@@ -48,6 +46,7 @@ public class GameThread extends Thread{
 	
 	public void gameStop() {
 		isStop = true;
+		GameManager.gameThread = null;
 	}
 
 }

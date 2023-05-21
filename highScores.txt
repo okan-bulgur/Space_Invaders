@@ -1,6 +1,2 @@
-okidoki 140
-berke 110
-okidoki 140
-erat 100
-okidoki 140
-okan 50
+a 100
+b 100

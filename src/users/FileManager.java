@@ -20,6 +20,7 @@ public class FileManager {
 	}
 	
 	public void addHighScore(String username, int score) {
+		boolean isExist = false;
 		deleteUserFromFile(username, "highScores.txt");
 		
 		File file = new File("highScores.txt");
@@ -30,10 +31,6 @@ public class FileManager {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 			
 			String line;
-			if(file.length() == 0) {
-				writer.write(username + " " + score);
-				writer.newLine();
-			}
 			while((line = reader.readLine()) != null) {
 				String[] words = line.split("\\s+"); // Split the line word by word
 				int userScore = Integer.parseInt(words[1]);
@@ -41,8 +38,14 @@ public class FileManager {
 				if(score > userScore) {
 					writer.write(username + " " + score);
 					writer.newLine();
+					isExist = true;
 				}
 				writer.write(line);
+				writer.newLine();
+			}
+			
+			if(!isExist) {
+				writer.write(username + " " + score);
 				writer.newLine();
 			}
 			
@@ -90,15 +93,15 @@ public class FileManager {
 	
 	public int takeScoreExistUser(String username) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("highScores.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("highScores.txt"));
 			String line;
-			while ((line = br.readLine()) != null) {
+			while ((line = reader.readLine()) != null) {
 				String[] words = line.split("\\s+");
 				if(words[0].equals(username)) {
 					return Integer.parseInt(words[1]);
 				}
 			}
-			br.close();
+			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -107,8 +110,7 @@ public class FileManager {
 		return 0;
 	}
 	
-	public void loadExistingUser() {
-		
+	public void loadExistingUser() {	
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
 			String line;
@@ -139,7 +141,7 @@ public class FileManager {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("highScores.txt"));
 			String line;
-			int count = 5;
+			int count = 8;
 			while ((line = reader.readLine()) != null && count != 0) {
                 highScores.add(line);
                 count--;

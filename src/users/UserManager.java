@@ -37,6 +37,7 @@ public class UserManager {
 			throw new UserInfoException("This username is used");
 		}
 		User newUser = createUser(username, password, highScore);
+		Game.fileManager.addUserToFile(username, password);
 		Game.fileManager.addHighScore(username, 0);
 		users.put(username, newUser);
 	}

@@ -20,13 +20,11 @@ public class GameManager{
 	private User user;
 	private Player player;
 	
-	public static GameThread gameThread;
+	private int gameLevel;
+	
+	public static GameThread gameThread = null;
 	
 	public GameManager() {
-		bulletmanager = new Bulletmanager();
-		playerManager = new PlayerManager(bulletmanager);
-		aliensManager = new AliensManager(bulletmanager);	
-		gameThread = new GameThread(this);
 	}
 	
 	public void createGameScreen() {
@@ -34,10 +32,17 @@ public class GameManager{
 	}
 	
 	public void startGame() {
+		setGameLevel(0);
+		bulletmanager = new Bulletmanager();
+		playerManager = new PlayerManager(bulletmanager);
+		aliensManager = new AliensManager(bulletmanager);	
+		gameThread = new GameThread(this);
+		
 		user = Game.userManager.getActiveUser();
 		playerManager.setUser(user);
 		playerManager.createPlayer();
 		player = playerManager.getPlayer();
+		
 		gamePanel =  new GamePanel(playerManager, bulletmanager, aliensManager);
 		
 		aliensManager.createAlien("alien1");
@@ -81,14 +86,22 @@ public class GameManager{
 	
 	public void gameStatusChecker() {
 		if(player.getHealth() == 0) {
-			GamePanel.setGameOver(true);
 			playerManager.changeHighScore(player.getUser(), player.getScore());
+			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
 		}
 		else if (aliensManager.getAliens().size() == 0) {
-			GamePanel.setFinish(true);
 			playerManager.changeHighScore(player.getUser(), player.getScore());
+			gamePanel.setFinish(true);
 			GameManager.gameThread.gameStop();
 		}
+	}
+
+	public int getGameLevel() {
+		return gameLevel;
+	}
+
+	public void setGameLevel(int gameLevel) {
+		this.gameLevel = gameLevel;
 	}
 }

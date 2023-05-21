@@ -1,7 +1,5 @@
 package screens;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 
 public class MenuScreen extends Screen implements IMenuBar {
@@ -15,7 +13,6 @@ public class MenuScreen extends Screen implements IMenuBar {
 		screen.setTitle("Sapce Invaders");
 		screen.setSize(width, height);
 		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		screen.setLayout(new BorderLayout());
 		
 		createMenuBar();
 				
