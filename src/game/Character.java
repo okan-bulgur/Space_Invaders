@@ -21,6 +21,7 @@ public abstract class Character  {
 	protected int sizeWidth;
 	protected int sizeHeight;
 	protected BufferedImage bulletImg;
+	protected BufferedImage bulletImg2;
 	protected Rectangle collisionArea;
 	
 	public int getHealth() {
@@ -122,10 +123,15 @@ public abstract class Character  {
 	public BufferedImage getBulletImg() {
 		return bulletImg;
 	}
+	
+	public BufferedImage getBulletImg2() {
+		return bulletImg2;
+	}
 
-	public void setBulletImg(String bulletImg) {
+	public void setBulletImg(String bulletImg, String bulletImg2) {
 		try {
 			this.bulletImg = ImageIO.read(getClass().getResource(bulletImg));
+			this.bulletImg2 = ImageIO.read(getClass().getResource(bulletImg2));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -30,7 +30,7 @@ public class Player extends Character {
 		setSizeHeight(GamePanel.tileSize);
 		setCollisionArea();
 		setPlayerImage();
-		setBulletImg("/img/player_bullet_1.png");
+		setBulletImg("/img/bullet_1_1.png", "/img/bullet_1_2.png");
 		setGhostModeTime(1500);
 	}
 	

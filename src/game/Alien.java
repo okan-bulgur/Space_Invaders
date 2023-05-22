@@ -74,7 +74,7 @@ public class Alien extends Character {
 		switch (type) {
 			case "alien1":
 				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
-				setBulletImg("/img/alien_bullet_2.png");
+				setBulletImg("/img/bullet_2_1.png", "/img/bullet_2_2.png");
 				setHealth(5);
 				setStartX(0);
 				setEndX(GamePanel.screenWidth/2);
@@ -94,7 +94,7 @@ public class Alien extends Character {
 				
 			case "alien2":
 				setAliensImg("/img/alien_2_1.png", "/img/alien_2_2.png");
-				setBulletImg("/img/alien_bullet_1.png");
+				setBulletImg("/img/bullet_4_1.png", "/img/bullet_4_2.png");
 				setHealth(5);
 				setStartX(GamePanel.screenWidth/2);
 				setEndX(GamePanel.screenWidth);
@@ -113,8 +113,8 @@ public class Alien extends Character {
 				break;
 				
 			case "alien3":
-				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
-				setBulletImg("/img/alien_bullet_2.png");
+				setAliensImg("/img/alien_3_1.png", "/img/alien_3_2.png");
+				setBulletImg("/img/bullet_3_1.png", "/img/bullet_3_2.png");
 				setHealth(5);
 				setStartX(0);
 				setEndX(GamePanel.screenWidth);

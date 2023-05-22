@@ -15,6 +15,7 @@ public class Bullet extends Bulletmanager {
 	private int sizeWidth = GamePanel.tileSize;
 	private int sizeHeight = GamePanel.tileSize;
 	protected BufferedImage bulletImg;
+	protected BufferedImage bulletImg2;
 	protected Rectangle collisionArea;
 
 	public Bullet(Character character) {
@@ -23,7 +24,7 @@ public class Bullet extends Bulletmanager {
 		setSpeed(character.getBulletSpeed());
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
-		setBulletImg(character.getBulletImg());
+		setBulletImg(character.getBulletImg(), character.getBulletImg2());
 		setCollisionArea();
 	}
 	
@@ -78,9 +79,14 @@ public class Bullet extends Bulletmanager {
 	public BufferedImage getBulletImg() {
 		return bulletImg;
 	}
+	
+	public BufferedImage getBulletImg2() {
+		return bulletImg2;
+	}
 
-	public void setBulletImg(BufferedImage bufferedImage) {
+	public void setBulletImg(BufferedImage bufferedImage, BufferedImage bufferedImage2) {
 		this.bulletImg = bufferedImage;
+		this.bulletImg2 = bufferedImage2;
 	}
 
 	public void setCollisionArea() {

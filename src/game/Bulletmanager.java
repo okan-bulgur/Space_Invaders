@@ -11,6 +11,8 @@ public class Bulletmanager {
 	
 	private Bullet bullet;
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+	private static int spriteCounter = 0;
+	private static int spriteNum = 0;
 	
 	public Bulletmanager() {
 	}
@@ -28,8 +30,13 @@ public class Bulletmanager {
 		Iterator<Bullet> itr = bullets.listIterator();
 		while (itr.hasNext()) {
 			bullet = itr.next();
-			if(bullet != null) {
-				g2.drawImage(bullet.getBulletImg(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);					
+			if(bullet != null) {			
+				if(spriteNum == 0) {
+					g2.drawImage(bullet.getBulletImg(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);		
+				}
+				else if(spriteNum == 1) {
+					g2.drawImage(bullet.getBulletImg2(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);	
+				}
 			}		
 		}
 	}
@@ -49,6 +56,17 @@ public class Bulletmanager {
 					}
 				}		
 			}
+		}
+		
+		spriteCounter++;
+		if(spriteCounter > 10) {
+			if(spriteNum == 1) {
+				spriteNum = 0;
+			}
+			else {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
 		}
 	}
 	
