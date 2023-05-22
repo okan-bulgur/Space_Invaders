@@ -111,6 +111,26 @@ public class Alien extends Character {
 				setBulletSpeed(-5);		
 				setCollisionArea();
 				break;
+				
+			case "alien3":
+				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
+				setBulletImg("/img/alien_bullet_2.png");
+				setHealth(5);
+				setStartX(0);
+				setEndX(GamePanel.screenWidth);
+				setStartY(0);
+				setEndY(0);
+				setPosX(getStartX());
+				setPosY(getStartY());
+				setDamage(1);
+				setSpeedX(5);
+				setSpeedY(0);
+				setBulletCreateDelay(400);
+				setBulletSpeed(-7);			
+				setSizeWidth(GamePanel.tileSize);
+				setSizeHeight(GamePanel.tileSize);
+				setCollisionArea();
+				break;
 		default:
 			break;
 		}

@@ -24,7 +24,7 @@ public class FileManager {
 		deleteUserFromFile(username, "highScores.txt");
 		
 		File file = new File("highScores.txt");
-		File tempFile = new File("highScores.txt" + ".tmp");
+		File tempFile = new File(file + ".tmp");
 		
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -62,7 +62,6 @@ public class FileManager {
 	}
 	
 	public void deleteUserFromFile(String username, String fileName) {
-		
 		File file = new File(fileName);
 		File tempFile = new File(fileName + ".tmp");
 		

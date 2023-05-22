@@ -2,6 +2,7 @@ package game;
 
 import java.util.ListIterator;
 
+import level.LevelManager;
 import screens.GamePanel;
 import screens.GameScreen;
 import users.User;
@@ -13,6 +14,7 @@ public class GameManager{
 	protected Bulletmanager bulletmanager;
 	protected PlayerManager playerManager;
 	protected AliensManager aliensManager;
+	protected LevelManager levelManager;
 	
 	protected GamePanel gamePanel;
 	private GameScreen gameScreen;
@@ -32,10 +34,10 @@ public class GameManager{
 	}
 	
 	public void startGame() {
-		setGameLevel(0);
 		bulletmanager = new Bulletmanager();
 		playerManager = new PlayerManager(bulletmanager);
 		aliensManager = new AliensManager(bulletmanager);	
+		levelManager = new LevelManager(aliensManager);
 		gameThread = new GameThread(this);
 		
 		user = Game.userManager.getActiveUser();
@@ -90,13 +92,14 @@ public class GameManager{
 			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
 		}
-		else if (aliensManager.getAliens().size() == 0) {
+		else if (levelManager.getGameLevel() == 100) {
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			gamePanel.setFinish(true);
 			GameManager.gameThread.gameStop();
 		}
 	}
 
+	/*
 	public int getGameLevel() {
 		return gameLevel;
 	}
@@ -104,4 +107,5 @@ public class GameManager{
 	public void setGameLevel(int gameLevel) {
 		this.gameLevel = gameLevel;
 	}
+	*/
 }

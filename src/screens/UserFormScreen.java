@@ -81,7 +81,7 @@ public class UserFormScreen extends Screen {
 					}
 					Game.userManager.addUser(username, password, 0);
 					Game.fileManager.addUserToFile(username, password);
-					Game.fileManager.addHighScore(username, 0);
+					//Game.fileManager.addHighScore(username, 0);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage());  

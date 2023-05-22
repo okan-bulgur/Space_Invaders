@@ -14,7 +14,8 @@ public class GameThread extends Thread{
 	public void run() {
 		double drawInterval = 1000000000/FPS;
 		double nextDrawTime = System.nanoTime() + drawInterval; 
-		int levelCounter = 0;
+		gameManager.levelManager.start();
+		//int levelCounter = 0;
 		
 		
 		while(!isStop) {
@@ -27,10 +28,12 @@ public class GameThread extends Thread{
 			gameManager.collisionDetector();
 			gameManager.gameStatusChecker();
 			
+			/*
 			levelCounter++;
 			if(levelCounter % 100 == 0) {
 				gameManager.setGameLevel(gameManager.getGameLevel() + 1);
 			}
+			*/
 			
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
@@ -52,6 +55,7 @@ public class GameThread extends Thread{
 	
 	public void gameStop() {
 		isStop = true;
+		gameManager.levelManager.levelStop();
 		GameManager.gameThread = null;
 	}
 
