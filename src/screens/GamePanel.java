@@ -82,4 +82,16 @@ public class GamePanel extends JPanel {
 		pause = check;
 	}
 	
+	public boolean getGameOver() {
+		return gameOver;
+	}
+
+	public boolean getFinish() {
+		return finish;
+	}
+
+	public boolean getPause() {
+		return pause;
+	}
+	
 }

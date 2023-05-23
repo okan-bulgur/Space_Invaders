@@ -8,6 +8,10 @@ public class ScreenManager {
 		this.screen = screen;
 	}
 	
+	public Screen getScreen() {
+		return screen;
+	}
+	
 	public void showScreen() {
 		screen.createScreen();
 	}

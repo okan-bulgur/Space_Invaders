@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import javax.swing.JPanel;
+import game.Game;
 
 public class GameStopScreen {
 	
@@ -27,9 +27,10 @@ public class GameStopScreen {
 		g2.setColor(Color.WHITE);	
 		g2.drawString(text, x, y);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.RED);
-		panel.setBounds(x , y + GamePanel.tileSize, GamePanel.tileSize * 4, GamePanel.tileSize*3);
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
+		g2.setColor(Color.WHITE);	
+		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), x , y + GamePanel.tileSize);
+		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), x + GamePanel.tileSize * 2 , y + GamePanel.tileSize * 2);
 		
 	}
 	
@@ -51,6 +52,11 @@ public class GameStopScreen {
 		//normal part
 		g2.setColor(Color.WHITE);	
 		g2.drawString(text, x, y);
+		
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
+		g2.setColor(Color.WHITE);	
+		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), x , y + GamePanel.tileSize);
+		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), x + GamePanel.tileSize * 2 , y + GamePanel.tileSize * 2);
 
 	}
 	

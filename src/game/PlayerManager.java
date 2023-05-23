@@ -142,6 +142,7 @@ public class PlayerManager{
 
 	public void changeHighScore(User user, int score) {
 		if(user.getHighScore() < score) {
+			user.setHighScore(score);
 			Game.fileManager.addHighScore(user.getUsername(), score);
 		}
 	}

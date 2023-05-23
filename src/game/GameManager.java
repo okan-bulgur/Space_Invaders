@@ -11,10 +11,10 @@ public class GameManager{
 	
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
-	protected Bulletmanager bulletmanager;
-	protected PlayerManager playerManager;
-	protected AliensManager aliensManager;
-	protected LevelManager levelManager;
+	protected Bulletmanager bulletmanager = null;
+	protected PlayerManager playerManager = null;
+	protected AliensManager aliensManager = null;
+	protected LevelManager levelManager = null;
 	
 	protected GamePanel gamePanel;
 	private GameScreen gameScreen;
@@ -97,6 +97,10 @@ public class GameManager{
 			gamePanel.setFinish(true);
 			GameManager.gameThread.gameStop();
 		}
+	}
+	
+	public PlayerManager getPlayerManager() {
+		return playerManager;
 	}
 
 	/*

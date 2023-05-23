@@ -3,6 +3,7 @@ package screens;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+
 public class GameScreen extends Screen implements IMenuBar {
 	
 	private static int height = 600;
