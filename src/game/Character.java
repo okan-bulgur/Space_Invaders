@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import screens.GamePanel;
+
 public abstract class Character  {
 	
 	protected int health;
@@ -139,10 +141,10 @@ public abstract class Character  {
 	
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
-		collisionArea.x = posX;
-		collisionArea.y = posY;
-		collisionArea.width = sizeWidth;
-		collisionArea.height = sizeHeight;
+		collisionArea.x = posX + GamePanel.tileSize/GamePanel.scale;
+		collisionArea.y = posY + GamePanel.tileSize/GamePanel.scale;
+		collisionArea.width = sizeWidth - GamePanel.tileSize/GamePanel.scale;;
+		collisionArea.height = sizeHeight - GamePanel.tileSize/GamePanel.scale;;
 	}
 	
 }

@@ -17,7 +17,9 @@ public class PlayerManager{
 	private int hitScore = 10;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
-	
+	private int bulletDelayCounter = 0;
+	private int bulletChecker = 0;
+
 	public PlayerManager(Bulletmanager bulletmanager) {
 		this.bulletmanager = bulletmanager;
 	}
@@ -62,6 +64,7 @@ public class PlayerManager{
 		player.setCollisionArea();
 		
 		spriteCounter++;
+		bulletDelayCounter++;
 		if(spriteCounter > 10) {
 			if(spriteNum == 1) {
 				spriteNum = 0;
@@ -70,6 +73,15 @@ public class PlayerManager{
 				spriteNum = 1;
 			}
 			spriteCounter = 0;
+		}
+		if(bulletDelayCounter > 4) {
+			if(bulletChecker == 1) {
+				bulletChecker = 0;
+			}
+			else {
+				bulletChecker = 1;
+			}
+			bulletDelayCounter = 0;
 		}
 	}
 	
@@ -86,7 +98,7 @@ public class PlayerManager{
 		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeed()) > 0 ) {
 			player.setPosX(player.getPosX() - player.getSpeed());
 		}
-		if(GameManager.keyHandler.isSpacepress() && canCollision) {
+		if(GameManager.keyHandler.isSpacepress() && canCollision && bulletDelayCounter == 1) {
 			bulletmanager.createBullet(player);	
 		}
 	}
