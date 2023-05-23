@@ -38,7 +38,7 @@ public class PlayerInfoBar extends Rectangle {
 		g2.drawString("x" + String.valueOf(player.getHealth()), GamePanel.tileSize * 6 + 20 , 40);
 		
 		// score part
-		g2.drawString(String.valueOf(player.getScore()), GamePanel.tileSize * 12, 40);
+		g2.drawString("Score: " + String.valueOf(player.getScore()), GamePanel.tileSize * 10, 40);
 		
 		// user part
 		g2.drawString("User: " + player.getUser().getUsername(), GamePanel.tileSize * 14, 40);

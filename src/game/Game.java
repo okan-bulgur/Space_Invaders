@@ -3,6 +3,7 @@ package game;
 import screens.MenuScreen;
 import screens.ScreenManager;
 import users.FileManager;
+import users.User;
 import users.UserManager;
 
 public class Game {

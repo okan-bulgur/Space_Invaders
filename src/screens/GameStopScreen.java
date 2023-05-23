@@ -29,8 +29,8 @@ public class GameStopScreen {
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
 		g2.setColor(Color.WHITE);	
-		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), x , y + GamePanel.tileSize);
-		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), x + GamePanel.tileSize * 2 , y + GamePanel.tileSize * 2);
+		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), GamePanel.tileSize*9, GamePanel.tileSize*7);
+		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), GamePanel.tileSize * 11, GamePanel.tileSize * 8);
 		
 	}
 	
@@ -55,8 +55,8 @@ public class GameStopScreen {
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
 		g2.setColor(Color.WHITE);	
-		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), x , y + GamePanel.tileSize);
-		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), x + GamePanel.tileSize * 2 , y + GamePanel.tileSize * 2);
+		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), GamePanel.tileSize*9 , GamePanel.tileSize*7);
+		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), GamePanel.tileSize * 11, GamePanel.tileSize * 8);
 
 	}
 	

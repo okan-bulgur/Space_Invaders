@@ -77,8 +77,7 @@ public class AliensManager {
 			
 			if(bulletDelayCounter % alien.getBulletCreateDelay() == 0) {
 				bulletmanager.createBullet(alien);
-			}
-			
+			}			
 		}
 		
 		if(spriteCounter > 10) {
