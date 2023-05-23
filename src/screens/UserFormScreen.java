@@ -25,7 +25,7 @@ public class UserFormScreen extends Screen {
 		screen = new JFrame();
 		screen.setTitle("User Form");
 		screen.setSize(width, height);
-		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JPanel panel = createPanel();		
 		screen.add(panel);

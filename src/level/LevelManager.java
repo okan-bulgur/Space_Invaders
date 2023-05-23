@@ -70,5 +70,13 @@ public class LevelManager extends Thread {
 				aliensManager.createAlien("alien4", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
 			}
 		}
+		if(gameLevel == 5) {
+			for(int i = 0; i < GamePanel.maxScreenCol ; i+=2) {
+				aliensManager.createAlien("alien4", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
+			}
+			for(int i = 1; i < GamePanel.maxScreenCol ; i+=2) {
+				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 450);				
+			}
+		}
 	}
 }
