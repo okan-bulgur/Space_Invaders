@@ -39,10 +39,12 @@ public class UserFormScreen extends Screen {
 		JLabel userNameLabel = new JLabel();
 		userNameLabel.setText("Username");
 		final JTextField usernameTextField = new JTextField(10);
+		userNameLabel.setForeground(Color.WHITE);
 		
 		JLabel passwordLabel = new JLabel();
 		passwordLabel.setText("Password");
 		final JTextField passwordTextField = new JTextField(10);
+		passwordLabel.setForeground(Color.WHITE);
 		
 		JButton logInBtn = new JButton("Log in");
 		JButton signUpBtn = new JButton("Sign Up");
@@ -81,7 +83,6 @@ public class UserFormScreen extends Screen {
 					}
 					Game.userManager.addUser(username, password, 0);
 					Game.fileManager.addUserToFile(username, password);
-					//Game.fileManager.addHighScore(username, 0);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage());  
@@ -96,6 +97,7 @@ public class UserFormScreen extends Screen {
 		
 		
 		JPanel panel = new JPanel(gridLayout);
+		panel.setBackground(Color.BLACK);
 		
 		panel.add(userNameLabel);
 		panel.add(usernameTextField);

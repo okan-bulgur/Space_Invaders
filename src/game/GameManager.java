@@ -22,7 +22,7 @@ public class GameManager{
 	private User user;
 	private Player player;
 	
-	public static GameThread gameThread = null;
+	public static GameThread gameThread = null;	
 	
 	public GameManager() {
 	}

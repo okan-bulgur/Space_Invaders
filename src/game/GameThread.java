@@ -50,5 +50,17 @@ public class GameThread extends Thread{
 		gameManager.levelManager.levelStop();
 		GameManager.gameThread = null;
 	}
+	
+	public synchronized void gamePause() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public synchronized  void gameResume() {
+		notifyAll();
+	}
 
 }

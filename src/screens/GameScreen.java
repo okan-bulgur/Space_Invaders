@@ -1,13 +1,20 @@
 package screens;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 
+import game.GameManager;
 
-public class GameScreen extends Screen implements IMenuBar {
+
+public class GameScreen extends Screen implements IMenuBar, MouseListener {
 	
 	private static int height = 600;
 	private static int width = 800;
+	
+	private boolean isPause = false;
 	
 	private GamePanel gamePanel;
 	
@@ -18,6 +25,7 @@ public class GameScreen extends Screen implements IMenuBar {
 	@Override
 	public void createScreen() {
 		screen = new JFrame();
+		screen.addMouseListener(this);
 		screen.setTitle("Space Invaders");
 		screen.setSize(width, height);
 		screen.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -32,5 +40,49 @@ public class GameScreen extends Screen implements IMenuBar {
 				
 		screen.setLocationRelativeTo(null);
 		screen.setVisible(true);	
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int pauseBtnUpY = 100;
+		int pauseBtnBottomY = 70;
+		int pauseBtnRightX = 1780;
+		int pauseBtnLeftX = 1770;
+		
+		if(!isPause && e.getX() <= pauseBtnRightX && e.getX() >= pauseBtnLeftX && e.getY() <= pauseBtnUpY && e.getY() >= pauseBtnBottomY) {
+			gamePanel.setPause(true);
+			GameManager.gameThread.gamePause();
+			isPause = true;
+		}
+		else if(isPause && e.getX() <= pauseBtnRightX && e.getX() >= pauseBtnLeftX && e.getY() <= pauseBtnUpY && e.getY() >= pauseBtnBottomY) {
+			gamePanel.setPause(false);
+			GameManager.gameThread.gameResume();
+			isPause = false;
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

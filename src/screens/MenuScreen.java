@@ -52,7 +52,7 @@ public class MenuScreen extends Screen implements IMenuBar, MouseListener {
 			e.printStackTrace();
 		}
 		
-		JLabel playLabel = new JLabel("Click For Play");
+		JLabel playLabel = new JLabel("Click To Play");
 		playLabel.setHorizontalAlignment(JLabel.CENTER);
 		playLabel.setFont(new Font("Verdana", Font.BOLD, 50));
 		playLabel.setForeground(Color.WHITE);

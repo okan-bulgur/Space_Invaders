@@ -45,6 +45,9 @@ public class PlayerInfoBar extends Rectangle {
 		
 		// high score part
 		g2.drawString("High Score: " + player.getUser().getHighScore(), GamePanel.tileSize * 18, 40);
+		
+		// pause part
+		g2.drawString("II", GamePanel.screenWidth - GamePanel.tileSize*2, 40);
 
 	}
 }

@@ -21,9 +21,9 @@ public class HighScoreDisplay extends JPanel{
 		GridLayout layout = new GridLayout(10,1);
 		this.setLayout(layout);
 		
-		JLabel header = new JLabel("HIGH SCORE");
+		JLabel header = new JLabel("HIGH SCORES");
 		header.setFont(new Font("Bebas Neue", Font.PLAIN, 100));
-		header.setForeground(Color.RED);
+		header.setForeground(Color.WHITE);
 		header.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(header);
 		
@@ -31,7 +31,7 @@ public class HighScoreDisplay extends JPanel{
 			JLabel label = new JLabel((count++) + " ) " + user);
 			
 			label.setFont(new Font("Bebas Neue", Font.PLAIN, 50));
-			label.setForeground(Color.WHITE);
+			label.setForeground(Color.GREEN);
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setVerticalAlignment(SwingConstants.CENTER);
 			this.add(label);
