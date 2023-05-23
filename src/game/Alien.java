@@ -16,8 +16,17 @@ public class Alien extends Character {
 	private BufferedImage aliensImg1;
 	private BufferedImage aliensImg2;
 	
-	public Alien(String type) {
+	public Alien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletDelay) {
 		setAlienByType(type);
+		setStartX(posX);
+		setEndX(endPosX);
+		setStartY(posY);
+		setEndY(endPosY);
+		setPosX(getStartX());
+		setPosY(getStartY());
+		setSpeedX(speedX);
+		setSpeedY(speedY);
+		setBulletCreateDelay(bulletDelay);
 	}
 	
 	public String getType() {
@@ -76,16 +85,7 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
 				setBulletImg("/img/bullet_2_1.png", "/img/bullet_2_2.png");
 				setHealth(5);
-				setStartX(0);
-				setEndX(GamePanel.screenWidth/2);
-				setStartY(0);
-				setEndY(GamePanel.screenHeight * 2);
-				setPosX(getStartX());
-				setPosY(getStartY());
 				setDamage(1);
-				setSpeedX(4);
-				setSpeedY(1);
-				setBulletCreateDelay(300);
 				setBulletSpeed(-5);			
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
@@ -96,19 +96,10 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_2_1.png", "/img/alien_2_2.png");
 				setBulletImg("/img/bullet_4_1.png", "/img/bullet_4_2.png");
 				setHealth(5);
-				setStartX(GamePanel.screenWidth/2);
-				setEndX(GamePanel.screenWidth);
-				setStartY(GamePanel.tileSize * 5);
-				setEndY(GamePanel.tileSize * 10);
+				setDamage(1);
+				setBulletSpeed(-5);		
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
-				setPosX(getStartX());
-				setPosY(getStartY());
-				setDamage(1);
-				setSpeedX(4);
-				setSpeedY(2);
-				setBulletCreateDelay(200);
-				setBulletSpeed(-5);		
 				setCollisionArea();
 				break;
 				
@@ -116,17 +107,19 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_3_1.png", "/img/alien_3_2.png");
 				setBulletImg("/img/bullet_3_1.png", "/img/bullet_3_2.png");
 				setHealth(5);
-				setStartX(0);
-				setEndX(GamePanel.screenWidth);
-				setStartY(0);
-				setEndY(0);
-				setPosX(getStartX());
-				setPosY(getStartY());
 				setDamage(1);
-				setSpeedX(5);
-				setSpeedY(0);
-				setBulletCreateDelay(400);
 				setBulletSpeed(-7);			
+				setSizeWidth(GamePanel.tileSize);
+				setSizeHeight(GamePanel.tileSize);
+				setCollisionArea();
+				break;
+				
+			case "alien4":
+				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
+				setBulletImg("/img/bullet_2_1.png", "/img/bullet_2_2.png");
+				setHealth(5);
+				setDamage(1);
+				setBulletSpeed(-5);			
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
 				setCollisionArea();

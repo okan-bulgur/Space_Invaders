@@ -22,8 +22,6 @@ public class GameManager{
 	private User user;
 	private Player player;
 	
-	private int gameLevel;
-	
 	public static GameThread gameThread = null;
 	
 	public GameManager() {
@@ -46,9 +44,6 @@ public class GameManager{
 		player = playerManager.getPlayer();
 		
 		gamePanel =  new GamePanel(playerManager, bulletmanager, aliensManager);
-		
-		aliensManager.createAlien("alien1");
-		aliensManager.createAlien("alien2");
 				
 		createGameScreen();
 		Game.screenManager.setScreen(gameScreen);
@@ -87,7 +82,7 @@ public class GameManager{
 	}
 	
 	public void gameStatusChecker() {
-		if(player.getHealth() == 0) {
+		if(player.getHealth() <= 0) {
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
@@ -102,14 +97,4 @@ public class GameManager{
 	public PlayerManager getPlayerManager() {
 		return playerManager;
 	}
-
-	/*
-	public int getGameLevel() {
-		return gameLevel;
-	}
-
-	public void setGameLevel(int gameLevel) {
-		this.gameLevel = gameLevel;
-	}
-	*/
 }

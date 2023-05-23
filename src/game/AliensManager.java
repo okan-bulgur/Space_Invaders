@@ -21,8 +21,8 @@ public class AliensManager {
 		this.bulletmanager = bulletmanager;
 	}
 	
-	public void createAlien(String type) {
-		Alien newAlien = new Alien(type);
+	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletDelay) {
+		Alien newAlien = new Alien(type, posX, endPosX, posY, endPosY, speedX, speedY, bulletDelay);
 		aliens.add(newAlien);
 	}
 	
