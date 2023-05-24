@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import screens.GamePanel;
-import screens.GameStopScreen;
 import users.User;
 
 public class PlayerManager{
@@ -14,7 +13,6 @@ public class PlayerManager{
 	private Player player = null;
 	private Bulletmanager bulletmanager;
 	private boolean canCollision = true;
-	private int hitScore = 10;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	private int bulletDelayCounter = 0;
@@ -104,7 +102,7 @@ public class PlayerManager{
 	}
 	
 	public void addScore() {
-		player.setScore(player.getScore() + hitScore);
+		player.setScore(player.getScore() + Game.gameManager.levelManager.getLevel().getHitScore());
 	}
 	
 	public void takeDamage(int damage) {

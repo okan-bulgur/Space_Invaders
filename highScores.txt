@@ -1,1 +1,4 @@
-okidoki 100
+okidoki 2400
+berkay 860
+okidoki 2400
+a 50

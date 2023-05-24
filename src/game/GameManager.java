@@ -89,6 +89,8 @@ public class GameManager{
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
+			levelManager.levelStop();
+			setLevelManager(null);
 		}
 		else if (levelManager.getLevelPercentage() == 100) {
 			playerManager.changeHighScore(player.getUser(), player.getScore());

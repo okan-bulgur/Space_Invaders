@@ -31,7 +31,9 @@ public class PlayerInfoBar extends Rectangle {
 		g2.setFont(new Font("Consolas", Font.PLAIN, 30));
 		
 		// level part
+		if(Game.gameManager.levelManager != null) {
 		g2.drawString("LEVEL " + Game.gameManager.levelManager.getGameLevel() + " %" + Game.gameManager.levelManager.getLevelPercentage(), GamePanel.tileSize, 40);
+		}
 		
 		// health part
 		g2.drawImage(hearthImg, GamePanel.tileSize * 5, 5, GamePanel.tileSize, GamePanel.tileSize, null);
