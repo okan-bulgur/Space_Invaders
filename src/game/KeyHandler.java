@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 	
 	private boolean upPress, downpress, rightPress, leftpress, spacePress;
-
+	
 	public void keyTyped(KeyEvent e) {
 	}
 

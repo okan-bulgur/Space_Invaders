@@ -75,8 +75,9 @@ public class MenuScreen extends Screen implements IMenuBar, MouseListener {
 			showScreen();
 			return;
 		}
+		setScreen(new LevelScreen());
+		showScreen();
 		screen.dispose();
-		Game.gameManager.startGame();
 		
 	}
 

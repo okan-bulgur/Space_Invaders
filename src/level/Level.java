@@ -1,77 +1,42 @@
 package level;
 
+import game.AliensManager;
 import game.Game;
-import game.GameManager;
+import screens.GamePanel;
 
-public class LevelManager extends Thread {
-	private boolean isStop = false;
-	private int levelPercentage = 0;
-	private int levelCounter = 0;
-	private final int FPS = 60;
+public class Level{
 	
-	private Level level;
+	private int gameLevel = 0;
+	private AliensManager aliensManager = null;
 	
-	public LevelManager() {
-		this.level = new Level();
+	public int getGameLevel() {
+		return gameLevel;
+	}
+
+	public void setGameLevel(int gameLevel) {
+		this.gameLevel = gameLevel;
 	}
 	
-	@Override
-	public void run() {
-		double drawInterval = 1000000000/FPS;
-		double nextDrawTime = System.nanoTime() + drawInterval; 
-		setLevelPercentage(0);
-		while (!isStop) {
-			
-			levelCounter++;
-			if(levelCounter % 100 == 0) {
-				level.runLevel(getLevelPercentage());
-				//levelDesign();
-				setLevelPercentage(getLevelPercentage() + 1);
-			}
-			
-			try {
-				double remainingTime = nextDrawTime - System.nanoTime();
-				remainingTime /= 1000000;
-				
-				if(remainingTime < 0) {
-					remainingTime = 0;
-				}
-				
-				Thread.sleep((long) remainingTime);
-				
-				nextDrawTime += drawInterval;
-				
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+	public void runLevel(int levelPercentage) {
+		aliensManager = Game.gameManager.getAliensManager();
+		switch (gameLevel) {
+		case 1:
+			level1(levelPercentage);
+			break;
+		case 2:
+			level2(levelPercentage);
+			break;
+		case 3:
+			level3(levelPercentage);
+			break;
+
+		default:
+			break;
 		}
 	}
 	
-	public int getLevelPercentage() {
-		return levelPercentage;
-	}
-	
-	public void setLevelPercentage(int levelPercentage) {
-		this.levelPercentage = levelPercentage;
-	}
-	
-	public int getGameLevel() {
-		return level.getGameLevel();
-	}
-	
-	public void setGameLevel(int gameLevel) {
-		level.setGameLevel(gameLevel);
-	}
-		
-	public void levelStop() {
-		isStop = true;
-		Game.gameManager.setLevelManager(null);
-	}
-	
-	/*
-	public void levelDesign() {
-		
-		switch (gameLevel) {
+	public void level1(int levelPercentage) {
+		switch (levelPercentage) {
 		case 0:
 			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
 			break;
@@ -192,5 +157,46 @@ public class LevelManager extends Thread {
 			break;
 		}
 	}
-	*/
+
+	public void level2(int levelPercentage) {
+		switch (levelPercentage) {
+		case 0:
+			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			break;
+		case 1:
+			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			break;
+		case 2:
+			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			break;
+		case 3:
+			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	public void level3(int levelPercentage) {
+		switch (levelPercentage) {
+		case 4:
+			aliensManager.createAlien("alien3", 0, GamePanel.screenWidth, 0, GamePanel.screenHeight / 2, 4, 2, 200);
+			break;
+		case 10:
+			for(int i = 0; i < GamePanel.maxScreenCol ; i+=3) {
+				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
+			}			
+			break;
+		case 20:
+			for(int i = 0; i < GamePanel.maxScreenCol ; i+=2) {
+				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
+			}
+			for(int i = 1; i < GamePanel.maxScreenCol ; i+=2) {
+				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 450);				
+			}
+		default:
+			break;
+		}
+	}
 }

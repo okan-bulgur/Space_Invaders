@@ -74,7 +74,7 @@ public class PlayerManager{
 			}
 			spriteCounter = 0;
 		}
-		if(bulletDelayCounter > 4) {
+		if(bulletDelayCounter > 6) {
 			if(bulletChecker == 1) {
 				bulletChecker = 0;
 			}

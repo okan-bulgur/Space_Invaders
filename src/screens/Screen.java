@@ -58,7 +58,8 @@ public abstract class Screen extends ScreenManager implements IScreen{
 					return;
 				}
 				screen.dispose();
-				Game.gameManager.startGame();
+				setScreen(new LevelScreen());
+				showScreen();
 			}
 		});
 		
@@ -82,7 +83,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(screen, "Okan Bulgur 20200702017");
+				JOptionPane.showMessageDialog(screen, "Okan Bulgur 20200702017\nokan.bulgur@std.yeditepe.edu.tr");
 			}
 		});
 		

@@ -19,13 +19,13 @@ public class Player extends Character {
 
 	public Player(User user) {
 		setUser(user);
-		setHealth(5);
+		setHealth(3);
 		setScore(0);
 		setPosX(GamePanel.tileSize*11);
 		setPosY(GamePanel.tileSize*10);
 		setSpeed(4);
 		setDamage(1);
-		setBulletSpeed(7);
+		setBulletSpeed(10);
 		setSizeWidth(GamePanel.tileSize);
 		setSizeHeight(GamePanel.tileSize);
 		setCollisionArea();
