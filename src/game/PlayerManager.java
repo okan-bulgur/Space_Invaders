@@ -49,10 +49,10 @@ public class PlayerManager{
 			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
 		}
 		if(spriteNum == 0) {
-			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize - 10, player.getSizeWidth()/3, player.getSizeHeight()/3, null);			
+			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize, player.getSizeWidth()/3, player.getSizeHeight()/3, null);			
 		}
 		else if(spriteNum == 1) {
-			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize - 10, player.getSizeWidth()/3, player.getSizeHeight()/3, null);	
+			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize, player.getSizeWidth()/3, player.getSizeHeight()/3, null);	
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class PlayerManager{
 		
 		spriteCounter++;
 		bulletDelayCounter++;
-		if(spriteCounter > 10) {
+		if(spriteCounter > 3) {
 			if(spriteNum == 1) {
 				spriteNum = 0;
 			}
