@@ -106,7 +106,7 @@ public class Alien extends Character {
 			case "alien3":
 				setAliensImg("/img/alien_3_1.png", "/img/alien_3_2.png");
 				setBulletImg("/img/bullet_3_1.png", "/img/bullet_3_2.png");
-				setHealth(5);
+				setHealth(7);
 				setDamage(1);
 				setBulletSpeed(-7);			
 				setSizeWidth(GamePanel.tileSize);

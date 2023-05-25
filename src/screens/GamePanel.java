@@ -5,7 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import game.AliensManager;
@@ -33,7 +36,15 @@ public class GamePanel extends JPanel {
 	private boolean finish = false;
 	private boolean pause = false;
 	
+	private BufferedImage backgroundImg;
+	private int y = 0;
+	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
+		try {
+			backgroundImg = ImageIO.read(getClass().getResourceAsStream("/img/background.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
@@ -50,6 +61,7 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
+		slidingBackGround(g2);        
 		playerManager.drawCharacter(g2);
 		bulletmanager.drawCharacter(g2);
 		aliensManager.drawCharacter(g2);
@@ -94,4 +106,14 @@ public class GamePanel extends JPanel {
 		return pause;
 	}
 	
+	public void slidingBackGround(Graphics2D g2) {
+		g2.drawImage(backgroundImg, 0, y - GamePanel.screenHeight , GamePanel.screenWidth, GamePanel.screenHeight, null);
+		g2.drawImage(backgroundImg, 0, y, GamePanel.screenWidth, GamePanel.screenHeight, null);
+
+      	y+=2;
+       
+	   if (y >= getHeight() + 50) {
+	       y = y - GamePanel.screenHeight;
+	   }
+	}
 }

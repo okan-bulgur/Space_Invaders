@@ -22,7 +22,6 @@ public class LevelManager extends Thread {
 			levelCounter++;
 			if(levelCounter % 100 == 0) {
 				level.runLevel(getLevelPercentage());
-				//levelDesign();
 				setLevelPercentage(getLevelPercentage() + 1);
 			}
 			
