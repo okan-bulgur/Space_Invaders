@@ -26,7 +26,7 @@ public class Bulletmanager {
 		bullets.add(newBullet);
 	}
 	
-	public void drawCharacter(Graphics2D g2) {
+	public void drawBullets(Graphics2D g2) {
 		Iterator<Bullet> itr = bullets.listIterator();
 		while (itr.hasNext()) {
 			bullet = itr.next();
@@ -59,7 +59,7 @@ public class Bulletmanager {
 		}
 		
 		spriteCounter++;
-		if(spriteCounter > 10) {
+		if(spriteCounter > 13) {
 			if(spriteNum == 1) {
 				spriteNum = 0;
 			}

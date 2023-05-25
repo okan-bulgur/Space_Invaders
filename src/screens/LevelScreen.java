@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import game.Game;
 import game.GameManager;
@@ -25,8 +27,15 @@ public class LevelScreen extends Screen{
 		screen.setTitle("Levels");
 		screen.setSize(width, height);
 		screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		screen.setLayout(new BorderLayout());
 		
-		screen.add(levelDisplay());
+		JLabel header = new JLabel("Select Level");
+		header.setFont(new Font("Verdana", Font.BOLD, 50));
+		header.setForeground(Color.BLACK);
+		header.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		screen.add(header, BorderLayout.NORTH);
+		screen.add(levelDisplay(), BorderLayout.CENTER);
 		
 		screen.setLocationRelativeTo(null);
 		screen.setVisible(true);

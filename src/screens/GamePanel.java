@@ -63,7 +63,7 @@ public class GamePanel extends JPanel {
 		
 		slidingBackGround(g2);        
 		playerManager.drawCharacter(g2);
-		bulletmanager.drawCharacter(g2);
+		bulletmanager.drawBullets(g2);
 		aliensManager.drawCharacter(g2);
 		playerInfoBar.draw(g2);
 		
