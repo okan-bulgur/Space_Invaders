@@ -1,3 +1,1 @@
-a 2620
-w 2100
-okidoki 100
+okidoki 2200

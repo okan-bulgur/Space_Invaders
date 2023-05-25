@@ -35,6 +35,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				screen.dispose();
+				Game.userManager.changeUser(null);
 				setScreen(new MenuScreen());
 				showScreen();
 				setScreen(new UserFormScreen());

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import game.Game;
 import users.UserInfoException;
@@ -38,21 +39,23 @@ public class UserFormScreen extends Screen {
 		
 		JLabel userNameLabel = new JLabel();
 		userNameLabel.setText("Username");
+		userNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		final JTextField usernameTextField = new JTextField(10);
-		userNameLabel.setForeground(Color.WHITE);
+		userNameLabel.setForeground(Color.BLACK);
 		
 		JLabel passwordLabel = new JLabel();
 		passwordLabel.setText("Password");
+		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		final JTextField passwordTextField = new JTextField(10);
-		passwordLabel.setForeground(Color.WHITE);
+		passwordLabel.setForeground(Color.BLACK);
 		
 		JButton logInBtn = new JButton("Log in");
 		JButton signUpBtn = new JButton("Sign Up");
 		
-		logInBtn.setBackground(Color.black);
-		logInBtn.setForeground(Color.white);
-		signUpBtn.setBackground(Color.black);
-		signUpBtn.setForeground(Color.white);
+		logInBtn.setBackground(Color.BLACK);
+		logInBtn.setForeground(Color.WHITE);
+		signUpBtn.setBackground(Color.BLACK);
+		signUpBtn.setForeground(Color.WHITE);
 		
 		logInBtn.addActionListener(new ActionListener() {
 
@@ -97,7 +100,7 @@ public class UserFormScreen extends Screen {
 		
 		
 		JPanel panel = new JPanel(gridLayout);
-		panel.setBackground(Color.BLACK);
+		panel.setBackground(Color.WHITE);
 		
 		panel.add(userNameLabel);
 		panel.add(usernameTextField);
