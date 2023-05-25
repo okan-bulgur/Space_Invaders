@@ -91,9 +91,9 @@ public class Bullet extends Bulletmanager {
 
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
-		collisionArea.x = posX;
+		collisionArea.x = posX + 10;
 		collisionArea.y = posY;
-		collisionArea.width = sizeWidth;
+		collisionArea.width = sizeWidth - 20;
 		collisionArea.height = sizeHeight;
 	}
 

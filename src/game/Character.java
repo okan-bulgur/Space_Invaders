@@ -142,9 +142,9 @@ public abstract class Character  {
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
 		collisionArea.x = posX + GamePanel.tileSize/GamePanel.scale;
-		collisionArea.y = posY + GamePanel.tileSize/GamePanel.scale;
-		collisionArea.width = sizeWidth - GamePanel.tileSize/GamePanel.scale - 5;
-		collisionArea.height = sizeHeight - GamePanel.tileSize/GamePanel.scale;
+		collisionArea.y = posY + (GamePanel.tileSize/GamePanel.scale)*4;
+		collisionArea.width = sizeWidth - (GamePanel.tileSize/GamePanel.scale)*2;
+		collisionArea.height = sizeHeight - (GamePanel.tileSize/GamePanel.scale)*4;
 	}
 	
 }
