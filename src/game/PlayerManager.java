@@ -17,6 +17,7 @@ public class PlayerManager{
 	private static int spriteNum = 0;
 	private int bulletDelayCounter = 0;
 	private int bulletChecker = 0;
+	private boolean highScoreChecker = true;
 
 	public PlayerManager(Bulletmanager bulletmanager) {
 		this.bulletmanager = bulletmanager;
@@ -103,6 +104,11 @@ public class PlayerManager{
 	
 	public void addScore() {
 		player.setScore(player.getScore() + Game.gameManager.levelManager.getLevel().getHitScore());
+		if(player.getScore() > user.getHighScore() && highScoreChecker) {
+			Game.gameManager.getGamePanel().displayNewHighScoreUser();
+			highScoreChecker = false;
+		}
+
 	}
 	
 	public void takeDamage(int damage) {

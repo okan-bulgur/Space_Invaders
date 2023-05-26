@@ -1,1 +1,6 @@
-okidoki 2200
+okidoki 2450
+a 2280
+junker 1090
+w 560
+q 190
+e 140

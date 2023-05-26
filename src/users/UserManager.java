@@ -2,8 +2,6 @@ package users;
 
 import java.util.HashMap;
 
-import game.Game;
-
 public class UserManager {
 	
 	protected static HashMap <String, User> users = new HashMap <String, User> ();

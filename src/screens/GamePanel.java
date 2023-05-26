@@ -7,6 +7,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -31,10 +34,12 @@ public class GamePanel extends JPanel {
 	private AliensManager aliensManager;	
 	private PlayerInfoBar playerInfoBar;
 	private GameStopScreen gameStopScreen;
+	private NewHighScoreScreen newHighScoreScreen;
 	
 	private boolean gameOver = false;
 	private boolean finish = false;
 	private boolean pause = false;
+	private boolean newHighScoreUser = false;
 	
 	private BufferedImage backgroundImg;
 	private int y = 0;
@@ -55,6 +60,7 @@ public class GamePanel extends JPanel {
 		this.aliensManager = aliensManager;
 		this.playerInfoBar = new PlayerInfoBar(playerManager.getPlayer());
 		this.gameStopScreen = new GameStopScreen();
+		this.newHighScoreScreen = new NewHighScoreScreen();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -77,6 +83,9 @@ public class GamePanel extends JPanel {
 			gameStopScreen.pauseScreen(g2);
 		}
 		
+		if(newHighScoreUser) {
+			newHighScoreScreen.userNewHighScoreScreen(g2);
+		}
 		
 		g2.dispose();
 	}
@@ -94,6 +103,26 @@ public class GamePanel extends JPanel {
 		pause = check;
 	}
 	
+	public void displayNewHighScoreUser() {
+		new Thread(new Runnable() 
+		{
+			boolean checker = true;
+			public void run() {
+				while(checker) {
+					newHighScoreUser = true;
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					newHighScoreUser = false;
+					checker = false;
+				}
+				
+			}
+		}).start();
+	}
+	
 	public boolean getGameOver() {
 		return gameOver;
 	}
@@ -104,6 +133,10 @@ public class GamePanel extends JPanel {
 
 	public boolean getPause() {
 		return pause;
+	}
+	
+	public void getNewHighScoreUser(boolean check) {
+		pause = check;
 	}
 	
 	public void slidingBackGround(Graphics2D g2) {

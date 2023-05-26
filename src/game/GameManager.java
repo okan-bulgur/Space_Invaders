@@ -111,6 +111,10 @@ public class GameManager{
 		return levelManager;
 	}
 	
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+	
 	public void setLevelManager(LevelManager levelManager) {
 		this.levelManager = levelManager;
 	}

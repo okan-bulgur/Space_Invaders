@@ -51,16 +51,14 @@ public class GameThread extends Thread{
 		GameManager.gameThread = null;
 	}
 	
-	public synchronized void gamePause() {
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	public void gamePause() {
+		GameManager.gameThread.gamePause();
+		isStop = true;
 	}
 	
-	public synchronized  void gameResume() {
-		notifyAll();
+	public void gameResume() {
+		GameManager.gameThread.gameResume();
+		isStop = false;
 	}
 
 }

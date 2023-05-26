@@ -50,14 +50,14 @@ public class GameScreen extends Screen implements IMenuBar, MouseListener {
 		int pauseBtnLeftX = 1770;
 		
 		if(!isPause && e.getX() <= pauseBtnRightX && e.getX() >= pauseBtnLeftX && e.getY() <= pauseBtnUpY && e.getY() >= pauseBtnBottomY) {
-			gamePanel.setPause(true);
-			GameManager.gameThread.gamePause();
 			isPause = true;
+			gamePanel.setPause(isPause);
+			GameManager.gameThread.gamePause();
 		}
-		else if(isPause && e.getX() <= pauseBtnRightX && e.getX() >= pauseBtnLeftX && e.getY() <= pauseBtnUpY && e.getY() >= pauseBtnBottomY) {
-			gamePanel.setPause(false);
-			GameManager.gameThread.gameResume();
+		else if(isPause) {
 			isPause = false;
+			gamePanel.setPause(isPause);
+			GameManager.gameThread.gameResume();
 		}
 		
 	}

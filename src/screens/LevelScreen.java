@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import game.Game;
-import game.GameManager;
 
 public class LevelScreen extends Screen{
 
