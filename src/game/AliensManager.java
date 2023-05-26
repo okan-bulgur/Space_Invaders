@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -34,12 +36,18 @@ public class AliensManager {
 		Iterator<Alien> itr = aliens.listIterator();
 		while (itr.hasNext()) {
 			Alien alien = itr.next();
-			
+			if(alien.isTakeDamage() && spriteNum == 0) {
+				AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+				g2.setComposite(composite);
+			}
 			if(spriteNum == 0) {
 				g2.drawImage(alien.getAliensImg1() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);			
 			}
 			else if(spriteNum == 1) {
 				g2.drawImage(alien.getAliensImg2() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);	
+			}
+			if (alien.isTakeDamage() && spriteNum == 0) {
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER)); 
 			}
 		}
 	}
@@ -93,6 +101,7 @@ public class AliensManager {
 	
 	public void takeDamage(Alien alien, int damage, ListIterator<Alien> alienItr) {
 		alien.setHealth(alien.getHealth() - damage);
+		alien.setTakeDamage();
 		if(isDead(alien)) {
 			alienItr.remove();
 			alien = null;

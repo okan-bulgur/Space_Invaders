@@ -13,6 +13,8 @@ public class Alien extends Character {
 	private int bulletCreateDelay;
 	private int speedX;
 	private int speedY;
+	private boolean isTakeDamage = false;
+	private int damageAnimationTime = 1000;
 	private BufferedImage aliensImg1;
 	private BufferedImage aliensImg2;
 	
@@ -59,6 +61,28 @@ public class Alien extends Character {
 
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
+	}
+
+	public boolean isTakeDamage() {
+		return isTakeDamage;
+	}
+
+	public void setTakeDamage() {
+		new Thread (new Runnable() 
+		{	
+			@Override
+			public void run()
+		    {
+		        try {
+		        	isTakeDamage = true;
+					Thread.sleep(damageAnimationTime);
+					isTakeDamage = false;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+		     
+		    }
+		}).start();
 	}
 
 	public BufferedImage getAliensImg1() {
