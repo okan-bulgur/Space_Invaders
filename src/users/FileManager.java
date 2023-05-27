@@ -33,7 +33,7 @@ public class FileManager {
 				String[] words = line.split("\\s+"); // Split the line word by word
 				int userScore = Integer.parseInt(words[1]);
 				
-				if(score > userScore) {
+				if(score > userScore && !isExist) {
 					writer.write(username + " " + score);
 					writer.newLine();
 					isExist = true;
@@ -95,6 +95,7 @@ public class FileManager {
 			while ((line = reader.readLine()) != null) {
 				String[] words = line.split("\\s+");
 				if(words[0].equals(username)) {
+					reader.close();
 					return Integer.parseInt(words[1]);
 				}
 			}
@@ -143,6 +144,7 @@ public class FileManager {
                 highScores.add(line);
                 count--;
             }
+			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -14,7 +14,7 @@ public class GameStopScreen {
 		
 		
 		String text = "GAME OVER";
-		int x = GamePanel.tileSize * 9;
+		int x = GamePanel.tileSize * 8;
 		int y = GamePanel.tileSize * 6;
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
@@ -30,7 +30,7 @@ public class GameStopScreen {
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
 		g2.setColor(Color.WHITE);	
 		g2.drawString("Your High Score: " + Game.gameManager.getPlayerManager().getUser().getHighScore(), GamePanel.tileSize*9, GamePanel.tileSize*7);
-		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), GamePanel.tileSize * 11, GamePanel.tileSize * 8);
+		g2.drawString("Score: " + Game.gameManager.getPlayerManager().getPlayer().getScore(), GamePanel.tileSize * 10 + 50, GamePanel.tileSize * 8);
 		
 	}
 	

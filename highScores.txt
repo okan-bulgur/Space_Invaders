@@ -1,8 +1,5 @@
-okidoki 2450
-a 2280
-junker 1840
-w 560
-junker 1840
-q 190
-junker 1840
-e 140
+junker 2000
+q 210
+a 160
+okidoki 150
+w 100

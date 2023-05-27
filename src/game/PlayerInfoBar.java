@@ -28,7 +28,7 @@ public class PlayerInfoBar extends Rectangle {
 	
 	public void draw(Graphics2D g2) {
 		g2.setColor(Color.RED);
-		g2.setFont(new Font("Consolas", Font.PLAIN, 30));
+		g2.setFont(new Font("Arial", Font.BOLD, 30));
 		
 		// level part
 		if(Game.gameManager.levelManager != null) {
