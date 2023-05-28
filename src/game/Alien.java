@@ -2,9 +2,7 @@ package game;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import screens.GamePanel;
 
 public class Alien extends Character {
@@ -18,7 +16,7 @@ public class Alien extends Character {
 	private BufferedImage aliensImg1;
 	private BufferedImage aliensImg2;
 	
-	public Alien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletDelay) {
+	public Alien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
 		setAlienByType(type);
 		setStartX(posX);
 		setEndX(endPosX);
@@ -28,6 +26,8 @@ public class Alien extends Character {
 		setPosY(getStartY());
 		setSpeedX(speedX);
 		setSpeedY(speedY);
+		setBulletSpeedX(bulletSpeedX);
+		setBulletSpeedY(bulletSpeedY);
 		setBulletCreateDelay(bulletDelay);
 	}
 	
@@ -109,8 +109,7 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
 				setBulletImg("/img/bullet_2_1.png", "/img/bullet_2_2.png");
 				setHealth(5);
-				setDamage(1);
-				setBulletSpeed(-5);			
+				setDamage(1);			
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
 				setCollisionArea();
@@ -120,8 +119,7 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_2_1.png", "/img/alien_2_2.png");
 				setBulletImg("/img/bullet_4_1.png", "/img/bullet_4_2.png");
 				setHealth(5);
-				setDamage(1);
-				setBulletSpeed(-5);		
+				setDamage(1);	
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
 				setCollisionArea();
@@ -131,8 +129,7 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_3_1.png", "/img/alien_3_2.png");
 				setBulletImg("/img/bullet_3_1.png", "/img/bullet_3_2.png");
 				setHealth(7);
-				setDamage(1);
-				setBulletSpeed(-7);			
+				setDamage(1);			
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
 				setCollisionArea();
@@ -142,10 +139,19 @@ public class Alien extends Character {
 				setAliensImg("/img/alien_1_1.png", "/img/alien_1_2.png");
 				setBulletImg("/img/bullet_2_1.png", "/img/bullet_2_2.png");
 				setHealth(5);
-				setDamage(1);
-				setBulletSpeed(-5);			
+				setDamage(1);		
 				setSizeWidth(GamePanel.tileSize);
 				setSizeHeight(GamePanel.tileSize);
+				setCollisionArea();
+				break;
+				
+			case "alien5":
+				setAliensImg("/img/alien_4_1.png", "/img/alien_4_2.png");
+				setBulletImg("/img/bullet_6_1.png", "/img/bullet_6_1.png");
+				setHealth(5);
+				setDamage(1);
+				setSizeWidth(GamePanel.tileSize + 30);
+				setSizeHeight(GamePanel.tileSize + 30);
 				setCollisionArea();
 				break;
 		default:

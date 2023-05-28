@@ -49,20 +49,21 @@ public class Level{
 		setHitScore(10);
 		switch (levelPercentage) {
 		case 0:
-			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,300);
 			break;
 		case 1:
-			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,300);
 			break;
 		case 2:
-			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5, 300);
 			break;
 		case 3:
-			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 300);
+			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5, 300);
 			break;
 		case 4:
-			aliensManager.createAlien("alien2", 0, GamePanel.screenWidth, 0, GamePanel.screenHeight / 2, 4, 2, 200);
+			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth, 0, GamePanel.screenHeight / 2, 4, 2, 5, 5, 200);
 			break;
+		/*
 		case 10:
 			for(int i = 0; i < GamePanel.maxScreenCol ; i+=3) {
 				aliensManager.createAlien("alien4", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
@@ -164,6 +165,7 @@ public class Level{
 		case 98:
 			aliensManager.createAlien("alien2", GamePanel.screenWidth/3, GamePanel.screenWidth*2/3, GamePanel.screenHeight/3, GamePanel.screenHeight*2/3, 2, 2, 200);
 			break;
+		*/
 		default:
 			break;
 		}
@@ -172,6 +174,7 @@ public class Level{
 	public void level2(int levelPercentage) {
 		setHitScore(20);
 		switch (levelPercentage) {
+		/*
 		case 0:
 			aliensManager.createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 5, 1, 250);
 			break;
@@ -288,6 +291,7 @@ public class Level{
 		case 98:
 			aliensManager.createAlien("alien2", GamePanel.screenWidth/3, GamePanel.screenWidth*2/3, GamePanel.screenHeight/3, GamePanel.screenHeight*2/3, 2, 3, 150);
 			break;
+			*/
 		default:
 			break;
 		}
@@ -296,21 +300,7 @@ public class Level{
 	public void level3(int levelPercentage) {
 		setHitScore(30);
 		switch (levelPercentage) {
-		case 4:
-			aliensManager.createAlien("alien3", 0, GamePanel.screenWidth, 0, GamePanel.screenHeight / 2, 4, 2, 200);
-			break;
-		case 10:
-			for(int i = 0; i < GamePanel.maxScreenCol ; i+=3) {
-				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
-			}			
-			break;
-		case 20:
-			for(int i = 0; i < GamePanel.maxScreenCol ; i+=2) {
-				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				
-			}
-			for(int i = 1; i < GamePanel.maxScreenCol ; i+=2) {
-				aliensManager.createAlien("alien3", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 450);				
-			}
+
 		default:
 			break;
 		}

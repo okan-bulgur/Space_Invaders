@@ -3,7 +3,6 @@ package game;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import screens.GamePanel;
 
@@ -46,9 +45,10 @@ public class Bulletmanager {
 			for(int i=0 ; i < bullets.size() ; i++) {
 				bullet = bullets.get(i);
 				if(bullet != null) {
-					bullet.setPosY(bullet.getPosY() - bullet.getSpeed());		
+					bullet.setPosY(bullet.getPosY() - bullet.getSpeedY());		
+					bullet.setPosX(bullet.getPosX() + bullet.getSpeedX());	
 					bullet.setCollisionArea();
-					if(bullet.getPosY() <= 0 || bullet.getPosY() >= GamePanel.screenHeight) {
+					if(bullet.getPosY() <= 0 || bullet.getPosY() >= GamePanel.screenHeight || bullet.getPosX() <= 0 || bullet.getPosX() >= GamePanel.screenWidth) {
 						bullets.remove(i);
 						bullet = null;
 					}

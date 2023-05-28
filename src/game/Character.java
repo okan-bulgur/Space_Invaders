@@ -19,7 +19,8 @@ public abstract class Character  {
 	protected int posY;
 	protected int speed;
 	protected int damage;
-	protected int bulletSpeed;
+	protected int bulletSpeedX;
+	protected int bulletSpeedY;
 	protected int sizeWidth;
 	protected int sizeHeight;
 	protected BufferedImage bulletImg;
@@ -66,12 +67,20 @@ public abstract class Character  {
 		this.damage = damage;
 	}
 	
-	public int getBulletSpeed() {
-		return bulletSpeed;
+	public int getBulletSpeedX() {
+		return bulletSpeedX;
 	}
 	
-	public void setBulletSpeed(int bulletSpeed) {
-		this.bulletSpeed = bulletSpeed;
+	public void setBulletSpeedX(int bulletSpeedX) {
+		this.bulletSpeedX = bulletSpeedX;
+	}
+	
+	public int getBulletSpeedY() {
+		return bulletSpeedY;
+	}
+	
+	public void setBulletSpeedY(int bulletSpeedY) {
+		this.bulletSpeedY = bulletSpeedY;
 	}
 	
 	public void setSizeWidth(int width) {

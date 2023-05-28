@@ -21,8 +21,8 @@ public class AliensManager {
 		this.bulletmanager = bulletmanager;
 	}
 	
-	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletDelay) {
-		Alien newAlien = new Alien(type, posX, endPosX, posY, endPosY, speedX, speedY, bulletDelay);
+	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY,int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
+		Alien newAlien = new Alien(type, posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
 		aliens.add(newAlien);
 	}
 	
@@ -80,7 +80,12 @@ public class AliensManager {
 			alien.setCollisionArea();
 			
 			if(bulletDelayCounter % alien.getBulletCreateDelay() == 0) {
-				bulletmanager.createBullet(alien);
+				if(alien.getType() == "alien5") {
+					shotgunShoot(alien);
+				}
+				else {
+					bulletmanager.createBullet(alien);					
+				}
 			}			
 		}
 		
@@ -114,5 +119,30 @@ public class AliensManager {
 		    return true;
 		}
 		return false;
+	}
+	
+	public void shotgunShoot(Alien alien) {
+		int bulletSpeedX = alien.getBulletSpeedX();
+		int bulletSpeedY = alien.getBulletSpeedY();
+		
+		alien.setBulletSpeedX(-bulletSpeedX);
+		alien.setBulletSpeedY(0);
+		bulletmanager.createBullet(alien);
+		
+		alien.setBulletSpeedX(-bulletSpeedX);
+		alien.setBulletSpeedY(-bulletSpeedY);
+		bulletmanager.createBullet(alien);
+		
+		alien.setBulletSpeedX(0);
+		alien.setBulletSpeedY(-5);
+		bulletmanager.createBullet(alien);
+		
+		alien.setBulletSpeedX(bulletSpeedX);
+		alien.setBulletSpeedY(-bulletSpeedY);
+		bulletmanager.createBullet(alien);
+		
+		alien.setBulletSpeedX(bulletSpeedX);
+		alien.setBulletSpeedY(0);
+		bulletmanager.createBullet(alien);
 	}
 }

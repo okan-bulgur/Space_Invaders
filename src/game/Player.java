@@ -25,7 +25,8 @@ public class Player extends Character {
 		setPosY(GamePanel.tileSize*10);
 		setSpeed(4);
 		setDamage(1);
-		setBulletSpeed(10);
+		setBulletSpeedX(0);
+		setBulletSpeedY(10);
 		setSizeWidth(GamePanel.tileSize);
 		setSizeHeight(GamePanel.tileSize);
 		setCollisionArea();

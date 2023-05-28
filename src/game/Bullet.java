@@ -9,7 +9,8 @@ public class Bullet extends Bulletmanager {
 
 	private Character character;
 	private int damage;
-	private int speed;
+	private int speedX;
+	private int speedY;
 	private int posX;
 	private int posY;
 	private int sizeWidth = GamePanel.tileSize;
@@ -21,7 +22,8 @@ public class Bullet extends Bulletmanager {
 	public Bullet(Character character) {
 		setCharacter(character);
 		setDamage(character.getDamage());
-		setSpeed(character.getBulletSpeed());
+		setSpeedX(character.getBulletSpeedX());
+		setSpeedY(character.getBulletSpeedY());
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
 		setBulletImg(character.getBulletImg(), character.getBulletImg2());
@@ -44,12 +46,20 @@ public class Bullet extends Bulletmanager {
 		this.damage = damage;
 	}
 	
-	public int getSpeed() {
-		return speed;
+	public int getSpeedX() {
+		return speedX;
 	}
 	
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+	
+	public int getSpeedY() {
+		return speedY;
+	}
+	
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
 	}
 
 	public int getPosX() {
