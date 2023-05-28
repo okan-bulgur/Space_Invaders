@@ -1,5 +1,6 @@
+w 2600
+a 2150
 junker 2000
+okidoki 1940
+berke 1560
 q 210
-a 160
-okidoki 150
-w 100

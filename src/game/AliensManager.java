@@ -1,11 +1,9 @@
 package game;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 
 import screens.GamePanel;
@@ -33,9 +31,8 @@ public class AliensManager {
 	}
 	
 	public void drawCharacter(Graphics2D g2) {
-		Iterator<Alien> itr = aliens.listIterator();
-		while (itr.hasNext()) {
-			Alien alien = itr.next();
+		for(int i=0 ; i < aliens.size() ; i++) {
+			Alien alien = aliens.get(i);
 			if(alien.isTakeDamage() && spriteNum == 0) {
 				AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 				g2.setComposite(composite);
@@ -60,9 +57,8 @@ public class AliensManager {
 			return;			
 		}
 		
-		Iterator<Alien> itr = aliens.listIterator();
-		while (itr.hasNext()) {
-			Alien alien = itr.next();
+		for(int i=0 ; i < aliens.size() ; i++) {
+			Alien alien = aliens.get(i);;
 			
 			if(alien.getPosX() + alien.getSpeedX() <= alien.getStartX() || alien.getPosX() + alien.getSpeedX() + alien.getSizeWidth() * 2 >= alien.getEndX()) {	
 				alien.setSpeedX(alien.getSpeedX() * -1);
@@ -73,7 +69,7 @@ public class AliensManager {
 			}
 			
 			if(alien.getPosY() > GamePanel.screenHeight) {
-				itr.remove();
+				aliens.remove(i);
 				alien = null;
 				continue;
 			}
