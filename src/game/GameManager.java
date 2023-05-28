@@ -2,6 +2,8 @@ package game;
 
 import java.util.ListIterator;
 
+import Aliens.Alien;
+import Aliens.AliensManager;
 import level.LevelManager;
 import screens.GamePanel;
 import screens.GameScreen;
@@ -12,6 +14,7 @@ public class GameManager{
 	protected static KeyHandler keyHandler = new KeyHandler();;
 	
 	protected Bulletmanager bulletmanager = null;
+	protected ShootingManager shootingManager = null;
 	protected PlayerManager playerManager = null;
 	protected AliensManager aliensManager = null;
 	protected LevelManager levelManager = null;
@@ -38,9 +41,10 @@ public class GameManager{
 		levelManager = new LevelManager();
 		levelManager.setGameLevel(level);
 		bulletmanager = new Bulletmanager();
-		aliensManager = new AliensManager(bulletmanager);	
+		shootingManager = new ShootingManager();
+		aliensManager = new AliensManager();	
 		
-		playerManager = new PlayerManager(bulletmanager);
+		playerManager = new PlayerManager();
 		user = Game.userManager.getActiveUser();
 		playerManager.setUser(user);
 		playerManager.createPlayer();
@@ -107,8 +111,16 @@ public class GameManager{
 		return aliensManager;
 	}
 	
+	public Bulletmanager getBulletManager() {
+		return bulletmanager;
+	}
+	
 	public LevelManager getLevelManager() {
 		return levelManager;
+	}
+	
+	public ShootingManager getShootingManager() {
+		return shootingManager;
 	}
 	
 	public GamePanel getGamePanel() {

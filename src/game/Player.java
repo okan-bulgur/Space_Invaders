@@ -19,6 +19,7 @@ public class Player extends Character {
 
 	public Player(User user) {
 		setUser(user);
+		setShootingType("vertical_up");
 		setHealth(3);
 		setScore(0);
 		setPosX(GamePanel.tileSize*11);
@@ -31,7 +32,7 @@ public class Player extends Character {
 		setSizeHeight(GamePanel.tileSize);
 		setCollisionArea();
 		setPlayerImage();
-		setBulletImg("/img/bullet_1_1.png", "/img/bullet_1_1.png");
+		setBulletImg("/img/bullet_player_1.png", "/img/bullet_player_2.png");
 		setGhostModeTime(1500);
 	}
 	

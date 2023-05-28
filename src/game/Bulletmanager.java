@@ -20,8 +20,8 @@ public class Bulletmanager {
 		return bullets;
 	}
 	
-	public void createBullet(Character character) {
-		Bullet newBullet = new Bullet(character);
+	public void createBullet(Character character, int speedX, int speedY) {
+		Bullet newBullet = new Bullet(character, speedX, speedY);
 		bullets.add(newBullet);
 	}
 	
@@ -48,7 +48,7 @@ public class Bulletmanager {
 					bullet.setPosY(bullet.getPosY() - bullet.getSpeedY());		
 					bullet.setPosX(bullet.getPosX() + bullet.getSpeedX());	
 					bullet.setCollisionArea();
-					if(bullet.getPosY() <= 0 || bullet.getPosY() >= GamePanel.screenHeight || bullet.getPosX() <= 0 || bullet.getPosX() >= GamePanel.screenWidth) {
+					if(bullet.getPosY() <= 0 || bullet.getPosY() >= GamePanel.screenHeight || bullet.getPosX() <= -50 || bullet.getPosX() >= GamePanel.screenWidth) {
 						bullets.remove(i);
 						bullet = null;
 					}

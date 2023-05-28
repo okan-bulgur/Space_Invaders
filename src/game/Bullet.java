@@ -19,11 +19,11 @@ public class Bullet extends Bulletmanager {
 	protected BufferedImage bulletImg2;
 	protected Rectangle collisionArea;
 
-	public Bullet(Character character) {
+	public Bullet(Character character, int speedX, int speedY) {
 		setCharacter(character);
 		setDamage(character.getDamage());
-		setSpeedX(character.getBulletSpeedX());
-		setSpeedY(character.getBulletSpeedY());
+		setSpeedX(speedX);
+		setSpeedY(speedY);
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
 		setBulletImg(character.getBulletImg(), character.getBulletImg2());

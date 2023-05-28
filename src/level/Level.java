@@ -1,6 +1,6 @@
 package level;
 
-import game.AliensManager;
+import Aliens.AliensManager;
 import game.Game;
 import screens.GamePanel;
 
@@ -49,8 +49,11 @@ public class Level{
 		setHitScore(10);
 		switch (levelPercentage) {
 		case 0:
-			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,300);
+			aliensManager.createAlien("alien2", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,100);
+			aliensManager.createAlien("alien4", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,100);
 			break;
+			
+		/*
 		case 1:
 			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 4, 1, 5, 5 ,300);
 			break;
@@ -63,7 +66,6 @@ public class Level{
 		case 4:
 			aliensManager.createAlien("alien5", 0, GamePanel.screenWidth, 0, GamePanel.screenHeight / 2, 4, 2, 5, 5, 200);
 			break;
-		/*
 		case 10:
 			for(int i = 0; i < GamePanel.maxScreenCol ; i+=3) {
 				aliensManager.createAlien("alien4", i * GamePanel.tileSize, i * GamePanel.tileSize + GamePanel.tileSize, 30, GamePanel.screenHeight * 2, 0, 1, 200);				

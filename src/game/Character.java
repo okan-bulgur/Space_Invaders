@@ -11,18 +11,19 @@ import screens.GamePanel;
 public abstract class Character  {
 	
 	protected int health;
+	protected int posX;
+	protected int posY;
 	protected int startX;
 	protected int endX;
 	protected int startY;
 	protected int endY;
-	protected int posX;
-	protected int posY;
+	protected int sizeWidth;
+	protected int sizeHeight;
 	protected int speed;
 	protected int damage;
 	protected int bulletSpeedX;
 	protected int bulletSpeedY;
-	protected int sizeWidth;
-	protected int sizeHeight;
+	protected String shootingType;
 	protected BufferedImage bulletImg;
 	protected BufferedImage bulletImg2;
 	protected Rectangle collisionArea;
@@ -49,54 +50,6 @@ public abstract class Character  {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
-	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-	
-	public int getBulletSpeedX() {
-		return bulletSpeedX;
-	}
-	
-	public void setBulletSpeedX(int bulletSpeedX) {
-		this.bulletSpeedX = bulletSpeedX;
-	}
-	
-	public int getBulletSpeedY() {
-		return bulletSpeedY;
-	}
-	
-	public void setBulletSpeedY(int bulletSpeedY) {
-		this.bulletSpeedY = bulletSpeedY;
-	}
-	
-	public void setSizeWidth(int width) {
-		this.sizeWidth = width;
-	}
-	
-	public int getSizeWidth() {
-		return sizeWidth;
-	}
-	
-	public void setSizeHeight(int height) {
-		this.sizeHeight = height;
-	}
-
-	public int getSizeHeight() {
-		return sizeHeight;
 	}
 	
 	public int getStartX() {
@@ -131,6 +84,62 @@ public abstract class Character  {
 		this.endY = endY;
 	}	
 	
+	public void setSizeWidth(int width) {
+		this.sizeWidth = width;
+	}
+	
+	public int getSizeWidth() {
+		return sizeWidth;
+	}
+	
+	public void setSizeHeight(int height) {
+		this.sizeHeight = height;
+	}
+
+	public int getSizeHeight() {
+		return sizeHeight;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
+	public int getBulletSpeedX() {
+		return bulletSpeedX;
+	}
+	
+	public void setBulletSpeedX(int bulletSpeedX) {
+		this.bulletSpeedX = bulletSpeedX;
+	}
+	
+	public int getBulletSpeedY() {
+		return bulletSpeedY;
+	}
+	
+	public void setBulletSpeedY(int bulletSpeedY) {
+		this.bulletSpeedY = bulletSpeedY;
+	}
+	
+	public String getShootingType() {
+		return shootingType;
+	}
+
+	public void setShootingType(String shootingType) {
+		this.shootingType = shootingType;
+	}
+	
 	public BufferedImage getBulletImg() {
 		return bulletImg;
 	}
@@ -154,6 +163,5 @@ public abstract class Character  {
 		collisionArea.y = posY + (GamePanel.tileSize/GamePanel.scale)*4;
 		collisionArea.width = sizeWidth - (GamePanel.tileSize/GamePanel.scale)*2;
 		collisionArea.height = sizeHeight - (GamePanel.tileSize/GamePanel.scale)*4;
-	}
-	
+	}	
 }

@@ -11,17 +11,12 @@ public class PlayerManager{
 	
 	private User user = null;
 	private Player player = null;
-	private Bulletmanager bulletmanager;
 	private boolean canCollision = true;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	private int bulletDelayCounter = 0;
 	private int bulletChecker = 0;
 	private boolean highScoreChecker = true;
-
-	public PlayerManager(Bulletmanager bulletmanager) {
-		this.bulletmanager = bulletmanager;
-	}
 	
 	public void setUser(User user) {
 		this.user = user;
@@ -98,7 +93,7 @@ public class PlayerManager{
 			player.setPosX(player.getPosX() - player.getSpeed());
 		}
 		if(GameManager.keyHandler.isSpacepress() && canCollision && bulletDelayCounter == 1) {
-			bulletmanager.createBullet(player);	
+			Game.gameManager.getShootingManager().shooting(player);
 		}
 	}
 	

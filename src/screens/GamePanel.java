@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import game.AliensManager;
+import Aliens.AliensManager;
 import game.Bulletmanager;
 import game.PlayerInfoBar;
 import game.PlayerManager;

@@ -1,4 +1,4 @@
-package game;
+package Aliens;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
@@ -6,23 +6,35 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import game.Game;
 import screens.GamePanel;
 
 public class AliensManager {
 
 	private ArrayList<Alien> aliens = new ArrayList<>();
-	
-	private Bulletmanager bulletmanager;	
+		
 	private static int bulletDelayCounter = 0;
 	private static int spriteCounter = 0;
 	private static int spriteNum = 0;
 	
-	public AliensManager(Bulletmanager bulletmanager) {
-		this.bulletmanager = bulletmanager;
-	}
-	
-	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY,int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
-		Alien newAlien = new Alien(type, posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
+		Alien newAlien = null;
+		switch (type) {
+		case "alien1":
+			newAlien = new Alien1(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		case "alien2":
+			newAlien = new Alien2(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		case "alien3":
+			newAlien = new Alien3(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		case "alien4":
+			newAlien = new Alien4(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		default:
+			return;
+		}
 		aliens.add(newAlien);
 	}
 	
@@ -80,12 +92,7 @@ public class AliensManager {
 			alien.setCollisionArea();
 			
 			if(bulletDelayCounter % alien.getBulletCreateDelay() == 0) {
-				if(alien.getType() == "alien5") {
-					shotgunShoot(alien);
-				}
-				else {
-					bulletmanager.createBullet(alien);					
-				}
+				Game.gameManager.getShootingManager().shooting(alien);
 			}			
 		}
 		
@@ -119,30 +126,5 @@ public class AliensManager {
 		    return true;
 		}
 		return false;
-	}
-	
-	public void shotgunShoot(Alien alien) {
-		int bulletSpeedX = alien.getBulletSpeedX();
-		int bulletSpeedY = alien.getBulletSpeedY();
-		
-		alien.setBulletSpeedX(-bulletSpeedX);
-		alien.setBulletSpeedY(0);
-		bulletmanager.createBullet(alien);
-		
-		alien.setBulletSpeedX(-bulletSpeedX);
-		alien.setBulletSpeedY(-bulletSpeedY);
-		bulletmanager.createBullet(alien);
-		
-		alien.setBulletSpeedX(0);
-		alien.setBulletSpeedY(-5);
-		bulletmanager.createBullet(alien);
-		
-		alien.setBulletSpeedX(bulletSpeedX);
-		alien.setBulletSpeedY(-bulletSpeedY);
-		bulletmanager.createBullet(alien);
-		
-		alien.setBulletSpeedX(bulletSpeedX);
-		alien.setBulletSpeedY(0);
-		bulletmanager.createBullet(alien);
 	}
 }
