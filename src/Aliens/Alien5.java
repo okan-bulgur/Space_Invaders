@@ -10,8 +10,8 @@ public class Alien5 extends Alien {
 	private String bulletImg2 = "/img/bullet_5_2.png";
 	private int health = 5;
 	private int damage = 1;
-	private int width = GamePanel.tileSize;
-	private int height = GamePanel.tileSize;
+	private int width = GamePanel.tileSize + 30;
+	private int height = GamePanel.tileSize + 30;
 	private String shootingType = "horizontal_double";
 	
 	public Alien5(int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
