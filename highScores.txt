@@ -5,3 +5,5 @@ junker 2000
 okidoki 1940
 berke 1560
 q 210
+e1 70
+c 45

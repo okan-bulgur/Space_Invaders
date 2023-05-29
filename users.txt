@@ -7,3 +7,6 @@ e e
 o o
 berke 123
 Pelin 123
+c c
+e1 e
+s s

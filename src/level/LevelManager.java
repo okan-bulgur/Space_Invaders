@@ -5,14 +5,14 @@ public class LevelManager extends Thread {
 	private int levelPercentage = 0;
 	private int levelCounter = 0;
 	private int levelSpeed = 100;
-	private final int FPS = 60;
+	private final int x = 60;
 	
 	private int gameLevel;
 	private Levels level;
 
 	@Override
 	public void run() {
-		double drawInterval = 1000000000/FPS;
+		double drawInterval = 1000000000/x;
 		double nextDrawTime = System.nanoTime() + drawInterval; 
 		setLevelPercentage(0);
 		createLevel();

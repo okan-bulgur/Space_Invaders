@@ -4,7 +4,8 @@ public class GameThread extends Thread{
 	
 	private GameManager gameManager;
 	private boolean isStop = false;
-	private final int FPS = 60;
+	private final int x = 60;
+	private int fps = 0;
 	
 	public GameThread(GameManager gameManager) {
 		this.gameManager = gameManager;
@@ -12,8 +13,11 @@ public class GameThread extends Thread{
 
 	@Override
 	public void run() {
-		double drawInterval = 1000000000/FPS;
+		double drawInterval = 1000000000/x;
 		double nextDrawTime = System.nanoTime() + drawInterval; 
+		long lastTimeChecked = System.nanoTime();
+		int frames = 0;
+		
 		gameManager.levelManager.start();
 		
 		while(!isStop) {
@@ -42,6 +46,14 @@ public class GameThread extends Thread{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			frames++;
+			if(System.nanoTime() - lastTimeChecked >= 1000000000L) {
+				fps = frames;
+				frames = 0;
+				lastTimeChecked = System.nanoTime();
+			}
+			
 		}	
 	}
 	
@@ -59,6 +71,10 @@ public class GameThread extends Thread{
 	public void gameResume() {
 		GameManager.gameThread.gameResume();
 		isStop = false;
+	}
+	
+	public int getFps() {
+		return fps;
 	}
 
 }
