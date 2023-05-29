@@ -11,8 +11,6 @@ public class Alien extends Character {
 	
 	protected String type;
 	protected int bulletCreateDelay;
-	protected int speedX;
-	protected int speedY;
 	protected boolean isTakeDamage = false;
 	protected int damageAnimationTime = 1000;
 	protected BufferedImage aliensImg1;
@@ -32,22 +30,6 @@ public class Alien extends Character {
 
 	public void setBulletCreateDelay(int bulletCreateDelay) {
 		this.bulletCreateDelay = bulletCreateDelay;
-	}
-	
-	public int getSpeedX() {
-		return speedX;
-	}
-
-	public void setSpeedX(int speedX) {
-		this.speedX = speedX;
-	}
-
-	public int getSpeedY() {
-		return speedY;
-	}
-
-	public void setSpeedY(int speedY) {
-		this.speedY = speedY;
 	}
 
 	public boolean isTakeDamage() {

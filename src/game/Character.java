@@ -19,7 +19,8 @@ public abstract class Character  {
 	protected int endY;
 	protected int sizeWidth;
 	protected int sizeHeight;
-	protected int speed;
+	protected int speedX;
+	protected int speedY;
 	protected int damage;
 	protected int bulletSpeedX;
 	protected int bulletSpeedY;
@@ -100,12 +101,20 @@ public abstract class Character  {
 		return sizeHeight;
 	}
 
-	public int getSpeed() {
-		return speed;
+	public int getSpeedX() {
+		return speedX;
 	}
 
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+
+	public int getSpeedY() {
+		return speedY;
+	}
+
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
 	}
 
 	public int getDamage() {

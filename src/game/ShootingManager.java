@@ -5,8 +5,20 @@ public class ShootingManager {
 	
 	public void shooting(Character character) {
 		
-		int bulletSpeedX = character.getBulletSpeedX();
-		int bulletSpeedY = character.getBulletSpeedY();
+		int bulletSpeedX;
+		int bulletSpeedY;
+		
+		if(character instanceof Player) {
+			bulletSpeedX = character.getBulletSpeedX();
+			bulletSpeedY = character.getBulletSpeedY();
+		}
+		else {
+			int boostBulletSpeedX = Game.gameManager.getLevelManager().getLevel().getBoostBulletSpeedX();
+			int boostBulletSpeedY = Game.gameManager.getLevelManager().getLevel().getBoostBulletSpeedY();
+
+			bulletSpeedX = character.getBulletSpeedX() == 0 ? 0 : ( character.getBulletSpeedX() > 0 ? character.getBulletSpeedX() + boostBulletSpeedX : character.getBulletSpeedX() - boostBulletSpeedX );
+			bulletSpeedY = character.getBulletSpeedY() == 0 ? 0 : ( character.getBulletSpeedY() > 0 ? character.getBulletSpeedY() + boostBulletSpeedY : character.getBulletSpeedY() - boostBulletSpeedY );			
+		}
 		
 		switch (character.getShootingType()) {
 		
@@ -38,6 +50,11 @@ public class ShootingManager {
 
 				Game.gameManager.getBulletManager().createBullet(character, -bulletSpeedX, 0);
 				Game.gameManager.getBulletManager().createBullet(character, bulletSpeedX, 0);
+				break;
+				
+			case "both_vertical_horizontal":
+
+				Game.gameManager.getBulletManager().createBullet(character, bulletSpeedX, bulletSpeedY);
 				break;
 				
 			case "shotgun":

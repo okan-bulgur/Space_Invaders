@@ -80,17 +80,17 @@ public class PlayerManager{
 	}
 	
 	public void playerControl() {
-		if(GameManager.keyHandler.isUpPress() && (player.getPosY() - player.getSpeed()) > 0 ) {
-			player.setPosY(player.getPosY() - player.getSpeed());
+		if(GameManager.keyHandler.isUpPress() && (player.getPosY() - player.getSpeedY()) > 0 ) {
+			player.setPosY(player.getPosY() - player.getSpeedY());
 		}
-		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeed() + player.getSizeHeight() * 1.2 < GamePanel.screenHeight) ) {
-			player.setPosY(player.getPosY() + player.getSpeed());
+		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeedY() + player.getSizeHeight() * 1.2 < GamePanel.screenHeight) ) {
+			player.setPosY(player.getPosY() + player.getSpeedY());
 		}
-		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeed() + player.getSizeWidth() < GamePanel.screenWidth) ) {
-			player.setPosX(player.getPosX() + player.getSpeed());
+		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeedX() + player.getSizeWidth() < GamePanel.screenWidth) ) {
+			player.setPosX(player.getPosX() + player.getSpeedX());
 		}
-		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeed()) > 0 ) {
-			player.setPosX(player.getPosX() - player.getSpeed());
+		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeedX()) > 0 ) {
+			player.setPosX(player.getPosX() - player.getSpeedX());
 		}
 		if(GameManager.keyHandler.isSpacepress() && canCollision && bulletDelayCounter == 1) {
 			Game.gameManager.getShootingManager().shooting(player);

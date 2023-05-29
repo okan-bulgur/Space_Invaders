@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import game.Game;
 import screens.GamePanel;
@@ -31,6 +30,12 @@ public class AliensManager {
 			break;
 		case "alien4":
 			newAlien = new Alien4(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		case "alien5":
+			newAlien = new Alien5(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
+			break;
+		case "alien6":
+			newAlien = new Alien6(posX, endPosX, posY, endPosY, speedX, speedY, bulletSpeedX, bulletSpeedY, bulletDelay);
 			break;
 		default:
 			return;
@@ -64,19 +69,25 @@ public class AliensManager {
 	public void update() {
 		bulletDelayCounter++;
 		spriteCounter++;
-
+		
 		if (aliens.size() == 0) {
 			return;			
 		}
+
+		int boostSpeedX = Game.gameManager.getLevelManager().getLevel().getBoostSpeedX();
+		int boostSpeedY = Game.gameManager.getLevelManager().getLevel().getBoostSpeedY();
 		
 		for(int i=0 ; i < aliens.size() ; i++) {
-			Alien alien = aliens.get(i);;
+			Alien alien = aliens.get(i);
 			
-			if(alien.getPosX() + alien.getSpeedX() <= alien.getStartX() || alien.getPosX() + alien.getSpeedX() + alien.getSizeWidth() * 2 >= alien.getEndX()) {	
+			int speedX = alien.getSpeedX() == 0 ? 0 : alien.getSpeedX() > 0 ? alien.getSpeedX() + boostSpeedX : alien.getSpeedX() - boostSpeedX;
+			int speedY = alien.getSpeedY() == 0 ? 0 : alien.getSpeedY() > 0 ? alien.getSpeedY() + boostSpeedY : alien.getSpeedY() - boostSpeedY;
+			
+			if(alien.getPosX() + speedX <= alien.getStartX() || alien.getPosX() + speedX + alien.getSizeWidth() * 2 >= alien.getEndX()) {	
 				alien.setSpeedX(alien.getSpeedX() * -1);
 			}
 			
-			if(alien.getPosY() + alien.getSpeedY() <= alien.getStartY() || alien.getPosY() + alien.getSpeedY() + alien.getSizeHeight() * 2 >= alien.getEndY()) {	
+			if(alien.getPosY() + speedY <= alien.getStartY() || alien.getPosY() + speedY + alien.getSizeHeight() * 2 >= alien.getEndY()) {	
 				alien.setSpeedY(alien.getSpeedY() * -1);
 			}
 			
@@ -86,8 +97,8 @@ public class AliensManager {
 				continue;
 			}
 			
-			alien.setPosX(alien.getPosX() + alien.getSpeedX());
-			alien.setPosY(alien.getPosY() + alien.getSpeedY());
+			alien.setPosX(alien.getPosX() + speedX);
+			alien.setPosY(alien.getPosY() + speedY);
 			
 			alien.setCollisionArea();
 			
@@ -107,11 +118,11 @@ public class AliensManager {
 		}
 	}
 	
-	public void takeDamage(Alien alien, int damage, ListIterator<Alien> alienItr) {
+	public void takeDamage(Alien alien, int damage) {
 		alien.setHealth(alien.getHealth() - damage);
 		alien.setTakeDamage();
 		if(isDead(alien)) {
-			alienItr.remove();
+			aliens.remove(alien);
 			alien = null;
 		}
 	}

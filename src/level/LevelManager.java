@@ -4,24 +4,23 @@ public class LevelManager extends Thread {
 	private boolean isStop = false;
 	private int levelPercentage = 0;
 	private int levelCounter = 0;
+	private int levelSpeed = 100;
 	private final int FPS = 60;
 	
-	private Level level;
-	
-	public LevelManager() {
-		this.level = new Level();
-	}
-	
+	private int gameLevel;
+	private Levels level;
+
 	@Override
 	public void run() {
 		double drawInterval = 1000000000/FPS;
 		double nextDrawTime = System.nanoTime() + drawInterval; 
 		setLevelPercentage(0);
+		createLevel();
 		while (!isStop) {
 			
 			levelCounter++;
-			if(levelCounter % 100 == 0) {
-				level.runLevel(getLevelPercentage());
+			if(levelCounter % levelSpeed == 0) {
+				level.runLevel();
 				setLevelPercentage(getLevelPercentage() + 1);
 			}
 			
@@ -43,6 +42,22 @@ public class LevelManager extends Thread {
 		}
 	}
 	
+	public void createLevel() {
+		switch (gameLevel) {
+		case 1:
+			setLevel(new Level1());
+			break;
+		case 2:
+			setLevel(new Level2());
+			break;
+		case 3:
+			setLevel(new Level3());
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public int getLevelPercentage() {
 		return levelPercentage;
 	}
@@ -52,18 +67,22 @@ public class LevelManager extends Thread {
 	}
 	
 	public int getGameLevel() {
-		return level.getGameLevel();
+		return this.gameLevel;
 	}
 	
 	public void setGameLevel(int gameLevel) {
-		level.setGameLevel(gameLevel);
+		this.gameLevel = gameLevel;
 	}
 		
 	public void levelStop() {
 		isStop = true;
 	}
 	
-	public Level getLevel() {
+	public void setLevel(Levels level) {
+		this.level = level;
+	}
+	
+	public Levels getLevel() {
 		return level;
 	}
 }

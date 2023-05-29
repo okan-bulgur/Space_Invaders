@@ -11,29 +11,43 @@ import users.User;
 public class Player extends Character {
 	
 	private User user;
-	private int score;
-	private int ghostModeTime;
 	private BufferedImage playerImg;
 	private BufferedImage playerBackFireImg;
 	private BufferedImage playerBackFire2Img;
+	
+	private int health = 3;
+	private int score = 0;
+	private int posX = GamePanel.tileSize * 11;
+	private int posY = GamePanel.tileSize * 10;
+	private int speedX = 4;
+	private int speedY = 4;
+	private int damage = 1;
+	private int bulletSpeedX = 0;
+	private int bulletSpeedY = 10;
+	private int width = GamePanel.tileSize;
+	private int height = GamePanel.tileSize;
+	private String bulletImgPath1 = "/img/bullet_player_1.png";
+	private String bulletImgPath2 = "/img/bullet_player_2.png";
+	private int ghostModeTime = 1500;
 
 	public Player(User user) {
 		setUser(user);
 		setShootingType("vertical_up");
-		setHealth(3);
-		setScore(0);
-		setPosX(GamePanel.tileSize*11);
-		setPosY(GamePanel.tileSize*10);
-		setSpeed(4);
-		setDamage(1);
-		setBulletSpeedX(0);
-		setBulletSpeedY(10);
-		setSizeWidth(GamePanel.tileSize);
-		setSizeHeight(GamePanel.tileSize);
+		setHealth(health);
+		setScore(score);
+		setPosX(posX);
+		setPosY(posY);
+		setSpeedX(speedX);
+		setSpeedY(speedY);
+		setDamage(damage);
+		setBulletSpeedX(bulletSpeedX);
+		setBulletSpeedY(bulletSpeedY);
+		setSizeWidth(width);
+		setSizeHeight(height);
 		setCollisionArea();
 		setPlayerImage();
-		setBulletImg("/img/bullet_player_1.png", "/img/bullet_player_2.png");
-		setGhostModeTime(1500);
+		setBulletImg(bulletImgPath1, bulletImgPath2);
+		setGhostModeTime(ghostModeTime);
 	}
 	
 	public User getUser() {

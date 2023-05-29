@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.ListIterator;
 
 import Aliens.Alien;
@@ -24,8 +25,7 @@ public class GameManager{
 	
 	private User user;
 	private Player player;
-	
-	private int level = 0;
+	private int level = 0;	
 	
 	public static GameThread gameThread = null;	
 	
@@ -38,11 +38,11 @@ public class GameManager{
 	
 	public void startGame() {
 		gameThread = new GameThread(this);
-		levelManager = new LevelManager();
-		levelManager.setGameLevel(level);
 		bulletmanager = new Bulletmanager();
 		shootingManager = new ShootingManager();
 		aliensManager = new AliensManager();	
+		levelManager = new LevelManager();
+		levelManager.setGameLevel(level);
 		
 		playerManager = new PlayerManager();
 		user = Game.userManager.getActiveUser();
@@ -61,31 +61,31 @@ public class GameManager{
 	}
 	
 	public void collisionDetector() {
-		ListIterator<Alien> alienItr = aliensManager.getAliens().listIterator();
-		while (alienItr.hasNext()) {
-			Alien alien = alienItr.next();
+		ArrayList<Alien> aliens = aliensManager.getAliens();
+		for(int i=0 ; i < aliens.size() ; i++) {
+			Alien alien = aliens.get(i);
 			
 			if(playerManager.isCollision(alien.collisionArea, player.collisionArea)) {
 				playerManager.takeDamage(1);
 			}
 			
-			ListIterator<Bullet> bulletItr = bulletmanager.getBullets().listIterator();
-			while (bulletItr.hasNext()) {
-				Bullet bullet = bulletItr.next();
+			ArrayList<Bullet> bullets = bulletmanager.getBullets();
+			for(int j=0 ; j < bullets.size() ; j++) {
+				Bullet bullet = bullets.get(j);
 				
 				if(bullet.getCharacter() instanceof Alien) {
 					if(playerManager.isCollision(bullet.collisionArea, player.collisionArea)) {
 						playerManager.takeDamage(bullet.getDamage());
-						bulletItr.remove();
+						bullets.remove(j);
 					}
 				}
 				else if(bulletmanager.isCollision(bullet.collisionArea, alien.collisionArea)) {
-					aliensManager.takeDamage(alien, bullet.getDamage(), alienItr);	
-					bulletItr.remove();
+					aliensManager.takeDamage(alien, bullet.getDamage());	
+					bullets.remove(j);
 					playerManager.addScore();
 				}
 			}
-		}
+		}	
 	}
 	
 	public void gameStatusChecker() {
@@ -103,6 +103,14 @@ public class GameManager{
 		}
 	}
 	
+	public Bulletmanager getBulletManager() {
+		return bulletmanager;
+	}
+	
+	public ShootingManager getShootingManager() {
+		return shootingManager;
+	}
+	
 	public PlayerManager getPlayerManager() {
 		return playerManager;
 	}
@@ -111,26 +119,18 @@ public class GameManager{
 		return aliensManager;
 	}
 	
-	public Bulletmanager getBulletManager() {
-		return bulletmanager;
-	}
-	
 	public LevelManager getLevelManager() {
 		return levelManager;
 	}
 	
-	public ShootingManager getShootingManager() {
-		return shootingManager;
+	public void setLevelManager(LevelManager levelManager) {
+		this.levelManager = levelManager;
 	}
 	
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
 	
-	public void setLevelManager(LevelManager levelManager) {
-		this.levelManager = levelManager;
-	}
-
 	public int getLevel() {
 		return level;
 	}

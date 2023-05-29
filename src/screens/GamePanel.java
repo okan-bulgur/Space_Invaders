@@ -7,9 +7,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -42,6 +39,7 @@ public class GamePanel extends JPanel {
 	private boolean newHighScoreUser = false;
 	
 	private BufferedImage backgroundImg;
+	public static final int screenSpeed = 3;
 	private int y = 0;
 	
 	public GamePanel(PlayerManager playerManager, Bulletmanager bulletmanager, AliensManager aliensManager) {
@@ -143,7 +141,7 @@ public class GamePanel extends JPanel {
 		g2.drawImage(backgroundImg, 0, y - GamePanel.screenHeight , GamePanel.screenWidth, GamePanel.screenHeight, null);
 		g2.drawImage(backgroundImg, 0, y, GamePanel.screenWidth, GamePanel.screenHeight, null);
 
-      	y+=2;
+      	y += screenSpeed;
        
 	   if (y >= getHeight() + 50) {
 	       y = y - GamePanel.screenHeight;
