@@ -4,8 +4,8 @@ import screens.GamePanel;
 
 public class Alien5 extends Alien {
 	
-	private String aliensImg1 = "/img/alien_1_1.png";
-	private String aliensImg2 = "/img/alien_1_2.png";
+	private String aliensImg1 = "/img/alien_5_1.png";
+	private String aliensImg2 = "/img/alien_5_2.png";
 	private String bulletImg1 = "/img/bullet_5_1.png";
 	private String bulletImg2 = "/img/bullet_5_2.png";
 	private int health = 5;
