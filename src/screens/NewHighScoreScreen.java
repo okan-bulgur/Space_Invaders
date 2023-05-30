@@ -13,8 +13,8 @@ public class NewHighScoreScreen {
 		g2.fillRect(0, 0, GamePanel.screenWidth, GamePanel.screenHeight);
 		
 		String text = Game.userManager.getActiveUser().getUsername() + "'s NEW HIGH SCORE";
-		int x = GamePanel.tileSize * 9;
-		int y = GamePanel.tileSize * 12;
+		int x = GamePanel.tileSize * 8;
+		int y = GamePanel.tileSize * 10;
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
 

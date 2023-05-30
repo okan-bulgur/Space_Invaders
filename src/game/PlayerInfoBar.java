@@ -34,21 +34,21 @@ public class PlayerInfoBar extends Rectangle {
 		}
 		
 		// health part
-		g2.drawImage(hearthImg, GamePanel.tileSize * 6, 5, GamePanel.tileSize, GamePanel.tileSize, null);
-		g2.drawString("x" + String.valueOf(player.getHealth()), GamePanel.tileSize * 7 + 20 , 40);
+		g2.drawImage(hearthImg, GamePanel.tileSize * 5, 5, GamePanel.tileSize, GamePanel.tileSize, null);
+		g2.drawString("x" + String.valueOf(player.getHealth()), GamePanel.tileSize * 6 + 20 , 40);
 		
 		// score part
-		g2.drawString("Score: " + String.valueOf(player.getScore()), GamePanel.tileSize * 10, 40);
+		g2.drawString("Score: " + String.valueOf(player.getScore()), GamePanel.tileSize * 8, 40);
 		
 		// user part
-		g2.drawString("User: " + player.getUser().getUsername(), GamePanel.tileSize * 13, 40);
+		g2.drawString("User: " + player.getUser().getUsername(), GamePanel.tileSize * 11, 40);
 		
 		// high score part
-		g2.drawString("High Score: " + player.getUser().getHighScore(), GamePanel.tileSize * 18, 40);
+		g2.drawString("High Score: " + player.getUser().getHighScore(), GamePanel.tileSize * 16, 40);
 		
 		// FPS part
 		if(GameManager.gameThread != null) {
-			g2.drawString("FPS: " + GameManager.gameThread.getFps(), GamePanel.tileSize * 22, 40);			
+			g2.drawString("FPS: " + GameManager.gameThread.getFps(), GamePanel.tileSize * 20, 40);			
 		}
 
 	}

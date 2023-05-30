@@ -54,10 +54,10 @@ public class UserFormScreen extends Screen {
 		JButton logInBtn = new JButton("Log in");
 		JButton signUpBtn = new JButton("Sign Up");
 		
-		logInBtn.setBackground(Color.BLACK);
-		logInBtn.setForeground(Color.WHITE);
-		signUpBtn.setBackground(Color.BLACK);
-		signUpBtn.setForeground(Color.WHITE);
+		logInBtn.setBackground(Color.WHITE);
+		logInBtn.setForeground(Color.BLACK);
+		signUpBtn.setBackground(Color.WHITE);
+		signUpBtn.setForeground(Color.BLACK);
 		
 		logInBtn.addActionListener(new ActionListener() {
 

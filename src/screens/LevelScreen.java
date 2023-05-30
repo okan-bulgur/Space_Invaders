@@ -49,20 +49,20 @@ public class LevelScreen extends Screen{
 		JButton level1 = new JButton("Level 1");
 		level1.setHorizontalAlignment(JLabel.CENTER);
 		level1.setFont(new Font("Verdana", Font.BOLD, 50));
-		level1.setForeground(Color.WHITE);
-		level1.setBackground(Color.BLACK);
+		level1.setForeground(Color.BLACK);
+		level1.setBackground(Color.WHITE);
 		
 		JButton level2 = new JButton("Level 2");
 		level2.setHorizontalAlignment(JLabel.CENTER);
 		level2.setFont(new Font("Verdana", Font.BOLD, 50));
-		level2.setForeground(Color.WHITE);
-		level2.setBackground(Color.BLACK);
+		level2.setForeground(Color.BLACK);
+		level2.setBackground(Color.WHITE);
 		
 		JButton level3 = new JButton("Level 3");
 		level3.setHorizontalAlignment(JLabel.CENTER);
 		level3.setFont(new Font("Verdana", Font.BOLD, 50));
-		level3.setForeground(Color.WHITE);
-		level3.setBackground(Color.BLACK);
+		level3.setForeground(Color.BLACK);
+		level3.setBackground(Color.WHITE);
 		
 		level1.addActionListener(new ActionListener() {
 			
