@@ -1,13 +1,2 @@
-okidoki 23
-a a
-w w
 junker 1234
-q q
-e e
-o o
-berke 123
-Pelin 123
-c c
-e1 e
-s s
-t t
+okidoki 321

@@ -1,9 +1,2 @@
-a 3720
-okidoki 2860
-Pelin 2800
-w 2600
+okidoki 3430
 junker 2000
-berke 1560
-q 210
-e1 70
-c 45
