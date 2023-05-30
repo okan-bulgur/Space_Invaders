@@ -15,6 +15,7 @@ import Aliens.AliensManager;
 import game.Bulletmanager;
 import game.PlayerInfoBar;
 import game.PlayerManager;
+import game.Sound;
 
 public class GamePanel extends JPanel {
 
@@ -32,6 +33,7 @@ public class GamePanel extends JPanel {
 	private PlayerInfoBar playerInfoBar;
 	private GameStopScreen gameStopScreen;
 	private NewHighScoreScreen newHighScoreScreen;
+	protected Sound sound;
 	
 	private boolean gameOver = false;
 	private boolean finish = false;
@@ -53,6 +55,7 @@ public class GamePanel extends JPanel {
 		this.setDoubleBuffered(true);
 		this.setLayout(new BorderLayout());
 		
+		this.sound = new Sound();
 		this.playerManager = playerManager;
 		this.bulletmanager = bulletmanager;
 		this.aliensManager = aliensManager;
@@ -146,5 +149,9 @@ public class GamePanel extends JPanel {
 	   if (y >= getHeight() + 50) {
 	       y = y - GamePanel.screenHeight;
 	   }
+	}
+	
+	public Sound getSound() {
+		return sound;
 	}
 }

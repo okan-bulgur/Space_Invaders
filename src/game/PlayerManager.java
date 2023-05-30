@@ -100,6 +100,7 @@ public class PlayerManager{
 	public void addScore() {
 		player.setScore(player.getScore() + Game.gameManager.levelManager.getLevel().getHitScore());
 		if(player.getScore() > user.getHighScore() && highScoreChecker) {
+			Game.gameManager.getGamePanel().getSound().newHighscoreEffect();
 			Game.gameManager.getGamePanel().displayNewHighScoreUser();
 			highScoreChecker = false;
 		}
@@ -107,6 +108,7 @@ public class PlayerManager{
 	}
 	
 	public void takeDamage(int damage) {
+		Game.gameManager.getGamePanel().getSound().playerDamageEffect();
 		player.setHealth(player.getHealth() - damage);
 		new Thread(new Runnable()
 		{

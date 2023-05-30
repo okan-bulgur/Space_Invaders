@@ -122,6 +122,7 @@ public class AliensManager {
 		alien.setHealth(alien.getHealth() - damage);
 		alien.setTakeDamage();
 		if(isDead(alien)) {
+			Game.gameManager.getGamePanel().getSound().deathEffect();
 			aliens.remove(alien);
 			alien = null;
 		}

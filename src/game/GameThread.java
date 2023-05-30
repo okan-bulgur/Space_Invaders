@@ -21,16 +21,15 @@ public class GameThread extends Thread{
 		gameManager.levelManager.start();
 		
 		while(!isStop) {
-			
+				
 			gameManager.playerManager.update();
 			gameManager.bulletmanager.update();
 			gameManager.aliensManager.update();
 			
 			gameManager.gamePanel.repaint();
 			gameManager.collisionDetector();
-			gameManager.gameStatusChecker();
-			
-			
+			gameManager.gameStatusChecker();			
+
 			try {
 				double remainingTime = nextDrawTime - System.nanoTime();
 				remainingTime /= 1000000;
@@ -64,12 +63,10 @@ public class GameThread extends Thread{
 	}
 	
 	public void gamePause() {
-		GameManager.gameThread.gamePause();
 		isStop = true;
 	}
 	
 	public void gameResume() {
-		GameManager.gameThread.gameResume();
 		isStop = false;
 	}
 	

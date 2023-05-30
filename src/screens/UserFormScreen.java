@@ -20,6 +20,8 @@ public class UserFormScreen extends Screen {
 	
 	private static int height = 300;
 	private static int width = 400;
+	
+	private final String gamePlayGuide = "\n1) Press W to go up.\n2) Press S to go down.\n3)Press D to go right.\n4) Press A to go left.\n5) Press Space to fire.\n6) You can see your health, score, username and highscore.\n7) You can see the high score table in the high score button on the new button.";
 
 	@Override
 	public void createScreen() {
@@ -65,7 +67,7 @@ public class UserFormScreen extends Screen {
 				try {
 					Game.userManager.isMatch(username, password);
 					Game.userManager.changeUser(Game.userManager.getUser(username));
- 					JOptionPane.showMessageDialog(screen, username + " is log in");
+ 					JOptionPane.showMessageDialog(screen, "Hello " + username + gamePlayGuide);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					JOptionPane.showMessageDialog(screen, e1.getMessage());

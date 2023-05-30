@@ -11,6 +11,7 @@ public class ShootingManager {
 		if(character instanceof Player) {
 			bulletSpeedX = character.getBulletSpeedX();
 			bulletSpeedY = character.getBulletSpeedY();
+			Game.gameManager.getGamePanel().getSound().shootEffect();
 		}
 		else {
 			int boostBulletSpeedX = Game.gameManager.getLevelManager().getLevel().getBoostBulletSpeedX();

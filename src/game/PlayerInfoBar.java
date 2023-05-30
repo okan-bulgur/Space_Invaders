@@ -30,7 +30,7 @@ public class PlayerInfoBar extends Rectangle {
 		
 		// level part
 		if(Game.gameManager.levelManager != null) {
-		g2.drawString("LEVEL " + Game.gameManager.levelManager.getGameLevel() + " %" + Game.gameManager.levelManager.getLevelPercentage(), GamePanel.tileSize, 40);
+		g2.drawString("LEVEL " + Game.gameManager.levelManager.getGameLevel() + "   %" + Game.gameManager.levelManager.getLevelPercentage(), GamePanel.tileSize, 40);
 		}
 		
 		// health part

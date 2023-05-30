@@ -1,7 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import Aliens.Alien;
 import Aliens.AliensManager;
@@ -58,6 +57,7 @@ public class GameManager{
 		gamePanel.addKeyListener(keyHandler);
 		gamePanel.setFocusable(true);
 		gameThread.start();
+		gamePanel.getSound().gameStartEffect();
 	}
 	
 	public void collisionDetector() {
@@ -83,6 +83,7 @@ public class GameManager{
 					aliensManager.takeDamage(alien, bullet.getDamage());	
 					bullets.remove(j);
 					playerManager.addScore();
+					gamePanel.getSound().damageEffect();
 				}
 			}
 		}	
@@ -90,13 +91,16 @@ public class GameManager{
 	
 	public void gameStatusChecker() {
 		if(player.getHealth() <= 0) {
+			gamePanel.getSound().deathEffect();
 			playerManager.changeHighScore(player.getUser(), player.getScore());
+			gamePanel.getSound().gameOverEffect();
 			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
 			levelManager.levelStop();
 			setLevelManager(null);
 		}
 		else if (levelManager.getLevelPercentage() == 100) {
+			gamePanel.getSound().wonEffect();
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			gamePanel.setFinish(true);
 			GameManager.gameThread.gameStop();
