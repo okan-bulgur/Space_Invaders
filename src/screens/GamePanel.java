@@ -80,10 +80,6 @@ public class GamePanel extends JPanel {
 		else if(finish) {
 			gameStopScreen.finishScreen(g2);
 		}
-		else if(pause) {
-			gameStopScreen.pauseScreen(g2);
-		}
-		
 		if(newHighScoreUser) {
 			newHighScoreScreen.userNewHighScoreScreen(g2);
 		}
@@ -96,12 +92,16 @@ public class GamePanel extends JPanel {
 		gameOver = check;
 	}
 
+	public boolean getGameOver() {
+		return gameOver;
+	}
+	
 	public void setFinish(boolean check) {
 		finish = check;
 	}
-
-	public void setPause(boolean check) {
-		pause = check;
+	
+	public boolean getFinish() {
+		return finish;
 	}
 	
 	public void displayNewHighScoreUser() {
@@ -122,18 +122,6 @@ public class GamePanel extends JPanel {
 				
 			}
 		}).start();
-	}
-	
-	public boolean getGameOver() {
-		return gameOver;
-	}
-
-	public boolean getFinish() {
-		return finish;
-	}
-
-	public boolean getPause() {
-		return pause;
 	}
 	
 	public void getNewHighScoreUser(boolean check) {

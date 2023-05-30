@@ -62,14 +62,6 @@ public class GameThread extends Thread{
 		GameManager.gameThread = null;
 	}
 	
-	public void gamePause() {
-		isStop = true;
-	}
-	
-	public void gameResume() {
-		isStop = false;
-	}
-	
 	public int getFps() {
 		return fps;
 	}
