@@ -1,5 +1,7 @@
 package game;
 
+import Player.Player;
+
 public class ShootingManager {
 	
 	

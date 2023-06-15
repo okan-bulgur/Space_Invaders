@@ -1,9 +1,10 @@
-package game;
+package Player;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import game.Game;
 import screens.GamePanel;
 import users.User;
 
@@ -11,9 +12,6 @@ public class PlayerManager{
 	
 	private User user = null;
 	private Player player = null;
-	private boolean canCollision = true;
-	private static int spriteCounter = 0;
-	private static int spriteNum = 0;
 	private int bulletDelayCounter = 0;
 	private int bulletChecker = 0;
 	private boolean highScoreChecker = true;
@@ -35,7 +33,7 @@ public class PlayerManager{
 	}
 	
 	public void drawCharacter(Graphics2D g2) {
-		if(!canCollision && spriteNum == 0) {
+		if(!player.getCanCollision() && !Game.gameManager.getAnimationManager().isPlayerAnimation()) {
 			AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 			g2.setComposite(composite);
 			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);	
@@ -44,10 +42,10 @@ public class PlayerManager{
 		else {
 			g2.drawImage(player.getPlayerImg() , player.getPosX(), player.getPosY(), player.getSizeWidth(), player.getSizeHeight(), null);			
 		}
-		if(spriteNum == 0) {
+		if(!Game.gameManager.getAnimationManager().isPlayerAnimation()) {
 			g2.drawImage(player.getPlayerBackFireImg() , player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize, player.getSizeWidth()/3, player.getSizeHeight()/3, null);			
 		}
-		else if(spriteNum == 1) {
+		else if(Game.gameManager.getAnimationManager().isPlayerAnimation()) {
 			g2.drawImage(player.getPlayerBackFire2Img(), player.getPosX() + GamePanel.tileSize/3, player.getPosY() + GamePanel.tileSize, player.getSizeWidth()/3, player.getSizeHeight()/3, null);	
 		}
 	}
@@ -57,17 +55,7 @@ public class PlayerManager{
 		playerControl();
 		player.setCollisionArea();
 		
-		spriteCounter++;
 		bulletDelayCounter++;
-		if(spriteCounter > 3) {
-			if(spriteNum == 1) {
-				spriteNum = 0;
-			}
-			else {
-				spriteNum = 1;
-			}
-			spriteCounter = 0;
-		}
 		if(bulletDelayCounter > 6) {
 			if(bulletChecker == 1) {
 				bulletChecker = 0;
@@ -80,25 +68,25 @@ public class PlayerManager{
 	}
 	
 	public void playerControl() {
-		if(GameManager.keyHandler.isUpPress() && (player.getPosY() - player.getSpeedY()) > 0 ) {
+		if(Game.gameManager.getKeyHandler().isUpPress() && (player.getPosY() - player.getSpeedY()) > 0 ) {
 			player.setPosY(player.getPosY() - player.getSpeedY());
 		}
-		if(GameManager.keyHandler.isDownpress() && (player.getPosY() + player.getSpeedY() + player.getSizeHeight() * 1.2 < GamePanel.screenHeight) ) {
+		if(Game.gameManager.getKeyHandler().isDownpress() && (player.getPosY() + player.getSpeedY() + player.getSizeHeight() * 1.2 < GamePanel.screenHeight) ) {
 			player.setPosY(player.getPosY() + player.getSpeedY());
 		}
-		if(GameManager.keyHandler.isRightPress() && (player.getPosX() + player.getSpeedX() + player.getSizeWidth() < GamePanel.screenWidth) ) {
+		if(Game.gameManager.getKeyHandler().isRightPress() && (player.getPosX() + player.getSpeedX() + player.getSizeWidth() < GamePanel.screenWidth) ) {
 			player.setPosX(player.getPosX() + player.getSpeedX());
 		}
-		if(GameManager.keyHandler.isLeftpress() && (player.getPosX() - player.getSpeedX()) > 0 ) {
+		if(Game.gameManager.getKeyHandler().isLeftpress() && (player.getPosX() - player.getSpeedX()) > 0 ) {
 			player.setPosX(player.getPosX() - player.getSpeedX());
 		}
-		if(GameManager.keyHandler.isSpacepress() && canCollision && bulletDelayCounter == 1) {
+		if(Game.gameManager.getKeyHandler().isSpacepress() && player.getCanCollision() && bulletDelayCounter == 1) {
 			Game.gameManager.getShootingManager().shooting(player);
 		}
 	}
 	
 	public void addScore() {
-		player.setScore(player.getScore() + Game.gameManager.levelManager.getLevel().getHitScore());
+		player.setScore(player.getScore() + Game.gameManager.getLevelManager().getLevel().getHitScore());
 		if(player.getScore() > user.getHighScore() && highScoreChecker) {
 			Game.gameManager.getGamePanel().getSound().newHighscoreEffect();
 			Game.gameManager.getGamePanel().displayNewHighScoreUser();
@@ -115,7 +103,7 @@ public class PlayerManager{
 		    @Override
 		    public void run()
 		    {
-		    	canCollision = false;
+		    	player.setCanCollision(false);
 		        
 		        try {
 					Thread.sleep(player.getGhostModeTime());
@@ -123,7 +111,7 @@ public class PlayerManager{
 					e.printStackTrace();
 				}
 		     
-		        canCollision = true;
+		        player.setCanCollision(true);
 		    }
 		}).start();
 		
@@ -134,7 +122,7 @@ public class PlayerManager{
 	}
 
 	public boolean isCollision(Rectangle area1, Rectangle area2) {
-		if(area1.intersects(area2) && canCollision)
+		if(area1.intersects(area2) && player.getCanCollision())
 		{
 		    return true;
 		}
@@ -147,4 +135,5 @@ public class PlayerManager{
 			Game.fileManager.addHighScore(user.getUsername(), score);
 		}
 	}
+	
 }

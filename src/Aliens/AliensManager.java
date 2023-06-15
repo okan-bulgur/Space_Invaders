@@ -13,8 +13,6 @@ public class AliensManager {
 	private ArrayList<Alien> aliens = new ArrayList<>();
 		
 	private static int bulletDelayCounter = 0;
-	private static int spriteCounter = 0;
-	private static int spriteNum = 0;
 	
 	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
 		Alien newAlien = null;
@@ -50,17 +48,17 @@ public class AliensManager {
 	public void drawCharacter(Graphics2D g2) {
 		for(int i=0 ; i < aliens.size() ; i++) {
 			Alien alien = aliens.get(i);
-			if(alien.isTakeDamage() && spriteNum == 0) {
+			if(alien.isTakeDamage() && !Game.gameManager.getAnimationManager().isAlienAnimation()) {
 				AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 				g2.setComposite(composite);
 			}
-			if(spriteNum == 0) {
+			if(!Game.gameManager.getAnimationManager().isAlienAnimation()) {
 				g2.drawImage(alien.getAliensImg1() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);			
 			}
-			else if(spriteNum == 1) {
+			else if(Game.gameManager.getAnimationManager().isAlienAnimation()) {
 				g2.drawImage(alien.getAliensImg2() , alien.getPosX(), alien.getPosY(), alien.getSizeWidth(), alien.getSizeHeight(), null);	
 			}
-			if (alien.isTakeDamage() && spriteNum == 0) {
+			if (alien.isTakeDamage() && !Game.gameManager.getAnimationManager().isAlienAnimation()) {
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER)); 
 			}
 		}
@@ -68,7 +66,6 @@ public class AliensManager {
 	
 	public void update() {
 		bulletDelayCounter++;
-		spriteCounter++;
 		
 		if (aliens.size() == 0) {
 			return;			
@@ -107,15 +104,6 @@ public class AliensManager {
 			}			
 		}
 		
-		if(spriteCounter > 10) {
-			if(spriteNum == 1) {
-				spriteNum = 0;
-			}
-			else {
-				spriteNum = 1;
-			}
-			spriteCounter = 0;
-		}
 	}
 	
 	public void takeDamage(Alien alien, int damage) {

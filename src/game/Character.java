@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 import screens.GamePanel;
 
-public abstract class Character  {
+public abstract class Character implements ICanCollision {
 	
 	protected int health;
 	protected int posX;
@@ -166,6 +166,7 @@ public abstract class Character  {
 		}
 	}
 	
+	@Override
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
 		collisionArea.x = posX + GamePanel.tileSize/GamePanel.scale;
@@ -173,4 +174,9 @@ public abstract class Character  {
 		collisionArea.width = sizeWidth - (GamePanel.tileSize/GamePanel.scale)*2;
 		collisionArea.height = sizeHeight - (GamePanel.tileSize/GamePanel.scale)*4;
 	}	
+	
+	@Override
+	public Rectangle getCollisionArea() {
+		return collisionArea;
+	}
 }

@@ -12,9 +12,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Aliens.AliensManager;
-import game.Bulletmanager;
-import game.PlayerInfoBar;
-import game.PlayerManager;
+import Bullet.Bulletmanager;
+import Player.PlayerManager;
 import game.Sound;
 
 public class GamePanel extends JPanel {

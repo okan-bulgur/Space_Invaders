@@ -1,4 +1,4 @@
-package game;
+package screens;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import screens.GamePanel;
+
+import Player.Player;
+import game.Game;
+import game.GameManager;
 
 public class PlayerInfoBar extends Rectangle {
 	
@@ -29,8 +32,8 @@ public class PlayerInfoBar extends Rectangle {
 		g2.setFont(new Font("Arial", Font.BOLD, 30));
 		
 		// level part
-		if(Game.gameManager.levelManager != null) {
-		g2.drawString("LEVEL " + Game.gameManager.levelManager.getGameLevel() + "   %" + Game.gameManager.levelManager.getLevelPercentage(), GamePanel.tileSize, 40);
+		if(Game.gameManager.getLevelManager() != null) {
+		g2.drawString("LEVEL " + Game.gameManager.getLevelManager().getGameLevel() + "   %" + Game.gameManager.getLevelManager().getLevelPercentage(), GamePanel.tileSize, 40);
 		}
 		
 		// health part

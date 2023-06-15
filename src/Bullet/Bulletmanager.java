@@ -1,20 +1,17 @@
-package game;
+package Bullet;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import game.Character;
+import game.Game;
 import screens.GamePanel;
 
 public class Bulletmanager {
 	
 	private Bullet bullet;
 	private ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-	private static int spriteCounter = 0;
-	private static int spriteNum = 0;
-	
-	public Bulletmanager() {
-	}
 
 	public ArrayList<Bullet> getBullets(){
 		return bullets;
@@ -29,10 +26,10 @@ public class Bulletmanager {
 		for(int i=0 ; i < bullets.size() ; i++) {
 			bullet = bullets.get(i);
 			if(bullet != null) {			
-				if(spriteNum == 0) {
+				if(!Game.gameManager.getAnimationManager().isBulletAnimation()) {
 					g2.drawImage(bullet.getBulletImg(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);		
 				}
-				else if(spriteNum == 1) {
+				else if(Game.gameManager.getAnimationManager().isBulletAnimation()) {
 					g2.drawImage(bullet.getBulletImg2(), bullet.getPosX() + bullet.getSizeWidth()/7, bullet.getPosY() - bullet.getSizeHeight()/3, bullet.getSizeWidth(), bullet.getSizeHeight(), null);	
 				}
 			}		
@@ -54,17 +51,6 @@ public class Bulletmanager {
 					}
 				}		
 			}
-		}
-		
-		spriteCounter++;
-		if(spriteCounter > 13) {
-			if(spriteNum == 1) {
-				spriteNum = 0;
-			}
-			else {
-				spriteNum = 1;
-			}
-			spriteCounter = 0;
 		}
 	}
 	

@@ -1,11 +1,13 @@
-package game;
+package Bullet;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import game.Character;
+import game.ICanCollision;
 import screens.GamePanel;
 
-public class Bullet extends Bulletmanager {
+public class Bullet extends Bulletmanager implements ICanCollision{
 
 	private Character character;
 	private int damage;
@@ -99,6 +101,7 @@ public class Bullet extends Bulletmanager {
 		this.bulletImg2 = bufferedImage2;
 	}
 
+	@Override
 	public void setCollisionArea() {
 		collisionArea = new Rectangle();
 		collisionArea.x = posX + 10;
@@ -107,5 +110,8 @@ public class Bullet extends Bulletmanager {
 		collisionArea.height = sizeHeight;
 	}
 
-
+	@Override
+	public Rectangle getCollisionArea() {
+		return collisionArea;
+	}
 }

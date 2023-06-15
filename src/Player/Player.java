@@ -1,10 +1,11 @@
-package game;
+package Player;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import game.Character;
 import screens.GamePanel;
 import users.User;
 
@@ -29,6 +30,7 @@ public class Player extends Character {
 	private String bulletImgPath1 = "/img/bullet_player_1.png";
 	private String bulletImgPath2 = "/img/bullet_player_2.png";
 	private int ghostModeTime = 1500;
+	private boolean canCollision = true;
 
 	public Player(User user) {
 		setUser(user);
@@ -94,6 +96,14 @@ public class Player extends Character {
 
 	public BufferedImage getPlayerBackFire2Img() {
 		return playerBackFire2Img;
+	}
+
+	public boolean getCanCollision() {
+		return canCollision;
+	}
+
+	public void setCanCollision(boolean canCollision) {
+		this.canCollision = canCollision;
 	}
 	
 }
