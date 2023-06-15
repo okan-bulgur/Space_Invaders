@@ -1,6 +1,6 @@
 package Aliens;
 
-import screens.GamePanel;
+import Screens.GamePanel;
 
 public class Alien6 extends Alien {
 	

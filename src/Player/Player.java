@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import game.Character;
-import screens.GamePanel;
-import users.User;
+import Game.Character;
+import Screens.GamePanel;
+import Users.User;
 
 public class Player extends Character {
 	

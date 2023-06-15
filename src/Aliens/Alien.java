@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import game.Character;
+import Game.Character;
 
 public class Alien extends Character {
 	

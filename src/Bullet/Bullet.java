@@ -3,9 +3,9 @@ package Bullet;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import game.Character;
-import game.ICanCollision;
-import screens.GamePanel;
+import Game.Character;
+import Game.ICanCollision;
+import Screens.GamePanel;
 
 public class Bullet extends Bulletmanager implements ICanCollision{
 

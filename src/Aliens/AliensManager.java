@@ -5,14 +5,18 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import game.Game;
-import screens.GamePanel;
+import Game.Game;
+import Screens.GamePanel;
 
 public class AliensManager {
 
 	private ArrayList<Alien> aliens = new ArrayList<>();
 		
 	private static int bulletDelayCounter = 0;
+	
+	public ArrayList<Alien> getAliens(){
+		return aliens;
+	}
 	
 	public void createAlien(String type, int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
 		Alien newAlien = null;
@@ -39,10 +43,6 @@ public class AliensManager {
 			return;
 		}
 		aliens.add(newAlien);
-	}
-	
-	public ArrayList<Alien> getAliens(){
-		return aliens;
 	}
 	
 	public void drawCharacter(Graphics2D g2) {

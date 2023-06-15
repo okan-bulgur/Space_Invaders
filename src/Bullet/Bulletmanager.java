@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import game.Character;
-import game.Game;
-import screens.GamePanel;
+import Game.Character;
+import Game.Game;
+import Screens.GamePanel;
 
 public class Bulletmanager {
 	

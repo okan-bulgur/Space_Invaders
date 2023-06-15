@@ -3,10 +3,13 @@ package Player;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import game.Game;
-import screens.GamePanel;
-import users.User;
+import Game.Game;
+import Objects.Object;
+import Screens.GamePanel;
+import Users.User;
 
 public class PlayerManager{
 	
@@ -134,6 +137,56 @@ public class PlayerManager{
 			user.setHighScore(score);
 			Game.fileManager.addHighScore(user.getUsername(), score);
 		}
+	}
+	
+	public void boostHealth(Object object) {
+		player.setHealth(player.getHealth() + object.getBoost());
+	}
+	
+	public void boostSpeed(final Object object) {
+		player.setSpeedX(player.getSpeedX() + object.getBoost());
+		player.setSpeedY(player.getSpeedY() + object.getBoost());
+		
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				player.setSpeedX(player.getSpeedX() - object.getBoost());
+				player.setSpeedY(player.getSpeedY() - object.getBoost());
+			}
+		};
+		
+		timer.schedule(task, object.getBoostTime());
+	}
+	
+	public void boostBulletSpeed(final Object object) {
+		player.setBulletSpeedX(player.getBulletSpeedX() + object.getBoost());
+		player.setBulletSpeedY(player.getBulletSpeedY() + object.getBoost());
+		
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				player.setBulletSpeedX(player.getBulletSpeedX() - object.getBoost());
+				player.setBulletSpeedY(player.getBulletSpeedY() - object.getBoost());
+			}
+		};
+		
+		timer.schedule(task, object.getBoostTime());
+	}
+	
+	public void boostDamage(final Object object) {
+		player.setDamage(player.getDamage() + object.getBoost());
+		
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				player.setDamage(player.getDamage() - object.getBoost());
+			}
+		};
+		
+		timer.schedule(task, object.getBoostTime());
 	}
 	
 }
