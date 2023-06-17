@@ -66,6 +66,7 @@ public class ShootingManager {
 				Game.gameManager.getBulletManager().createBullet(character, -bulletSpeedX, -bulletSpeedY);
 				Game.gameManager.getBulletManager().createBullet(character, bulletSpeedX, -bulletSpeedY);
 				Game.gameManager.getBulletManager().createBullet(character, bulletSpeedX, 0);
+				Game.gameManager.getBulletManager().createBullet(character, 0, -bulletSpeedY);
 				break;
 				
 			case "cross":		
