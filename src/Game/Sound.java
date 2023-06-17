@@ -17,6 +17,9 @@ public class Sound {
 	private URL playerDamage;
 	private URL death;
 	private URL newHighscore;
+	private URL buttonClick;
+	private URL message;
+	private URL collectObject;
 	
 	public Sound() {
 		gameStart = getClass().getResource("/sounds/game_start.wav");
@@ -27,6 +30,9 @@ public class Sound {
 		playerDamage = getClass().getResource("/sounds/player_damage.wav");
 		death = getClass().getResource("/sounds/death.wav");
 		newHighscore = getClass().getResource("/sounds/new_high_score.wav");
+		buttonClick = getClass().getResource("/sounds/button_click.wav");
+		message = getClass().getResource("/sounds/message.wav");
+		collectObject = getClass().getResource("/sounds/collect_object.wav");
 	}
 	
 	public void gameStartEffect() {
@@ -59,6 +65,18 @@ public class Sound {
 	
 	public void newHighscoreEffect() {
 		play(newHighscore);
+	}
+	
+	public void buttonClickEffect() {
+		play(buttonClick);
+	}
+	
+	public void messageEffect() {
+		play(message);
+	}
+	
+	public void collectObjectEffect() {
+		play(collectObject);
 	}
 
 	private void play(URL url) {

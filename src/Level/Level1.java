@@ -32,6 +32,8 @@ public class Level1 extends Levels{
 			getAliensManager().createAlien("alien1", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 5, 1, 6, 6, 300 - boostBulletDelay);
 			getObjectManager().createObject("healthBoost", 100, 100, 0, GamePanel.screenHeight * 2, 0, 1);
 			getObjectManager().createObject("speedBoost", 500, 100, 0, GamePanel.screenHeight * 2, 0, 1);
+			getObjectManager().createObject("bulletSpeedBoost", 900, 100, 0, GamePanel.screenHeight * 2, 0, 1);
+			getObjectManager().createObject("damageBoost", 1300, 100, 0, GamePanel.screenHeight * 2, 0, 1);
 			break;
 		case 1:
 			getAliensManager().createAlien("alien2", 0, GamePanel.screenWidth/2, 0, GamePanel.screenHeight * 2, 5, 1, 6, 6, 300 - boostBulletDelay);

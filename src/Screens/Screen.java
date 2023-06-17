@@ -34,6 +34,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		register.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				screen.dispose();
 				Game.userManager.changeUser(null);
 				setScreen(new MenuScreen());
@@ -46,6 +47,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		playGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {	
+				Game.sound.buttonClickEffect();
 				if(GameManager.gameThread != null) {
 					GameManager.gameThread.gameStop();
 				}
@@ -67,6 +69,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		highScore.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				screen.dispose();
 				setScreen(new HighScoresScreen());
 				showScreen();
@@ -76,6 +79,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				System.exit(0);
 			}
 		});
@@ -84,6 +88,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				JOptionPane.showMessageDialog(screen, "Okan Bulgur 20200702017\nokan.bulgur@std.yeditepe.edu.tr");
 			}
 		});

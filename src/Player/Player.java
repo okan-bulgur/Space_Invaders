@@ -29,6 +29,10 @@ public class Player extends Character {
 	private int height = GamePanel.tileSize;
 	private String bulletImgPath1 = "/img/bullet_player_1.png";
 	private String bulletImgPath2 = "/img/bullet_player_2.png";
+	private String damageBoostBulletImgPath1 = "/img/damageBoostBullet_1.png";
+	private String damageBoostBulletImgPath2 = "/img/damageBoostBullet_2.png";
+	private String speedBoostBulletImgPath1 = "/img/speedBoostBullet_1.png";
+	private String speedBoostBulletImgPath2 = "/img/speedBoostBullet_2.png";
 	private int ghostModeTime = 1500;
 	private boolean canCollision = true;
 
@@ -74,6 +78,30 @@ public class Player extends Character {
 
 	public void setGhostModeTime(int ghostModeTime) {
 		this.ghostModeTime = ghostModeTime;
+	}
+	
+	public String getBulletImgPath1() {
+		return bulletImgPath1;
+	}
+	
+	public String getBulletImgPath2() {
+		return bulletImgPath2;
+	}
+	
+	public String getDamageBoostBulletImgPath1() {
+		return damageBoostBulletImgPath1;
+	}
+	
+	public String getDamageBoostBulletImgPath2() {
+		return damageBoostBulletImgPath2;
+	}
+	
+	public String getSpeedBoostBulletImgPath1() {
+		return speedBoostBulletImgPath1;
+	}
+	
+	public String getSpeedBoostBulletImgPath2() {
+		return speedBoostBulletImgPath2;
 	}
 
 	public void setPlayerImage() {

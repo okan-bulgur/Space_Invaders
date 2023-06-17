@@ -62,6 +62,7 @@ public class UserFormScreen extends Screen {
 		logInBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				String username = usernameTextField.getText();
 				String password = passwordTextField.getText();
 				try {
@@ -70,6 +71,7 @@ public class UserFormScreen extends Screen {
  					JOptionPane.showMessageDialog(screen, "Hello " + username + gamePlayGuide);
 					screen.dispose();
 				} catch (UserInfoException e1) {
+					Game.sound.messageEffect();
 					JOptionPane.showMessageDialog(screen, e1.getMessage());
 				}
 			}
@@ -79,6 +81,7 @@ public class UserFormScreen extends Screen {
 		signUpBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				try {
 					String username = usernameTextField.getText();
 					String password = passwordTextField.getText();
@@ -90,6 +93,7 @@ public class UserFormScreen extends Screen {
 					Game.fileManager.addUserToFile(username, password);
 					screen.dispose();
 				} catch (UserInfoException e1) {
+					Game.sound.messageEffect();
 					JOptionPane.showMessageDialog(screen, e1.getMessage());  
 				}
 			}

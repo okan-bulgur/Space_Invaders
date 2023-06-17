@@ -110,14 +110,14 @@ public class AliensManager {
 		alien.setHealth(alien.getHealth() - damage);
 		alien.setTakeDamage();
 		if(isDead(alien)) {
-			Game.gameManager.getGamePanel().getSound().deathEffect();
+			Game.sound.deathEffect();
 			aliens.remove(alien);
 			alien = null;
 		}
 	}
 	
 	public boolean isDead(Alien alien) {
-		return alien.getHealth() == 0;
+		return alien.getHealth() <= 0;
 	}
 
 	public boolean isCollision(Rectangle area1, Rectangle area2) {

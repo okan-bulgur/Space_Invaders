@@ -30,7 +30,6 @@ public class GamePanel extends JPanel {
 	private PlayerInfoBar playerInfoBar;
 	private GameStopScreen gameStopScreen;
 	private NewHighScoreScreen newHighScoreScreen;
-	protected Sound sound;
 	
 	private boolean gameOver = false;
 	private boolean finish = false;
@@ -51,7 +50,6 @@ public class GamePanel extends JPanel {
 		this.setDoubleBuffered(true);
 		this.setLayout(new BorderLayout());
 		
-		this.sound = new Sound();
 		this.playerInfoBar = new PlayerInfoBar(Game.gameManager.getPlayerManager().getPlayer());
 		this.gameStopScreen = new GameStopScreen();
 		this.newHighScoreScreen = new NewHighScoreScreen();
@@ -128,9 +126,5 @@ public class GamePanel extends JPanel {
 	   if (y >= getHeight() + 50) {
 	       y = y - GamePanel.screenHeight;
 	   }
-	}
-	
-	public Sound getSound() {
-		return sound;
 	}
 }

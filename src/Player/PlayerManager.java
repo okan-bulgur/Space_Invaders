@@ -91,7 +91,7 @@ public class PlayerManager{
 	public void addScore() {
 		player.setScore(player.getScore() + Game.gameManager.getLevelManager().getLevel().getHitScore());
 		if(player.getScore() > user.getHighScore() && highScoreChecker) {
-			Game.gameManager.getGamePanel().getSound().newHighscoreEffect();
+			Game.sound.newHighscoreEffect();
 			Game.gameManager.getGamePanel().displayNewHighScoreUser();
 			highScoreChecker = false;
 		}
@@ -99,7 +99,7 @@ public class PlayerManager{
 	}
 	
 	public void takeDamage(int damage) {
-		Game.gameManager.getGamePanel().getSound().playerDamageEffect();
+		Game.sound.playerDamageEffect();
 		player.setHealth(player.getHealth() - damage);
 		new Thread(new Runnable()
 		{
@@ -162,11 +162,13 @@ public class PlayerManager{
 	public void boostBulletSpeed(final Object object) {
 		player.setBulletSpeedX(player.getBulletSpeedX() + object.getBoost());
 		player.setBulletSpeedY(player.getBulletSpeedY() + object.getBoost());
+		player.setBulletImg(player.getSpeedBoostBulletImgPath1(), player.getSpeedBoostBulletImgPath2());
 		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
+				player.setBulletImg(player.getBulletImgPath1(), player.getBulletImgPath2());
 				player.setBulletSpeedX(player.getBulletSpeedX() - object.getBoost());
 				player.setBulletSpeedY(player.getBulletSpeedY() - object.getBoost());
 			}
@@ -177,11 +179,13 @@ public class PlayerManager{
 	
 	public void boostDamage(final Object object) {
 		player.setDamage(player.getDamage() + object.getBoost());
+		player.setBulletImg(player.getDamageBoostBulletImgPath1(), player.getDamageBoostBulletImgPath2());
 		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
+				player.setBulletImg(player.getBulletImgPath1(), player.getBulletImgPath2());
 				player.setDamage(player.getDamage() - object.getBoost());
 			}
 		};

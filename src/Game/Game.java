@@ -11,8 +11,10 @@ public class Game {
 	public static FileManager fileManager;
 	public static GameManager gameManager;
 	public static ScreenManager screenManager;
+	public static Sound sound;
 	
 	public Game() {
+		sound = new Sound();
 		userManager = new UserManager();
 		fileManager = new FileManager(userManager);
 		gameManager = new GameManager();

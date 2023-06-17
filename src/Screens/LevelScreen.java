@@ -68,6 +68,7 @@ public class LevelScreen extends Screen{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(1);
 				screen.dispose();
 				Game.gameManager.startGame();
@@ -78,6 +79,7 @@ public class LevelScreen extends Screen{
 					
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(2);
 				screen.dispose();
 				Game.gameManager.startGame();
@@ -88,6 +90,7 @@ public class LevelScreen extends Screen{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(3);
 				screen.dispose();
 				Game.gameManager.startGame();

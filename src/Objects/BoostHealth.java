@@ -7,8 +7,8 @@ public class BoostHealth extends Object {
 	private int height = GamePanel.tileSize;
 	private int width = GamePanel.tileSize;	
 	private int boost = 1;
-	private String imgPath1 = "/img/hearth.png";
-	private String imgPath2 = "/img/hearth.png";
+	private String imgPath1 = "/img/healthBoost_1.png";
+	private String imgPath2 = "/img/healthBoost_2.png";
 
 	public BoostHealth(int startX, int endX, int startY, int endY, int speedX, int speedY) {
 		setPosX(startX);

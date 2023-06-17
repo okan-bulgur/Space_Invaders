@@ -6,10 +6,10 @@ public class BoostBulletSpeed extends Object{
 
 	private int height = GamePanel.tileSize;
 	private int width = GamePanel.tileSize;	
-	private int boost = 1;
+	private int boost = 4;
 	private int boosTime = 3000;
-	private String imgPath1 = "/img/hearth.png";
-	private String imgPath2 = "/img/hearth.png";
+	private String imgPath1 = "/img/bulletSpeedBoost_1.png";
+	private String imgPath2 = "/img/bulletSpeedBoost_2.png";
 
 	public BoostBulletSpeed(int startX, int endX, int startY, int endY, int speedX, int speedY) {
 		setPosX(startX);

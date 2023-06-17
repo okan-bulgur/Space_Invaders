@@ -69,7 +69,7 @@ public class GameManager{
 		gamePanel.addKeyListener(keyHandler);
 		gamePanel.setFocusable(true);
 		gameThread.start();
-		gamePanel.getSound().gameStartEffect();
+		Game.sound.gameStartEffect();
 	}
 	
 	public void collisionDetector() {
@@ -95,7 +95,7 @@ public class GameManager{
 					aliensManager.takeDamage(alien, bullet.getDamage());	
 					bullets.remove(j);
 					playerManager.addScore();
-					gamePanel.getSound().damageEffect();
+					Game.sound.damageEffect();
 				}
 			}
 		}	
@@ -105,6 +105,7 @@ public class GameManager{
 			Object object = objects.get(k);
 			
 			if(objectManager.isCollision(object.getCollisionArea() , player.getCollisionArea())) {
+				Game.sound.collectObjectEffect();
 				objectManager.doObjectTask(object);
 				objects.remove(k);
 			}
@@ -113,16 +114,16 @@ public class GameManager{
 	
 	public void gameStatusChecker() {
 		if(player.getHealth() <= 0) {
-			gamePanel.getSound().deathEffect();
+			Game.sound.deathEffect();
 			playerManager.changeHighScore(player.getUser(), player.getScore());
-			gamePanel.getSound().gameOverEffect();
+			Game.sound.gameOverEffect();
 			gamePanel.setGameOver(true);
 			GameManager.gameThread.gameStop();
 			levelManager.levelStop();
 			setLevelManager(null);
 		}
 		else if (levelManager.getLevelPercentage() == 100) {
-			gamePanel.getSound().wonEffect();
+			Game.sound.wonEffect();
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			gamePanel.setFinish(true);
 			GameManager.gameThread.gameStop();
