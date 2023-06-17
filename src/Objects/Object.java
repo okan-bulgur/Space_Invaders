@@ -22,6 +22,7 @@ public class Object implements ICanCollision {
 	private int width;
 	private int boost;
 	private int boostTime;
+	private int percentage;
 	private Rectangle collisionArea;	
 	private BufferedImage image1;
 	private BufferedImage image2;
@@ -124,6 +125,14 @@ public class Object implements ICanCollision {
 		this.boostTime = boostTime;
 	}
 	
+	public int getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
+	}
+
 	public int getBoostTime() {
 		return boostTime;
 	}

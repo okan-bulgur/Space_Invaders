@@ -155,7 +155,7 @@ public class PlayerManager{
 				player.setSpeedY(player.getSpeedY() - object.getBoost());
 			}
 		};
-		
+
 		timer.schedule(task, object.getBoostTime());
 	}
 	
@@ -173,7 +173,7 @@ public class PlayerManager{
 				player.setBulletSpeedY(player.getBulletSpeedY() - object.getBoost());
 			}
 		};
-		
+
 		timer.schedule(task, object.getBoostTime());
 	}
 	

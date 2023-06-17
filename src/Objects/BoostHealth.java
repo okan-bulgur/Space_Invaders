@@ -10,7 +10,8 @@ public class BoostHealth extends Object {
 	private String imgPath1 = "/img/healthBoost_1.png";
 	private String imgPath2 = "/img/healthBoost_2.png";
 
-	public BoostHealth(int startX, int endX, int startY, int endY, int speedX, int speedY) {
+	public BoostHealth(int percentage, int startX, int endX, int startY, int endY, int speedX, int speedY) {
+		setPercentage(percentage);
 		setPosX(startX);
 		setPosY(startY);
 		setStartX(startX);

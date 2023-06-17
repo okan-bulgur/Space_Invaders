@@ -10,30 +10,31 @@ import Screens.GamePanel;
 public class ObjectManager {
 	
 	private ArrayList<Object> objects = new ArrayList<>();
+	private final static String[] objectTypes = {"healthBoost", "speedBoost", "bulletSpeedBoost", "damageBoost"};
 	
-	public ArrayList<Object> getObjects(){
-		return objects;
-	}
-	
-	public void createObject(String type, int startX, int endX, int startY, int endY, int speedX, int speedY) {
+	public Object createObject(String type, int percentage, int startX, int endX, int startY, int endY, int speedX, int speedY) {
 		Object newObject = null;
 		switch (type) {
 			case "healthBoost":
-				newObject = new BoostHealth(startX, endX, startY, endY, speedX, speedY);
+				newObject = new BoostHealth(percentage, startX, endX, startY, endY, speedX, speedY);
 				break;
 			case "speedBoost":
-				newObject = new BoostSpeed(startX, endX, startY, endY, speedX, speedY);
+				newObject = new BoostSpeed(percentage, startX, endX, startY, endY, speedX, speedY);
 				break;
 			case "bulletSpeedBoost":
-				newObject = new BoostBulletSpeed(startX, endX, startY, endY, speedX, speedY);
+				newObject = new BoostBulletSpeed(percentage, startX, endX, startY, endY, speedX, speedY);
 				break;
 			case "damageBoost":
-				newObject = new BoostDamage(startX, endX, startY, endY, speedX, speedY);
+				newObject = new BoostDamage(percentage, startX, endX, startY, endY, speedX, speedY);
 				break;
 			default:
 				break;
 		}
-		objects.add(newObject);
+		return newObject;
+	}
+	
+	public void addObject(Object object) {
+		objects.add(object);
 	}
 	
 	public void drawObject(Graphics2D g2) {
@@ -93,6 +94,10 @@ public class ObjectManager {
 		return false;
 	}
 	
+	public ArrayList<Object> getObjects(){
+		return objects;
+	}
+	
 	public void doObjectTask(Object object) {
 		if(object instanceof BoostHealth) {
 			Game.gameManager.getPlayerManager().boostHealth(object);
@@ -106,5 +111,9 @@ public class ObjectManager {
 		else if(object instanceof BoostDamage) {
 			Game.gameManager.getPlayerManager().boostDamage(object);
 		}
+	}
+	
+	public String[] getObjectTypes() {
+		return objectTypes;
 	}
 }

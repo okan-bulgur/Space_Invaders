@@ -2,25 +2,24 @@ package Level;
 
 import Aliens.AliensManager;
 import Game.Game;
-import Objects.ObjectManager;
 
 public abstract class Levels{
 
-	private AliensManager aliensManager = Game.gameManager.getAliensManager();
-	private ObjectManager objectManager = Game.gameManager.getObjectManager();
-	private int hitScore;
-	private int boostSpeedX;
-	private int boostSpeedY;
-	private int boostBulletDelay;
-	private int boostBulletSpeedX;
-	private int boostBulletSpeedY;
+	protected AliensManager aliensManager = Game.gameManager.getAliensManager();
+	protected int hitScore;
+	protected int boostSpeedX;
+	protected int boostSpeedY;
+	protected int boostBulletDelay;
+	protected int boostBulletSpeedX;
+	protected int boostBulletSpeedY;
+	protected int boostTimeDelay;
+	protected int maxSpeedX;
+	protected int maxSpeedY;
 	
-	public AliensManager getAliensManager() {
-		return aliensManager;
-	}
+	protected int[] objectMaxNum;
 	
-	public ObjectManager getObjectManager() {
-		return objectManager;
+	public int[] getObjectMaxNum() {
+		return objectMaxNum;
 	}
 
 	public int getHitScore() {
@@ -70,6 +69,30 @@ public abstract class Levels{
 	public void setBoostBulletSpeedY(int boostBulletSpeedY) {
 		this.boostBulletSpeedY = boostBulletSpeedY;
 	}
+	
+	public int getBoostTimeDelay() {
+		return boostTimeDelay;
+	}
 
+	public void setBoostTimeDelay(int boostTimeDelay) {
+		this.boostTimeDelay = boostTimeDelay;
+	}
+
+	public int getMaxSpeedX() {
+		return maxSpeedX;
+	}
+
+	public void setMaxSpeedX(int maxSpeedX) {
+		this.maxSpeedX = maxSpeedX;
+	}
+
+	public int getMaxSpeedY() {
+		return maxSpeedY;
+	}
+
+	public void setMaxSpeedY(int maxSpeedY) {
+		this.maxSpeedY = maxSpeedY;
+	}
+	
 	public abstract void runLevel();
 }

@@ -1,5 +1,13 @@
 package Level;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
+import Game.Game;
+import Screens.GamePanel;
+import Objects.Object;
+
 public class LevelManager extends Thread {
 	private boolean isStop = false;
 	private int levelPercentage = 0;
@@ -9,6 +17,9 @@ public class LevelManager extends Thread {
 	
 	private int gameLevel;
 	private Levels level;
+	
+	private ArrayList<Object> objectsByPercentage = new ArrayList<>(); 
+	protected HashMap<String, Integer> maxObjectCount = new HashMap<>(); 
 
 	@Override
 	public void run() {
@@ -16,8 +27,10 @@ public class LevelManager extends Thread {
 		double nextDrawTime = System.nanoTime() + drawInterval; 
 		setLevelPercentage(0);
 		createLevel();
+		declareMaxCount();
+		setObjectsByPercentage();
 		while (!isStop) {
-			
+			generateObjectByPercentage();
 			levelCounter++;
 			if(levelCounter % levelSpeed == 0) {
 				level.runLevel();
@@ -84,5 +97,54 @@ public class LevelManager extends Thread {
 	
 	public Levels getLevel() {
 		return level;
+	}
+	
+	public void declareMaxCount() {
+		String[] objectTypes = Game.gameManager.getObjectManager().getObjectTypes();
+		Random random = new Random();
+		maxObjectCount.clear();
+		for(String type : objectTypes) {
+			for(Integer num : level.getObjectMaxNum()) {
+				maxObjectCount.put(type, random.nextInt(num)+1);				
+			}
+		}
+	}
+	
+	public void setObjectsByPercentage() {
+		Random random = new Random();
+		
+		int num;
+		int percentage;
+		int startX;
+		int endX;
+		int speedX;
+		int speedY;
+		
+		for ( String key : maxObjectCount.keySet() ) {
+			num = maxObjectCount.get(key);
+			for	(int i=0 ; i<num ; i++) {
+				percentage = random.nextInt(100);
+				startX = random.nextInt(GamePanel.screenWidth);
+				endX = random.nextInt(GamePanel.screenWidth);
+				endX = endX >= startX ? endX : startX;
+				speedX = random.nextInt(level.getMaxSpeedX());
+				speedY = random.nextInt(level.getMaxSpeedY()) + 1;
+				
+				Object newObject = Game.gameManager.getObjectManager().createObject(key, percentage, startX, endX, 0, GamePanel.screenHeight*2, speedX, speedY);
+				newObject.setBoostTime(newObject.getBoostTime() - level.getBoostTimeDelay());;
+				objectsByPercentage.add(newObject);
+			}
+		}
+	}
+	
+	public void generateObjectByPercentage() {
+		Object obj;
+		for(int i=0 ; i < objectsByPercentage.size() ; i++) {
+			obj = objectsByPercentage.get(i);
+			if(obj.getPercentage() == levelPercentage) {
+				Game.gameManager.getObjectManager().addObject(obj);
+				objectsByPercentage.remove(i);
+			}
+		}
 	}
 }
