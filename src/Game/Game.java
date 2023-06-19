@@ -16,7 +16,7 @@ public class Game {
 	public Game() {
 		sound = new Sound();
 		userManager = new UserManager();
-		fileManager = new FileManager(userManager);
+		fileManager = new FileManager();
 		gameManager = new GameManager();
 		screenManager = new ScreenManager();
 	}
@@ -25,7 +25,7 @@ public class Game {
 		
 		Game game = new Game();
 		
-		fileManager.loadExistingUser();
+		//fileManager.loadExistingUser();
 		screenManager.setScreen(new MenuScreen());
 		screenManager.showScreen();
     }

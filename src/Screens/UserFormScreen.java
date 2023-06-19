@@ -66,8 +66,7 @@ public class UserFormScreen extends Screen {
 				String username = usernameTextField.getText();
 				String password = passwordTextField.getText();
 				try {
-					Game.userManager.isMatch(username, password);
-					Game.userManager.changeUser(Game.userManager.getUser(username));
+					Game.fileManager.logInUser(username, password);
  					JOptionPane.showMessageDialog(screen, "Hello " + username + gamePlayGuide);
 					screen.dispose();
 				} catch (UserInfoException e1) {
@@ -90,7 +89,6 @@ public class UserFormScreen extends Screen {
 						throw new UserInfoException("Username or password can't be a empty");
 					}
 					Game.userManager.addUser(username, password, 0);
-					Game.fileManager.addUserToFile(username, password);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					Game.sound.messageEffect();

@@ -1,20 +1,124 @@
 package Users;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+
+import Game.Game;
 
 public class FileManager {
-
-	private UserManager userManager;
 	
-	public FileManager(UserManager userManager) {
-		this.userManager = userManager;
+	
+	@SuppressWarnings("unchecked")
+	public void addUserInFile(User user) {
+		JSONObject newUser = new JSONObject();
+		newUser.put("Usermame", user.getUsername());
+		newUser.put("Password", user.getPassword());
+		newUser.put("HighScore", user.getHighScore());
+		
+		try {
+			FileWriter fileWriter  = new FileWriter("users.json", true);
+			fileWriter.write(newUser.toJSONString() + "\n");
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("resource")
+	public boolean userIsValid(String username) {
+		JSONParser jsonParser = new JSONParser();
+		File file = new File("users.json");
+
+        try {
+        	FileReader fileReader = new FileReader(file);
+        	BufferedReader reader = new BufferedReader(fileReader);
+        	String line;
+        	while ((line = reader.readLine()) != null) {
+                Object obj = jsonParser.parse(line);
+                JSONObject userJson = (JSONObject) obj;
+                String user_name = (String) userJson.get("Usermame");
+                
+                if(user_name.equals(username)) {
+                	return true;
+                }
+        	}
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+	}
+	
+	@SuppressWarnings("resource")
+	public void logInUser(String username, String password) throws UserInfoException {
+        JSONParser jsonParser = new JSONParser();
+
+        try {
+        	FileReader fileReader = new FileReader("users.json");
+        	BufferedReader reader = new BufferedReader(fileReader);
+        	String line;
+        	while ((line = reader.readLine()) != null) {
+                Object obj = jsonParser.parse(line);
+                JSONObject userJson = (JSONObject) obj;
+                String username_1 = (String) userJson.get("Usermame");
+                String password_1 = (String) userJson.get("Password");
+                if(!userIsValid(username)){
+                	throw new UserInfoException("There is not user");
+                }
+                if(username_1.equals(username) && password_1.equals(password)) {
+                	long highScore_1 = (long) userJson.get("HighScore");
+                	User user = new User(username, password, (int) highScore_1);
+                	Game.userManager.changeUser(user);        
+                	break;
+                }
+                else if (username_1.equals(username) && !password_1.equals(password)) {
+                	throw new UserInfoException("Password is incorrect");
+				}
+
+        	}
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	@SuppressWarnings({ "unchecked" })
+	public void setNewHighScoreForUser(User user, int score) {
+		JSONParser jsonParser = new JSONParser();
+		File file = new File("users.json");
+		File tempFile = new File("tempUsers.json");
+
+        try {
+        	FileReader fileReader = new FileReader(file);
+        	FileWriter fileWriter = new FileWriter(tempFile);
+        	BufferedReader reader = new BufferedReader(fileReader);
+        	String line;
+        	while ((line = reader.readLine()) != null) {
+                Object obj = jsonParser.parse(line);
+                JSONObject userJson = (JSONObject) obj;
+                String username = (String) userJson.get("Usermame");
+                
+                if(username.equals(user.getUsername())) {
+                	userJson.put("HighScore", score);
+                }
+                
+                fileWriter.write(obj.toString() + "\n");
+        	}
+        	fileReader.close();
+        	fileWriter.close();
+        	
+        	if (file.delete()) {
+                tempFile.renameTo(file);
+			}
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public void addHighScore(String username, int score) {
@@ -87,53 +191,7 @@ public class FileManager {
 		}
 		
 	}
-	
-	public int takeScoreExistUser(String username) {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("highScores.txt"));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] words = line.split("\\s+");
-				if(words[0].equals(username)) {
-					reader.close();
-					return Integer.parseInt(words[1]);
-				}
-			}
-			reader.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-	
-	public void loadExistingUser() {	
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
-			String line;
-            while ((line = reader.readLine()) != null) {
-                String[] words = line.split("\\s+");
-                int highScore = takeScoreExistUser(words[0]);
-                userManager.addUser(words[0], words[1], highScore);
-            }
-            reader.close();
-        } catch (IOException  | NumberFormatException | UserInfoException e) {
-            e.printStackTrace();
-		}
-	}
-	
-	public void addUserToFile(String username, String password) {
-		 try {
-			 	BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true));
-	            String user = username + " " + password + "\n";
-	            writer.write(user);
-	            writer.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	} 
-	
+
 	public ArrayList<String> takeTop5() {
 		ArrayList<String> highScores = new ArrayList<String>();
 		try {
@@ -151,5 +209,6 @@ public class FileManager {
 		
 		return highScores;
 	}
+	
 }
 
