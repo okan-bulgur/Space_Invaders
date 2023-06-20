@@ -1,6 +1,7 @@
 package Users;
 
 import Game.Game;
+import Ships.Ship;
 
 public class UserManager {
 
@@ -9,8 +10,8 @@ public class UserManager {
 	public UserManager() {
 	}
 	
-	public User createUser(String username, String password, int highScore) {
-		return new User(username, password, highScore);
+	public User createUser(String username, String password, int highScore, int goldAmount, Ship[] ships, int rank) {
+		return new User(username, password, highScore, goldAmount, ships, rank);
 	}
 	
 	public void changeUser(User user) {
@@ -21,11 +22,11 @@ public class UserManager {
 		return user;
 	}
 	
-	public void addUser(String username, String password, int highScore) throws UserInfoException {
+	public void addUser(String username, String password) throws UserInfoException {
 		if(Game.fileManager.userIsValid(username)) {
 			throw new UserInfoException("This username is used");
 		}
-		User newUser = createUser(username, password, highScore);
+		User newUser = createUser(username, password, 0, 0, null, 0);
 		Game.fileManager.addUserInFile(newUser);
 	}
 }

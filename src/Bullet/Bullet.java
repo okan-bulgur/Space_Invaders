@@ -28,7 +28,7 @@ public class Bullet extends Bulletmanager implements ICanCollision{
 		setSpeedY(speedY);
 		setPosX(character.getPosX());
 		setPosY(character.getPosY());
-		setBulletImg(character.getBulletImg(), character.getBulletImg2());
+		setBulletImg(character.getBulletImg1(), character.getBulletImg2());
 		setCollisionArea();
 	}
 	

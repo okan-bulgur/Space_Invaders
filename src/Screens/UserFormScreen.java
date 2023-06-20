@@ -88,7 +88,7 @@ public class UserFormScreen extends Screen {
 					if(username.equals("") || password.equals("")) {
 						throw new UserInfoException("Username or password can't be a empty");
 					}
-					Game.userManager.addUser(username, password, 0);
+					Game.userManager.addUser(username, password);
 					screen.dispose();
 				} catch (UserInfoException e1) {
 					Game.sound.messageEffect();

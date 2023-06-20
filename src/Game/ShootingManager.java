@@ -1,6 +1,6 @@
 package Game;
 
-import Player.Player;
+import Ships.Ship;
 
 public class ShootingManager {
 	
@@ -10,7 +10,7 @@ public class ShootingManager {
 		int bulletSpeedX;
 		int bulletSpeedY;
 		
-		if(character instanceof Player) {
+		if(character instanceof Ship) {
 			bulletSpeedX = character.getBulletSpeedX();
 			bulletSpeedY = character.getBulletSpeedY();
 			Game.sound.shootEffect();

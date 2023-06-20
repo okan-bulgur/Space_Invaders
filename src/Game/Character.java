@@ -24,8 +24,12 @@ public abstract class Character implements ICanCollision {
 	protected int damage;
 	protected int bulletSpeedX;
 	protected int bulletSpeedY;
+	protected boolean isTakeDamage;
+	protected int damageAnimationTime;
 	protected String shootingType;
-	protected BufferedImage bulletImg;
+	protected BufferedImage characterImg1;
+	protected BufferedImage characterImg2;
+	protected BufferedImage bulletImg1;
 	protected BufferedImage bulletImg2;
 	protected Rectangle collisionArea;
 	
@@ -149,17 +153,34 @@ public abstract class Character implements ICanCollision {
 		this.shootingType = shootingType;
 	}
 	
-	public BufferedImage getBulletImg() {
-		return bulletImg;
+	public BufferedImage getCharacterImg1() {
+		return characterImg1;
+	}
+	
+	public BufferedImage getCharacterImg2() {
+		return characterImg2;
+	}
+
+	public void setCharacterImg(String characterImg1, String characterImg2) {
+		try {
+			this.characterImg1 = ImageIO.read(getClass().getResource(characterImg1));
+			this.characterImg2 = ImageIO.read(getClass().getResource(characterImg2));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	public BufferedImage getBulletImg1() {
+		return bulletImg1;
 	}
 	
 	public BufferedImage getBulletImg2() {
 		return bulletImg2;
 	}
 
-	public void setBulletImg(String bulletImg, String bulletImg2) {
+	public void setBulletImg(String bulletImg1, String bulletImg2) {
 		try {
-			this.bulletImg = ImageIO.read(getClass().getResource(bulletImg));
+			this.bulletImg1 = ImageIO.read(getClass().getResource(bulletImg1));
 			this.bulletImg2 = ImageIO.read(getClass().getResource(bulletImg2));
 		} catch (IOException e) {
 			e.printStackTrace();

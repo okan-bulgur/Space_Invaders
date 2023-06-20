@@ -38,7 +38,7 @@ public class PlayerInfoBar extends Rectangle {
 		
 		// health part
 		g2.drawImage(hearthImg, GamePanel.tileSize * 6, 5, GamePanel.tileSize, GamePanel.tileSize, null);
-		g2.drawString("x" + String.valueOf(player.getHealth()), GamePanel.tileSize * 7 + 20 , 40);
+		g2.drawString("x" + String.valueOf(player.getShip().getHealth()), GamePanel.tileSize * 7 + 20 , 40);
 		
 		// score part
 		g2.drawString("Score: " + String.valueOf(player.getScore()), GamePanel.tileSize * 10, 40);

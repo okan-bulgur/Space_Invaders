@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
+import Ships.Ship;
 
 import Game.Game;
 
@@ -18,13 +19,17 @@ public class FileManager {
 	
 	@SuppressWarnings("unchecked")
 	public void addUserInFile(User user) {
+		File file = new File("users.json");
 		JSONObject newUser = new JSONObject();
 		newUser.put("Usermame", user.getUsername());
 		newUser.put("Password", user.getPassword());
 		newUser.put("HighScore", user.getHighScore());
-		
+		newUser.put("GoldAmount", user.getGoldAmount());
+		newUser.put("Ships", user.getShips());
+		newUser.put("Rank", user.getRank());
+				
 		try {
-			FileWriter fileWriter  = new FileWriter("users.json", true);
+			FileWriter fileWriter  = new FileWriter(file, true);
 			fileWriter.write(newUser.toJSONString() + "\n");
 			fileWriter.close();
 		} catch (IOException e) {
@@ -74,7 +79,10 @@ public class FileManager {
                 }
                 if(username_1.equals(username) && password_1.equals(password)) {
                 	long highScore_1 = (long) userJson.get("HighScore");
-                	User user = new User(username, password, (int) highScore_1);
+                	long goldAmount_1 = (long) userJson.get("GoldAmount");
+                	Ship[] ships_1 = (Ship[]) userJson.get("Ships");
+                	long rank_1 = (long) userJson.get("Rank");
+                	User user = new User(username, password, (int) highScore_1, (int) goldAmount_1, ships_1, (int) rank_1);
                 	Game.userManager.changeUser(user);        
                 	break;
                 }

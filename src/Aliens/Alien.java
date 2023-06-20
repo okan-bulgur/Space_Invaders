@@ -32,6 +32,23 @@ public class Alien extends Character {
 		this.bulletCreateDelay = bulletCreateDelay;
 	}
 
+	public BufferedImage getAliensImg1() {
+		return aliensImg1;
+	}
+	
+	public BufferedImage getAliensImg2() {
+		return aliensImg2;
+	}
+	
+	public void setAliensImg(String img1Path, String img2Path) {
+		try {
+			aliensImg1 = ImageIO.read(getClass().getResourceAsStream(img1Path));
+			aliensImg2 = ImageIO.read(getClass().getResourceAsStream(img2Path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public boolean isTakeDamage() {
 		return isTakeDamage;
 	}
@@ -52,22 +69,5 @@ public class Alien extends Character {
 		     
 		    }
 		}).start();
-	}
-
-	public BufferedImage getAliensImg1() {
-		return aliensImg1;
-	}
-	
-	public BufferedImage getAliensImg2() {
-		return aliensImg2;
-	}
-	
-	public void setAliensImg(String img1Path, String img2Path) {
-		try {
-			aliensImg1 = ImageIO.read(getClass().getResourceAsStream(img1Path));
-			aliensImg2 = ImageIO.read(getClass().getResourceAsStream(img2Path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

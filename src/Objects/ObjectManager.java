@@ -27,6 +27,9 @@ public class ObjectManager {
 			case "damageBoost":
 				newObject = new BoostDamage(percentage, startX, endX, startY, endY, speedX, speedY);
 				break;
+			case "gold":
+				newObject = new Gold(percentage, startX, endX, startY, endY, speedX, speedY);
+				break;
 			default:
 				break;
 		}
@@ -100,16 +103,16 @@ public class ObjectManager {
 	
 	public void doObjectTask(Object object) {
 		if(object instanceof BoostHealth) {
-			Game.gameManager.getPlayerManager().boostHealth(object);
+			Game.gameManager.getShipManager().boostHealth(object);
 		}
 		else if(object instanceof BoostSpeed) {
-			Game.gameManager.getPlayerManager().boostSpeed(object);
+			Game.gameManager.getShipManager().boostSpeed(object);
 		}
 		else if(object instanceof BoostBulletSpeed) {
-			Game.gameManager.getPlayerManager().boostBulletSpeed(object);
+			Game.gameManager.getShipManager().boostBulletSpeed(object);
 		}
 		else if(object instanceof BoostDamage) {
-			Game.gameManager.getPlayerManager().boostDamage(object);
+			Game.gameManager.getShipManager().boostDamage(object);
 		}
 	}
 	

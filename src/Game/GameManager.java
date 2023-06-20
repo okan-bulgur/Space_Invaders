@@ -11,6 +11,7 @@ import Player.Player;
 import Player.PlayerManager;
 import Screens.GamePanel;
 import Screens.GameScreen;
+import Ships.ShipManager;
 import Users.User;
 import Objects.ObjectManager;
 import Objects.Object;
@@ -22,6 +23,7 @@ public class GameManager{
 	protected Bulletmanager bulletmanager = null;
 	protected ShootingManager shootingManager = null;
 	protected PlayerManager playerManager = null;
+	protected ShipManager shipManager = null;
 	protected AliensManager aliensManager = null;
 	protected ObjectManager objectManager = null;
 	protected LevelManager levelManager = null;
@@ -51,6 +53,7 @@ public class GameManager{
 		aliensManager = new AliensManager();	
 		levelManager = new LevelManager();
 		playerManager = new PlayerManager();
+		shipManager = new ShipManager();
 		objectManager = new ObjectManager();
 		animationManager = new AnimationManager();
 		
@@ -60,6 +63,7 @@ public class GameManager{
 		playerManager.setUser(user);
 		playerManager.createPlayer();
 		player = playerManager.getPlayer();
+		shipManager.setShip(player.getShip());
 		
 		gamePanel =  new GamePanel();
 						
@@ -77,8 +81,8 @@ public class GameManager{
 		for(int i=0 ; i < aliens.size() ; i++) {
 			Alien alien = aliens.get(i);
 			
-			if(playerManager.isCollision(alien.getCollisionArea(), player.getCollisionArea())) {
-				playerManager.takeDamage(1);
+			if(shipManager.isCollision(alien.getCollisionArea(), player.getShip().getCollisionArea())) {
+				shipManager.takeDamage(1);
 			}
 			
 			ArrayList<Bullet> bullets = bulletmanager.getBullets();
@@ -86,8 +90,8 @@ public class GameManager{
 				Bullet bullet = bullets.get(j);
 				
 				if(bullet.getCharacter() instanceof Alien) {
-					if(playerManager.isCollision(bullet.getCollisionArea(), player.getCollisionArea())) {
-						playerManager.takeDamage(bullet.getDamage());
+					if(shipManager.isCollision(bullet.getCollisionArea(), player.getShip().getCollisionArea())) {
+						shipManager.takeDamage(bullet.getDamage());
 						bullets.remove(j);
 					}
 				}
@@ -104,7 +108,7 @@ public class GameManager{
 		for(int k=0 ; k < objects.size() ; k++) {
 			Object object = objects.get(k);
 			
-			if(objectManager.isCollision(object.getCollisionArea() , player.getCollisionArea())) {
+			if(objectManager.isCollision(object.getCollisionArea() , player.getShip().getCollisionArea())) {
 				Game.sound.collectObjectEffect();
 				objectManager.doObjectTask(object);
 				objects.remove(k);
@@ -113,7 +117,7 @@ public class GameManager{
 	}
 	
 	public void gameStatusChecker() {
-		if(player.getHealth() <= 0) {
+		if(player.getShip().getHealth() <= 0) {
 			Game.sound.deathEffect();
 			playerManager.changeHighScore(player.getUser(), player.getScore());
 			Game.sound.gameOverEffect();
@@ -132,6 +136,10 @@ public class GameManager{
 	
 	public PlayerManager getPlayerManager() {
 		return playerManager;
+	}
+	
+	public ShipManager getShipManager() {
+		return shipManager;
 	}
 	
 	public AliensManager getAliensManager() {

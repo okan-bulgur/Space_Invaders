@@ -60,7 +60,7 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		slidingBackGround(g2);        
-		Game.gameManager.getPlayerManager().drawCharacter(g2);
+		Game.gameManager.getShipManager().drawCharacter(g2);
 		Game.gameManager.getBulletManager().drawBullets(g2);
 		Game.gameManager.getAliensManager().drawCharacter(g2);
 		Game.gameManager.getObjectManager().drawObject(g2);

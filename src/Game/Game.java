@@ -25,7 +25,6 @@ public class Game {
 		
 		Game game = new Game();
 		
-		//fileManager.loadExistingUser();
 		screenManager.setScreen(new MenuScreen());
 		screenManager.showScreen();
     }

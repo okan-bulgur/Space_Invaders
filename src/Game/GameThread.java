@@ -22,7 +22,7 @@ public class GameThread extends Thread{
 		
 		while(!isStop) {
 				
-			gameManager.playerManager.update();
+			gameManager.shipManager.update();
 			gameManager.bulletmanager.update();
 			gameManager.aliensManager.update();
 			gameManager.objectManager.update();

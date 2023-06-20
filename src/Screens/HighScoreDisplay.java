@@ -11,10 +11,10 @@ import javax.swing.SwingConstants;
 
 import Game.Game;
 
+@SuppressWarnings("serial")
 public class HighScoreDisplay extends JPanel{
 	
 	public HighScoreDisplay() {
-		/*
 		this.setBackground(Color.BLACK);
 		ArrayList<String> users = Game.fileManager.takeTop5();
 		int count = 1;
@@ -38,6 +38,5 @@ public class HighScoreDisplay extends JPanel{
 			this.add(label);
 		}
 		this.validate();
-		*/
 	}
 }
