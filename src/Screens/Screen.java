@@ -80,6 +80,14 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		shipMarket.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(Game.userManager.getActiveUser() == null) {
+					screen.dispose();
+					setScreen(new MenuScreen());
+					showScreen();
+					setScreen(new UserFormScreen());
+					showScreen();
+					return;
+				}
 				Game.sound.buttonClickEffect();
 				screen.dispose();
 				setScreen(new ShipMartketScreen());

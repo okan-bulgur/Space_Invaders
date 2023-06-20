@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -23,6 +26,9 @@ import javax.swing.JPanel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import Game.Game;
+import Ships.Ship;
 
 public class ShipMartketScreen extends Screen implements IMenuBar {
 	
@@ -69,7 +75,7 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
                 Object obj = jsonParser.parse(line);
                 JSONObject userJson = (JSONObject) obj;
                 
-                String shipName = (String) userJson.get("name");
+                final String shipName = (String) userJson.get("name");
                 long cost = (long) userJson.get("cost");
             	long health = (long) userJson.get("health");
             	long damage = (long) userJson.get("damage");
@@ -79,13 +85,15 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	String shipImgPath = (String) userJson.get("shipImgPath");
           
             	JPanel item = new JPanel();
-            	item.setLayout(new GridBagLayout());
+            	GridBagLayout itemLayout = new GridBagLayout();
+            	item.setLayout(itemLayout);
             	GridBagConstraints gbc = new GridBagConstraints();         
-            	item.setBackground(Color.RED);
+            	item.setBackground(Color.BLACK);
 
             	JPanel allShipProperties = new JPanel();
-            	//FlowLayout allShipPropertiesLayout = new FlowLayout();
-            	GridLayout allShipPropertiesLayout = new GridLayout(2,1);
+            	FlowLayout allShipPropertiesLayout = new FlowLayout();
+
+            	allShipPropertiesLayout.setHgap(50);
             	allShipProperties.setLayout(allShipPropertiesLayout);
             	allShipProperties.setBounds(0, 0, 300, 500);
             	allShipProperties.setBackground(Color.BLACK);
@@ -106,7 +114,7 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	JLabel shootingTypeLabel = new JLabel("Shooting Type: " + shootingType);    	
             	JLabel costLabel = new JLabel("Cost: " + (int)cost);
             	
-            	JButton buyBtn = new JButton("BUY");   
+            	final JButton buyBtn = new JButton("BUY");   
             	
             	imgLabel.setHorizontalAlignment(JLabel.CENTER);
             	buyBtn.setHorizontalAlignment(JLabel.CENTER);
@@ -118,6 +126,7 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	bulletSpeedLabel.setForeground(Color.WHITE);
             	shootingTypeLabel.setForeground(Color.WHITE);
             	costLabel.setForeground(Color.WHITE);
+            	buyBtn.setBackground(Color.LIGHT_GRAY);
             	
             	String fontType = "Verdana";
             	int fontSize = 12;
@@ -155,6 +164,16 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	item.add(buyBtn, gbc);
             	
             	panel.add(item);
+            	
+            	buyBtn.addActionListener(new ActionListener() {
+        			@Override
+        			public void actionPerformed(ActionEvent e) {
+        				Game.sound.buttonClickEffect();
+        				buyBtn.setEnabled(false);
+        				Ship newShip = new Ship(shipName);
+        				Game.userManager.buyShip(newShip);        				
+        			}
+        		});
         	}
         	
         	fileReader.close();

@@ -10,7 +10,7 @@ import Screens.GamePanel;
 public class ObjectManager {
 	
 	private ArrayList<Object> objects = new ArrayList<>();
-	private final static String[] objectTypes = {"healthBoost", "speedBoost", "bulletSpeedBoost", "damageBoost"};
+	private final static String[] objectTypes = {"healthBoost", "speedBoost", "bulletSpeedBoost", "damageBoost", "gold"};
 	
 	public Object createObject(String type, int percentage, int startX, int endX, int startY, int endY, int speedX, int speedY) {
 		Object newObject = null;
@@ -113,6 +113,9 @@ public class ObjectManager {
 		}
 		else if(object instanceof BoostDamage) {
 			Game.gameManager.getShipManager().boostDamage(object);
+		}
+		else if(object instanceof Gold) {
+			Game.gameManager.getPlayerManager().collectGold(object);
 		}
 	}
 	

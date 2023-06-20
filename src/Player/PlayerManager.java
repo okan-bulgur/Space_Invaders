@@ -2,6 +2,7 @@ package Player;
 
 import Game.Game;
 import Users.User;
+import Objects.Object;
 
 public class PlayerManager{
 	
@@ -42,4 +43,8 @@ public class PlayerManager{
 			Game.fileManager.addHighScore(user.getUsername(), score);
 		}
 	}	
+	
+	public void collectGold(Object object) {
+		user.setGoldAmount(user.getGoldAmount() + object.getBoost());
+	}
 }

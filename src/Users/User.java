@@ -1,5 +1,7 @@
 package Users;
 
+import java.util.ArrayList;
+
 import Ships.Ship;
 
 public class User extends UserManager{
@@ -8,10 +10,10 @@ public class User extends UserManager{
 	private String password;
 	private int highScore;
 	private int goldAmount;
-	private Ship[] ships;
+	private ArrayList<Ship> ships;
 	private int rank;
 	
-	public User(String username, String password, int highScore, int goldAmount, Ship[] ships, int rank) {
+	public User(String username, String password, int highScore, int goldAmount,  ArrayList<Ship> ships, int rank) {
 		setUsername(username);
 		setPassword(password);
 		setHighScore(highScore);
@@ -23,18 +25,23 @@ public class User extends UserManager{
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	public
+	void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public int getHighScore() {
 		return highScore;
 	}
+	
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}
@@ -47,11 +54,11 @@ public class User extends UserManager{
 		this.goldAmount = goldAmount;
 	}
 
-	public Ship[] getShips() {
+	public ArrayList<Ship> getShips() {
 		return ships;
 	}
 
-	public void setShips(Ship[] ships) {
+	public void setShips(ArrayList<Ship> ships) {
 		this.ships = ships;
 	}
 

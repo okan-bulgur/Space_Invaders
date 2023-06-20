@@ -12,9 +12,11 @@ import Game.Game;
 import Game.GameManager;
 import Player.Player;
 
+@SuppressWarnings("serial")
 public class PlayerInfoBar extends Rectangle {
 	
 	private BufferedImage hearthImg;
+	private BufferedImage goldImg;
 	
 	private Player player;
 	
@@ -22,6 +24,7 @@ public class PlayerInfoBar extends Rectangle {
 		this.player = player;
 		try {
 			hearthImg = ImageIO.read(getClass().getResourceAsStream("/img/hearth.png"));
+			goldImg = ImageIO.read(getClass().getResourceAsStream("/img/gold_1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +50,11 @@ public class PlayerInfoBar extends Rectangle {
 		g2.drawString("User: " + player.getUser().getUsername(), GamePanel.tileSize * 13, 40);
 		
 		// high score part
-		g2.drawString("High Score: " + player.getUser().getHighScore(), GamePanel.tileSize * 18, 40);
+		g2.drawString("High Score: " + player.getUser().getHighScore(), GamePanel.tileSize * 16, 40);
+		
+		// gold part
+		g2.drawImage(goldImg, GamePanel.tileSize * 20, 7, GamePanel.tileSize/2, GamePanel.tileSize/2, null);
+		g2.drawString("" + player.getUser().getGoldAmount(), GamePanel.tileSize * 20 + 60, 40);
 		
 		// FPS part
 		if(GameManager.gameThread != null) {

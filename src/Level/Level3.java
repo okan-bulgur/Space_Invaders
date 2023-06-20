@@ -16,7 +16,7 @@ public class Level3 extends Levels{
 	private int maxSpeedY = 5;
 	
 	public Level3() {
-		this.objectMaxNum = new int[]{1, 2, 2, 2};
+		this.objectMaxNum = new int[]{1, 2, 2, 2, 20};
 		setMaxSpeedX(maxSpeedX);
 		setMaxSpeedY(maxSpeedY);
 		setHitScore(hitScore);

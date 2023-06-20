@@ -11,12 +11,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Aliens.AliensManager;
-import Bullet.Bulletmanager;
 import Game.Game;
-import Game.Sound;
-import Player.PlayerManager;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 
 	private static final int originalTileSize = 16;
