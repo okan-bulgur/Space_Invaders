@@ -16,7 +16,6 @@ import Game.Game;
 
 public class FileManager {
 	
-	
 	@SuppressWarnings("unchecked")
 	public void addUserInFile(User user) {
 		File file = new File("users.json");
@@ -97,7 +96,7 @@ public class FileManager {
     }
 	
 	@SuppressWarnings({ "unchecked" })
-	public void setNewHighScoreForUser(User user, int score) {
+	public void setNewPropertyOfUser(User user) {
 		JSONParser jsonParser = new JSONParser();
 		File file = new File("users.json");
 		File tempFile = new File("tempUsers.json");
@@ -113,7 +112,10 @@ public class FileManager {
                 String username = (String) userJson.get("Usermame");
                 
                 if(username.equals(user.getUsername())) {
-                	userJson.put("HighScore", score);
+                	userJson.put("HighScore", user.getHighScore());
+                	userJson.put("GoldAmount", user.getGoldAmount());
+                	userJson.put("Ships", user.getShips());
+                	userJson.put("Rank", user.getRank());
                 }
                 
                 fileWriter.write(obj.toString() + "\n");

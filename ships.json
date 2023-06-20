@@ -1,0 +1,2 @@
+{"name":"ship_1","health":3,"damage":1,"speedX":4,"speedY":4,"bulletSpeedX":10,"bulletSpeedY":10,"shootingType":"vertical_up","shipImgPath":"/img/ship.png","shipBackFireImgPath1":"/img/ship_back_fire_1.png","shipBackFireImgPath2":"/img/ship_back_fire_2.png"}
+{"name":"ship_2","health":5,"damage":1,"speedX":6,"speedY":6,"bulletSpeedX":12,"bulletSpeedY":12,"shootingType":"vertical_double","shipImgPath":"/img/ship.png","shipBackFireImgPath1":"/img/ship_back_fire_1.png","shipBackFireImgPath2":"/img/ship_back_fire_2.png"}

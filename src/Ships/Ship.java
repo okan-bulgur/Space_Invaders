@@ -1,39 +1,112 @@
 package Ships;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import Game.Character;
+import Screens.GamePanel;
 
 public class Ship extends Character {
 	
-	protected boolean isTakeDamage;
-	protected int damageAnimationTime;
 	
-	protected String shipName;
+	private String name;
+	private int posX = GamePanel.tileSize * 11;
+	private int posY = GamePanel.tileSize * 10;
+	private int width = GamePanel.tileSize;
+	private int height = GamePanel.tileSize;
 	
-	protected BufferedImage shipImg;
-	protected BufferedImage shipBackFireImg1;
-	protected BufferedImage shipBackFireImg2;
+	private BufferedImage shipImg;
+	private BufferedImage shipBackFireImg1;
+	private BufferedImage shipBackFireImg2;
 	
-	protected String shipImgPath;
-	protected String shipBackFireImgPath1;
-	protected String shipBackFireImgPath2;
-	protected String bulletImgPath1;
-	protected String bulletImgPath2;
-	protected String damageBoostBulletImgPath1;
-	protected String damageBoostBulletImgPath2;
-	protected String speedBoostBulletImgPath1;
-	protected String speedBoostBulletImgPath2;
+	private String shipImgPath;
+	private String shipBackFireImgPath1;
+	private String shipBackFireImgPath2;	
+	private String bulletImgPath1 = "/img/bullet_player_1.png";
+	private String bulletImgPath2 = "/img/bullet_player_2.png";
+	private String damageBoostBulletImgPath1 = "/img/damageBoostBullet_1.png";
+	private String damageBoostBulletImgPath2 = "/img/damageBoostBullet_2.png";
+	private String speedBoostBulletImgPath1 = "/img/speedBoostBullet_1.png";
+	private String speedBoostBulletImgPath2 = "/img/speedBoostBullet_2.png";
+	
+	protected boolean isTakeDamage = false;
+	protected int damageAnimationTime = 1500;
+	
+	public Ship(String name) {
+		setShipName(name);
+		setPosX(posX);
+		setPosY(posY);
+		setSizeWidth(width);
+		setSizeHeight(height);
+		setCollisionArea();
+		setIsTakeDamage(isTakeDamage);
+		setDamageAnimationTime(damageAnimationTime);
+		setBulletImgPath(bulletImgPath1, bulletImgPath2);
+		setDamageBoostBulletImgPath(damageBoostBulletImgPath1, damageBoostBulletImgPath2);
+		setSpeedBoostBulletImgPath(speedBoostBulletImgPath1, speedBoostBulletImgPath2);
+		setDefaultBulletImg();
+		setPropertyOfShip();
+	}
+	
+	public void setPropertyOfShip() {
+		JSONParser jsonParser = new JSONParser();
+		File file = new File("ships.json");
+
+        try {
+        	FileReader fileReader = new FileReader(file);
+        	BufferedReader reader = new BufferedReader(fileReader);
+        	String line;
+        	while ((line = reader.readLine()) != null) {
+                Object obj = jsonParser.parse(line);
+                JSONObject userJson = (JSONObject) obj;
+                String shipName = (String) userJson.get("name");
+                
+                if(name.equals(shipName)) {
+                	long health = (long) userJson.get("health");
+                	long damage = (long) userJson.get("damage");
+                	long speedX = (long) userJson.get("speedX");
+                	long speedY = (long) userJson.get("speedY");
+                	long bulletSpeedX = (long) userJson.get("bulletSpeedX");
+                	long bulletSpeedY = (long) userJson.get("bulletSpeedY");
+                	String shootingType = (String) userJson.get("shootingType");
+                	String shipImgPath = (String) userJson.get("shipImgPath");
+                	String shipBackFireImgPath1 = (String) userJson.get("shipBackFireImgPath1");
+                	String shipBackFireImgPath2 = (String) userJson.get("shipBackFireImgPath2");
+                	
+                	setHealth((int)health);
+            		setDamage((int)damage);
+            		setSpeedX((int)speedX);
+            		setSpeedY((int)speedY);
+            		setBulletSpeedX((int)bulletSpeedX);
+            		setBulletSpeedY((int)bulletSpeedY);
+            		setShootingType(shootingType);
+            		setShipImgPath(shipImgPath, shipBackFireImgPath1, shipBackFireImgPath2);
+            		setShipImg();
+            		
+            		break;
+                }
+        	}
+        	fileReader.close();
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+	}
 	
 	public void setShipName(String shipName) {
-		this.shipName = shipName;
+		this.name = shipName;
 	}
 	
 	public String getShipName() {
-		return shipName;
+		return name;
 	}
 	
 	public void setShipImgPath(String shipImgPath, String shipBackFireImgPath1, String shipBackFireImgPath2) {

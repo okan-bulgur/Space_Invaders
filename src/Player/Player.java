@@ -1,13 +1,12 @@
 package Player;
 
 import Ships.Ship;
-import Ships.Ship_1;
 import Users.User;
 
 public class Player {
 	
 	private User user;
-	private Ship ship = new Ship_1();
+	private Ship ship = new Ship("ship_1");
 	
 	private int score = 0;
 
