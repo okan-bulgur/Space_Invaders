@@ -27,6 +27,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		JMenuItem register = new JMenuItem("Register");
 		JMenuItem playGame = new JMenuItem("Play Game");
 		JMenuItem highScore = new JMenuItem("High Score");
+		JMenuItem shipMarket = new JMenuItem("Ship Market");
 		JMenuItem quit = new JMenuItem("Quit");
 		
 		JMenuItem about = new JMenuItem("About");
@@ -76,6 +77,16 @@ public abstract class Screen extends ScreenManager implements IScreen{
 			}
 		});
 		
+		shipMarket.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Game.sound.buttonClickEffect();
+				screen.dispose();
+				setScreen(new ShipMartketScreen());
+				showScreen();
+			}
+		});
+		
 		quit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,6 +107,7 @@ public abstract class Screen extends ScreenManager implements IScreen{
 		fileMenu.add(register);
 		fileMenu.add(playGame);
 		fileMenu.add(highScore);
+		fileMenu.add(shipMarket);
 		fileMenu.add(quit);
 		
 		helpMenu.add(about);
