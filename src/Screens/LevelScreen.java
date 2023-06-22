@@ -71,7 +71,8 @@ public class LevelScreen extends Screen{
 				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(1);
 				screen.dispose();
-				Game.gameManager.startGame();
+				setScreen(new ChooseShipScreen());
+				showScreen();
 			}
 		});
 		
@@ -82,7 +83,8 @@ public class LevelScreen extends Screen{
 				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(2);
 				screen.dispose();
-				Game.gameManager.startGame();
+				setScreen(new ChooseShipScreen());
+				showScreen();
 			}
 		});
 		
@@ -93,7 +95,8 @@ public class LevelScreen extends Screen{
 				Game.sound.buttonClickEffect();
 				Game.gameManager.setLevel(3);
 				screen.dispose();
-				Game.gameManager.startGame();
+				setScreen(new ChooseShipScreen());
+				showScreen();
 			}
 		});
 		

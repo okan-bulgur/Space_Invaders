@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
@@ -28,9 +29,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import Game.Game;
-import Ships.Ship;
+import Users.User;
 
 public class ShipMartketScreen extends Screen implements IMenuBar {
+	
+	private JLabel goldCount;
 	
 	@Override
 	public void createScreen() {
@@ -41,11 +44,24 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
 		screen.setLayout(new BorderLayout());
 		screen.setResizable(false);
 		
+		JPanel headerPanel = new JPanel();
+		FlowLayout layout = new FlowLayout();
+		layout.setHgap(50);
+		headerPanel.setLayout(layout); 
+		
 		JLabel header = new JLabel("Ship Market");
 		header.setHorizontalAlignment(JLabel.CENTER);
 		header.setFont(new Font("Verdana", Font.BOLD, 50));
 		header.setForeground(Color.BLACK);
-		screen.add(header, BorderLayout.NORTH);
+		headerPanel.add(header);
+		
+		goldCount = new JLabel("Gold: " + Game.userManager.getActiveUser().getGoldAmount());
+		goldCount.setHorizontalAlignment(JLabel.CENTER);
+		goldCount.setFont(new Font("Verdana", Font.BOLD, 40));
+		goldCount.setForeground(Color.ORANGE);
+		headerPanel.add(goldCount);
+		
+		screen.add(headerPanel, BorderLayout.NORTH);
 		
 		JPanel itemsPanel = itemPanel();
 		screen.add(itemsPanel, BorderLayout.CENTER);
@@ -76,7 +92,7 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
                 JSONObject userJson = (JSONObject) obj;
                 
                 final String shipName = (String) userJson.get("name");
-                long cost = (long) userJson.get("cost");
+                final long cost = (long) userJson.get("cost");
             	long health = (long) userJson.get("health");
             	long damage = (long) userJson.get("damage");
             	long speed = (long) userJson.get("speedX");
@@ -104,7 +120,9 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	properties.setBackground(Color.BLACK);
             	
             	BufferedImage shipImg = ImageIO.read(getClass().getResourceAsStream(shipImgPath));
-        		JLabel imgLabel = new JLabel(new ImageIcon(shipImg));
+            	ImageIcon icon = new ImageIcon(shipImg);
+            	ImageIcon scaledIcon = new ImageIcon(icon.getImage().getScaledInstance(125, 125, java.awt.Image.SCALE_SMOOTH));
+            	JLabel imgLabel = new JLabel(scaledIcon);
             	
             	JLabel nameLabel = new JLabel("Name: " + shipName);
             	JLabel healthLabel = new JLabel("Health: " + (int)health);
@@ -115,6 +133,10 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	JLabel costLabel = new JLabel("Cost: " + (int)cost);
             	
             	final JButton buyBtn = new JButton("BUY");   
+            	
+            	if(Game.userManager.getActiveUser().getShips().contains(shipName)) {
+            		buyBtn.setEnabled(false);
+            	}
             	
             	imgLabel.setHorizontalAlignment(JLabel.CENTER);
             	buyBtn.setHorizontalAlignment(JLabel.CENTER);
@@ -169,15 +191,22 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
         			@Override
         			public void actionPerformed(ActionEvent e) {
         				Game.sound.buttonClickEffect();
-        				buyBtn.setEnabled(false);
-        				Ship newShip = new Ship(shipName);
-        				Game.userManager.buyShip(newShip);        				
+        				User user = Game.userManager.getActiveUser();
+        				if (user.getGoldAmount() >= (int) cost) {
+        					user.setGoldAmount(user.getGoldAmount() - (int) cost);
+        					goldCount.setText("Gold: " + Game.userManager.getActiveUser().getGoldAmount());
+        					buyBtn.setEnabled(false);
+        					Game.userManager.buyShip(shipName);        				
+        					Game.fileManager.setNewPropertyOfUser(Game.userManager.getActiveUser());
+						}
+        				else {
+        					JOptionPane.showMessageDialog(screen, "There are not enough money");
+						}
         			}
         		});
         	}
         	
         	fileReader.close();
-        	
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

@@ -6,13 +6,13 @@ import Users.User;
 public class Player {
 	
 	private User user;
-	private Ship ship = new Ship("ship_6");
+	private Ship ship;
 	
 	private int score = 0;
 
 	public Player(User user) {
 		setUser(user);
-		setShip(ship); //which is the choosen by user
+		setShip(user.getActiveShip());
 		setScore(score);
 	}
 	

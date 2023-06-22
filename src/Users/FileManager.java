@@ -10,7 +10,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
-import Ships.Ship;
 
 import Game.Game;
 
@@ -20,7 +19,7 @@ public class FileManager {
 	public void addUserInFile(User user) {
 		File file = new File("users.json");
 		JSONObject newUser = new JSONObject();
-		newUser.put("Usermame", user.getUsername());
+		newUser.put("Username", user.getUsername());
 		newUser.put("Password", user.getPassword());
 		newUser.put("HighScore", user.getHighScore());
 		newUser.put("GoldAmount", user.getGoldAmount());
@@ -48,7 +47,7 @@ public class FileManager {
         	while ((line = reader.readLine()) != null) {
                 Object obj = jsonParser.parse(line);
                 JSONObject userJson = (JSONObject) obj;
-                String user_name = (String) userJson.get("Usermame");
+                String user_name = (String) userJson.get("Username");
                 
                 if(user_name.equals(username)) {
                 	return true;
@@ -60,7 +59,7 @@ public class FileManager {
         return false;
 	}
 	
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "unchecked" })
 	public void logInUser(String username, String password) throws UserInfoException {
         JSONParser jsonParser = new JSONParser();
 
@@ -71,7 +70,7 @@ public class FileManager {
         	while ((line = reader.readLine()) != null) {
                 Object obj = jsonParser.parse(line);
                 JSONObject userJson = (JSONObject) obj;
-                String username_1 = (String) userJson.get("Usermame");
+                String username_1 = (String) userJson.get("Username");
                 String password_1 = (String) userJson.get("Password");
                 if(!userIsValid(username)){
                 	throw new UserInfoException("There is not user");
@@ -79,7 +78,7 @@ public class FileManager {
                 if(username_1.equals(username) && password_1.equals(password)) {
                 	long highScore_1 = (long) userJson.get("HighScore");
                 	long goldAmount_1 = (long) userJson.get("GoldAmount");
-                	Ship[] ships_1 = (Ship[]) userJson.get("Ships");
+                	ArrayList<String> ships_1 = (ArrayList<String>) userJson.get("Ships");
                 	long rank_1 = (long) userJson.get("Rank");
                 	User user = new User(username, password, (int) highScore_1, (int) goldAmount_1, ships_1, (int) rank_1);
                 	Game.userManager.changeUser(user);        
@@ -109,7 +108,7 @@ public class FileManager {
         	while ((line = reader.readLine()) != null) {
                 Object obj = jsonParser.parse(line);
                 JSONObject userJson = (JSONObject) obj;
-                String username = (String) userJson.get("Usermame");
+                String username = (String) userJson.get("Username");
                 
                 if(username.equals(user.getUsername())) {
                 	userJson.put("HighScore", user.getHighScore());

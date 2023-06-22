@@ -10,10 +10,12 @@ public class User extends UserManager{
 	private String password;
 	private int highScore;
 	private int goldAmount;
-	private ArrayList<Ship> ships;
+	private ArrayList<String> ships;
 	private int rank;
 	
-	public User(String username, String password, int highScore, int goldAmount,  ArrayList<Ship> ships, int rank) {
+	private Ship activeShip;
+	
+	public User(String username, String password, int highScore, int goldAmount,  ArrayList<String> ships, int rank) {
 		setUsername(username);
 		setPassword(password);
 		setHighScore(highScore);
@@ -54,11 +56,11 @@ public class User extends UserManager{
 		this.goldAmount = goldAmount;
 	}
 
-	public ArrayList<Ship> getShips() {
+	public ArrayList<String> getShips() {
 		return ships;
 	}
 
-	public void setShips(ArrayList<Ship> ships) {
+	public void setShips(ArrayList<String> ships) {
 		this.ships = ships;
 	}
 
@@ -70,5 +72,11 @@ public class User extends UserManager{
 		this.rank = rank;
 	}
 	
+	public void setActiveShip(Ship ship) {
+		this.activeShip = ship;
+	}
 	
+	public Ship getActiveShip() {
+		return activeShip;
+	}
 }
