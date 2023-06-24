@@ -103,10 +103,8 @@ public class LevelManager extends Thread {
 		String[] objectTypes = Game.gameManager.getObjectManager().getObjectTypes();
 		Random random = new Random();
 		maxObjectCount.clear();
-		for(String type : objectTypes) {
-			for(Integer num : level.getObjectMaxNum()) {
-				maxObjectCount.put(type, random.nextInt(num)+1);				
-			}
+		for(int i=0 ; i<objectTypes.length; i++) {
+			maxObjectCount.put(objectTypes[i], random.nextInt(level.getObjectMaxNum()[i])+1);
 		}
 	}
 	
