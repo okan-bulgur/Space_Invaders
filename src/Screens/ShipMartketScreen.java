@@ -157,7 +157,7 @@ public class ShipMartketScreen extends Screen implements IMenuBar {
             	damageLabel.setFont(new Font(fontType, Font.PLAIN, fontSize));
             	speedLabel.setFont(new Font(fontType, Font.PLAIN, fontSize));
             	bulletSpeedLabel.setFont(new Font(fontType, Font.PLAIN, fontSize));
-            	shootingTypeLabel.setFont(new Font(fontType, Font.PLAIN, fontSize));
+            	shootingTypeLabel.setFont(new Font(fontType, Font.PLAIN, fontSize-2));
             	costLabel.setFont(new Font(fontType, Font.BOLD, fontSize));
             	buyBtn.setFont(new Font(fontType, Font.BOLD, fontSize));
             	

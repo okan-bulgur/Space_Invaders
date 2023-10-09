@@ -12,7 +12,7 @@ public class Alien4 extends Alien {
 	private int damage = 1;
 	private int width = GamePanel.tileSize + 30;
 	private int height = GamePanel.tileSize + 30;
-	private String shootingType = "shotgun";
+	private String shootingType = "shotgunDown";
 	
 	public Alien4(int posX, int endPosX, int posY, int endPosY, int speedX, int speedY, int bulletSpeedX, int bulletSpeedY, int bulletDelay) {
 		setAliensImg(aliensImg1, aliensImg2);
