@@ -21,7 +21,7 @@ public class UserFormScreen extends Screen {
 	private static int height = 300;
 	private static int width = 400;
 	
-	private final String gamePlayGuide = "\n1) Press W to go up.\n2) Press S to go down.\n3)Press D to go right.\n4) Press A to go left.\n5) Press Space to fire.\n6) You can see your health, score, username and highscore.\n7) You can see the high score table in the high score button on the new button.";
+	private final String gamePlayGuide = "\n1) Use W,A,S,D to move.\n2) Press Space to fire.\n3) There are 4 object \n   3.1) Boost of bullet's speed\n   3.2) Boost of bullet's damage\n   3.3)One life boost\n   3.4) Boost of ship's speed \n5) By collecting gold you can buy more advanced ship. \n6) You can see your health, score, username and highscore.\n7) You can see the high score table in the high score button on the new button.";
 
 	@Override
 	public void createScreen() {
